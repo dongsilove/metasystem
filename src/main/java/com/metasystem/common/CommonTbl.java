@@ -19,18 +19,18 @@ import lombok.Setter;
 @MappedSuperclass
 @Getter @Setter
 public abstract class CommonTbl {
-	@Temporal(TemporalType.DATE)
-	@Column(name="regist_dt")
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="regist_dt",insertable=false, updatable=false, columnDefinition="timestamp DEFAULT CURRENT_TIMESTAMP")
 	protected Date registDt;
 
-	@Column(name="regist_id")
+	@Column(name="regist_id", length=50)
 	protected String registId;
 
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="modify_dt")
 	protected Date modifyDt;
 
-	@Column(name="modify_id")
+	@Column(name="modify_id", length=50)
 	protected String modifyId;
 
 	////@ApiModelProperty(value = "생성자")
