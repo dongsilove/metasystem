@@ -1,0 +1,225 @@
+@charset "utf-8";
+
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+/***polycube jeong @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);font-family: 'Noto Sans KR', sans-serif; ***/
+/*reset*/
+html, body, div, span, applet, object, iframe,h1, h2, h3, h4, h5, h6, p, blockquote, pre,a, abbr, acronym, address, big, cite, code,del, dfn, em, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var,b, u, i, center,dl, dt, dd, ol, ul, li,fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td,article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary,time, mark, audio, video {margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;}article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display: block;}body {line-height: 1;}ol, ul,li {list-style: none;}blockquote, q {quotes: none;}blockquote:before, blockquote:after,q:before, q:after {content: '';content:none;}table {border-collapse: collapse;border-spacing: 0;}a{text-decoration: none;color: #000;display: block}img{display: block;}legend{display: none}
+
+/*common*/
+body{background-color:#ECF0F1 }
+body.search-active { overflow: hidden;}
+.clearfix:after{display: block;clear: both;content: ''}
+.hide,caption{display: none}
+textarea{resize:none;-webkit-appearance: none;}
+textarea:focus{outline:none}
+textarea.hidden{display:none}
+input{-webkit-appearance: none;}
+input[type="search"] {-webkit-appearance: none;}
+input[type="search"]::-webkit-search-decoration {-webkit-appearance: none;}
+.wrap{position: relative;}
+.body{position: relative;z-index: 20;}
+.footer{position: relative;z-index: 10;}
+/*layout*/
+.wrap{font-family: 'Nanum Gothic', serif; font-weight: 100;}
+
+/*header*/
+.header{position: fixed;top:0;left:0;width:100%; height:48px;background-color: #2f84d4;box-shadow: 1px 1px 5px rgba(0,0,0,.3)}
+.account{display: none;font-size: 14px;}
+.account>div{float:right}
+.account>div>a{font-weight:bold;padding:12px 15px;border-radius: 18px;background-color:#fbfdff;margin:8px 14px 8px 8px}
+.account>div>a i {color:#2f84d4;margin:-15px 0 0 10px;}
+.account ul li a{box-sizing:border-box;text-align:center;font-size:14px;width:100%;background-color: #fff;padding:20px;}
+.account ul{display:none;box-shadow:2px 2px 5px rgba(0,0,0,.1);overflow:hidden;margin:16px 10px 10px 10px;border-radius: 18px;}
+.account span{display: inline-block;font-size: 12px;font-weight: normal}
+/*sidebar*/
+.wrap .logo{background-color:#2f84d4;height:47px;border-bottom:1px solid rgba(0,0,0,0.12)}
+.logo a{display:none;position:relative;width:100px;padding:16px 27px;}
+.m_logo{width:100px;margin: 12px auto;position: relative}
+.m_logo:after{color: #fff;top:8px;right:-48px}
+.logo a img,.m_logo img{width: 100%}
+.wrap .sidebar{
+    z-index: 35;
+    position: fixed;
+    top:0;
+    left:-260px;
+    width:260px;
+    height:100%;
+    box-sizing: border-box;
+    box-shadow: 1px 1px 5px rgba(0,0,0,.3);
+    background-color:#fff;
+    transition: .5s;
+    overflow-y:auto
+}
+.sidebar ul li a{
+    padding:12px 5px;
+    color: #fff;
+    font-size:14px;
+}
+
+.sidebar>ul>li>a{font-weight:400;cursor:unset;font-size:12px;padding:24px 20px 10px 24px;color:#828282;}
+.depth i{color:rgba(0,0,0,.6); margin: -3px 12px -2px 12px;width:14px;height:14px;padding:8px;border-radius:50%;font-size: 15px;}
+.sidebar .depth{border-bottom:1px solid rgba(0,0,0,0.12)}
+.sidebar>ul>li:last-child .depth{border:0}
+.sidebar .depth li a{color:rgba(0,0,0,.6)}
+.sidebar .depth li.on a{color:#000;background-color: rgba(0,0,0,0.04)}
+/*m_gnb*/
+[class^="ico_"][class*="_menu"]{
+    display: block;
+    position: relative;
+    width: 20px;
+    height: 2px;
+    margin-top: -2px;
+    background:#fff
+}
+[class^="ico_"][class*="_menu"]:before, [class^="ico_"][class*="_menu"]:after{
+    content:'';
+    position: absolute;
+    left:0;
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    transition:.3s
+}
+[class^="ico_"][class*="_menu"]:before{
+    top:-7px
+}
+[class^="ico_"][class*="_menu"]:after{
+    bottom: -7px;
+}
+.btn_mobile_menu{
+    position: absolute;
+    top: 9px;
+    left:15px;
+    z-index: 30;
+    width: 33px;
+    height: 30px;
+    border: 0;
+    background: transparent
+
+}
+.sidebar.on{left:0;}
+.bg{display: none;z-index:1;position: absolute;top:0;left: 0;width: 100%;height: 100%;background-color:rgba(0,0,0,0.5)}
+.bg.on{display: block;}
+.logo .about{color:#fff;font-weight: bold;padding:16px;}
+.logo .about span{font-size:12px;font-weight: normal;margin-left: 5px}
+/*container*/
+.container{margin-top:48px;}
+.container_inner{background-color:#fff;padding:20px 5px;max-width:1200px;margin: 0 auto;box-sizing:border-box}
+.container_inner h4{margin-bottom:10px;font-size:14px;font-weight:bold;color:#0f5b8d}
+.container .title{margin-bottom:25px;padding:20px;background-color: #fff;border-bottom: 1px solid #cecece;font-size:18px;color: #297FB8;font-weight: bold}
+/*login*/
+.loginWrap{
+    box-sizing: border-box;
+    width:100%;
+    height:450px;
+   
+    padding:50px 26px;
+
+}
+.loginWrap h3{
+    font-size: 34px;
+    color:#1B3477;
+    font-weight: bold;
+    letter-spacing:-1px;
+    }
+.loginTitle p{margin:20px 0 20px 0;color:#414141;font-size:14px;line-height:1.4;}
+.input_form{position:relative}
+.input_form input{font-size:15px;width:100%;height:40px;padding:6px 15px 6px 90px;box-sizing:border-box;border-radius: 4px;border:none;background-color:#D3DEEF;margin-bottom:6px;}
+.input_label{
+    position: absolute;
+    top:0;
+    left:15px;
+    
+    height:40px;
+    color:#333;
+    font-size: 13px;
+    line-height: 40px;
+    box-sizing: border-box;
+
+}
+.input_label:after{
+    position: absolute;display:block;top:8px;bottom: 8px;left: 64px;border-right:1px solid #B0C1E4;content: ''
+}
+
+.input_submit input{
+    -webkit-appearance: none;
+    cursor:pointer;
+    width:100%;
+    height: 46px;
+    border:none;
+    font-size:16px;
+    letter-spacing: -1px;
+    font-weight: bold;
+    color:#fff;
+    border-radius: 3px;
+    box-shadow: 1px 1px 4px rgba(0,0,0,.5) ;
+    background-color: #1B3477;
+    margin-top:10px;
+}
+._copy{font-size:10px;color:#555;margin-top:20px;}
+@media screen and (min-width:768px){
+    .account{display: block;}
+    .header{height:56px}
+    .about,.m_logo{display:none}
+    .account ul li a:hover{background-color:#EAF3FC}
+    .depth li a:hover{background-color: rgba(0,0,0,0.04);transition: .2s}
+    .btn_mobile_menu{display: none;}
+    .wrap .sidebar{left:0}
+    .wrap .logo{background-color: #fff;height:55px;}
+    .bg{display: none !important}
+    .logo a{display: block;}
+    /*container*/
+    .container{margin:56px 0 0 260px;transition:.5s}
+    .container._hide{margin:56px 0 0 0;}
+    .container .title h1{display:block;max-width:1200px;margin: 0 auto;}
+    .container_inner{border-radius:14px;margin-bottom:25px;}
+    .container .title{padding:30px 55px;font-size:20px;}
+    .container_inner{border-radius:14px;margin-bottom:25px;}
+     /*login*/
+     .loginWrap{
+        position: absolute;
+        top:50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width:446px;
+        height:250px;
+        padding:60px 40px 40px 60px;
+        box-sizing:content-box;
+
+    }
+    .input_info, .input_submit{float:left;}
+    .input_form input{width:270px;}
+    .loginWrap h3{color:#fff;text-shadow:2px 2px 5px rgba(0,0,0,.3)}
+    .loginWrap{
+        
+        height:250px;
+        background-size:cover;
+        background:url(../images/login_bg.png) no-repeat center top;
+    }
+    .input_submit input{
+        width:118px;
+        height: 86px;
+        margin-left: 20px;
+        font-size:20px;
+        margin-top:0;
+        color:#1B3477;
+        background: #ffffff; /* Old browsers */
+        background: -moz-linear-gradient(-45deg, #ffffff 0%, #e5e5e5 100%); 
+        background: -webkit-linear-gradient(-45deg, #ffffff 0%,#e5e5e5 100%); 
+        background: linear-gradient(135deg, #ffffff 0%,#d2d2d2 100%); 
+    }
+    .loginTitle p{color:#fff;}
+    .authSelect ul li{float:left;width:50%;}
+    .user_wrap{padding:20px;box-shadow:0 0 15px rgba(0,0,0,.1);}
+    .user_form .tel_info input[type="tel"]{width:70px;font-size:15px}
+    .leave{display:inline-block;margin:0 0 0 10px;}
+    ._copy{color:rgba(255,255,255,.8);margin-top:10px;}
+}
+@media screen and (min-width: 1024px){
+    .btn_mobile_menu{display: none;}
+    .wrap .sidebar{left:0}
+    .bg{display: none !important}
+    
+}
+
+
