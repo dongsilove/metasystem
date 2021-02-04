@@ -15,7 +15,7 @@ import java.util.Date;
 @Entity
 @Table(name="t_wd_govword")
 @NamedQuery(name="TWdGovword.findAll", query="SELECT t FROM TWdGovword t")
-public class TWdGovword extends CommonTbl implements Serializable {
+public class TWdGovword implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
