@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,10 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>마인드원</title>
-    <link href="/html/asset/fontawesome/css/fontawesome-all.css" rel="stylesheet">
+    <link href="/asset/fontawesome/css/fontawesome-all.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
-    <script src="/html/js/jquery.min.js"></script>
-    <script src="/html/js/init.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/init.js"></script>
+    <script src="/js/login.js"></script>
 </head>
 <style>   
     .wrap{position:inherit}
@@ -50,7 +52,7 @@
                             </div> 
                         </div>
                         <div class="input_submit">
-                            <input type="button" value="로그인" name="btn_lg" onclick="actionSubmit();">
+                            <input type="button" value="로그인" name="btn_lg" id="btn_lg" onclick="actionSubmit();">
                         </div>        
                     </form>
                     <div class="_copy">
