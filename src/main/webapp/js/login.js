@@ -6,7 +6,7 @@ $(function() {
 	/**로그인 버튼**/
 	$("#btn_lg").click(function() {
 		
-		location.href = "/govwords";
+		location.href = "/govwords/page";
 		
 	});	
 	
