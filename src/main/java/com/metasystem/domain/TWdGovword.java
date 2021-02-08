@@ -44,8 +44,8 @@ public class TWdGovword implements Serializable {
 	@Column(name="thema_se", length=200)
 	private String themaSe;
 
-	@Column(name="word_dcv2000", length=40000)
-	private String wordDcv2000;
+	@Column(name="word_dc", length=40000)
+	private String wordDc;
 
 	@Column(name="word_en_abbr", length=100)
 	private String wordEnAbbr;
@@ -118,12 +118,12 @@ public class TWdGovword implements Serializable {
 		this.themaSe = themaSe;
 	}
 
-	public String getWordDcv2000() {
-		return this.wordDcv2000;
+	public String getWordDc() {
+		return wordDc;
 	}
 
-	public void setWordDcv2000(String wordDcv2000) {
-		this.wordDcv2000 = wordDcv2000;
+	public void setWordDc(String wordDc) {
+		this.wordDc = wordDc;
 	}
 
 	public String getWordEnAbbr() {

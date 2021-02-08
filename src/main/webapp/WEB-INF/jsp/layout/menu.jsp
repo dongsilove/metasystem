@@ -2,7 +2,7 @@
         <div class="sidebar">
             <div class="logo">
                 <a href="#"><img src="/images/mindone.png" alt="logo"></a>
-                <div class="about"><span>BA2</span> 박이정</div>
+                <div class="about"><span>BA2</span> 박이정</div><!-- 화면width 줄어들면 보인다 -->
             </div>
             <ul>
                 <li><a href="#">데이터사전</a>
@@ -20,4 +20,8 @@
                     </ul>
                 </li>
             </ul>
+            <ul class="m_page"><!-- 화면width 줄어들면 보인다 -->
+			    <li><a href="mypage.php">내정보수정</a></li>
+			    <li><a href="logout.php">로그아웃</a></li>
+		    </ul>
         </div><!--//sidebar-->

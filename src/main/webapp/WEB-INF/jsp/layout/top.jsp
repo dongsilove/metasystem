@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 		<div class="header">
             <div class="account clearfix">
-                <div>
+                <div class="btn_bars"><i class="fas fa-bars"></i></div>
+                <div class="btn_info">
                     <a href="#" class="user_name"><span>BA2</span> 박이정<i class="fas fa-chevron-down"></i></a>
                     <ul>
                         <li><a href="#">비밀번호 변경</a></li>

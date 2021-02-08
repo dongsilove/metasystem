@@ -40,7 +40,7 @@ var _list = {
 				data.content.forEach(function(f){
 					$("#listData").append("<tr onclick=\"getDetail('"+f.wordSn+"')\">"
 						+"<td>" +f.wordSn+"</td><td>"+f.wordNm+"</td><td>"+f.wordEnAbbr+"</td><td>"+f.wordEnNm+"</td><td>"
-						+f.wordDcv2000+"</td><td>"+f.wordSe+"</td><td>"+f.themaSe+"</td><td>"+f.sttusSe+"</td><td>"+f.registYmd+"</td>"
+						+f.wordDc+"</td><td>"+f.wordSe+"</td><td>"+f.themaSe+"</td><td>"+f.sttusSe+"</td><td>"+f.registYmd+"</td>"
 						+"</tr>"
 					);
 				});

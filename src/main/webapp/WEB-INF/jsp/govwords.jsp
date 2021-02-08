@@ -11,9 +11,32 @@
 
         <div class="container">
             <div class="title"><h1>행정단어</h1></div>
-            <div class="container_inner">
-                <div>
-                <table>
+            <div class="write"><!-- 검색 -->
+                <div class="write_inner">
+					<div class="write_search">
+					<form name="frm" method="GET" onsubmit="search()" >
+					    <input type="checkbox" name="onoff" value="0"  onChange="search()" /> 비활성 &nbsp;
+						<select name="post" id="post" onChange="search()" class="selectp">
+							   <option value=''> -- 부서 선택 -- </option>
+							
+						</select>
+						<select name="searchField" id="searchField" onChange="setPlaceholder(this)"  class="selectp">
+								<option value=''> -- 검색선택 -- </option>
+								<option value="name" >이름</option>
+								<option value="id" >ID</option>
+						</select>
+						<input type="text" name="searchWord" id="searchWord" value="" placeholder="검색할 내용을 입력해주세요"  class="inputp"
+										   onkeypress="if(event.keyCode==13) {search(); return false;}"/>
+					</form>
+					</div>
+					<a href="member_edit.php"><i class="fas fa-edit"></i>등록</a>
+				</div> 
+				
+			</div>
+            <div class="container_inner task_list_wrap">
+                <div class="task_list">
+                <table id="list_t">
+                	<caption>행정단어</caption>
                     <colgroup>
                         <col style="width:5%">
                         <col style="width:10%">

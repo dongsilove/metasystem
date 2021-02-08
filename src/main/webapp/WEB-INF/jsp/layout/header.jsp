@@ -6,7 +6,7 @@
     <title>마인드원</title>
     <link href="/asset/fontawesome/css/fontawesome-all.css" rel="stylesheet">
     <script src="/js/lib/jquery/jquery-3.4.1.min.js"></script>
-    <script src="/js/init.js"></script>
+    <script src="/js/init2.js"></script>
 
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/template.css">
