@@ -156,7 +156,7 @@ input[type="date"]:read-only:not([read-only="false"]) { background-color:#f8f8f8
 .task_list{text-align: center;}
 .task_list th{padding:14px 0;border-top:2px solid #595959;border-bottom:1px solid #c4c4c4;font-weight: bold;background-color: #f8f8f8;color:#484848;}
 .task_list td{padding:18px 8px;line-height:1.6;border-bottom: 1px solid #eee;background-color: #fff;}
-.task_list table{width:100%;max-width:1000px;margin: 0 auto;overflow: hidden;font-size:14px;cursor:pointer;}
+.task_list table{width:100%;max-width:1600px;margin: 0 auto;overflow: hidden;font-size:14px;cursor:pointer;}
 .write {text-align: right}
 .write_inner{width: 100%;max-width:850px;margin:0 auto;padding:0 5px;box-sizing:border-box;}
 .write_inner i {margin-right:5px;}
@@ -553,7 +553,7 @@ input#back_img{width:100%}
     .container._hide{margin:56px 0 0 0;}
     .container .title h1{display:block;max-width:1200px;margin: 0 auto;}
     .container .title>div>h1{max-width:100%;}
-    .task_list_wrap{max-width:850px;}
+    .task_list_wrap{max-width:1600px;}
     .container_inner{border-radius:14px;margin-bottom:25px;}
     .container .title{padding:20px 55px;font-size:20px;}
     .task_list_wrap .title h1{max-width:1000px;margin:0 auto}
