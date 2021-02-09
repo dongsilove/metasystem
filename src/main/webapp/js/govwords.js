@@ -22,19 +22,19 @@ var _list = {
 	pagination : {}
 	,paginationInit : function() {
 		var pagination = new tui.Pagination('paging', _paging.paginationOptions); // _paging :system.js에 정의되어 있음.
-		pagination.on('beforeMove', function(evt) { _list.getList(evt.page); });
+		pagination.on('beforeMove', function(evt) {_list.getList(evt.page);	});
 		this.pagination = pagination;
 	}
 	,getList : function(page) {
 		
 		if (isEmpty(page)) page = 1;
-		//$("#searchtmp").attr("name",$("#searchfield option:selected").val());
-		//$("#searchtmp").attr("value",$("#searchcontent").val());
+		$("#searchtmp").attr("name",$("#searchfield option:selected").val());
+		$("#searchtmp").attr("value",$("#searchcontent").val());
 		$("#page").val(page);
 		
-		//$("#detailForm")[0].reset(); //오른쪽 상세정보 리셋
+		//$("#searchfrm")[0].reset(); //오른쪽 상세정보 리셋
 		
-		_ajaxUtil.ajax({"url" : "/govwords", "form" : $("#searchForm")
+		_ajaxUtil.ajax({"url" : "/govwords", "form" : $("#searchFrm")
 			,"successCallback": function(data) { console.log(data);
 				$("#listData").html(""); // 목록 초기화
 				data.content.forEach(function(f){

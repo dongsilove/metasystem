@@ -2,6 +2,7 @@ package com.metasystem.restcontroller;
 
 import java.awt.print.Pageable;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,11 +30,15 @@ public class TWdGovwordRestController<TWdGovword> {
 	TWdGovwordRepository govwordRepository;
 
 	@GetMapping("/govwords")
-	public Page<TWdGovword> list(
+	public Page<TWdGovword> list( @RequestParam Map<String,Object> param,
 			@RequestParam(name = "perPage", required = true, defaultValue = "20") int perPage,
 			@RequestParam(name = "page", required = true, defaultValue = "1") int page) throws Exception {
 		
-		Page<TWdGovword> list = (Page<TWdGovword>) govwordRepository.findAll(PageRequest.of(--page,perPage));
+		param.forEach((k,v)->logger.debug("key:" + k + "\tvalue:" +v));
+		logger.debug("perPage : " + perPage);
+		logger.debug("page : " + page);
+		PageRequest pageRequest = PageRequest.of(page - 1, perPage); // , new Sort(Direction.ASC, "ordr"
+		Page<TWdGovword> list = (Page<TWdGovword>) govwordRepository.findAll(pageRequest);
 		return list;
 		
 	}

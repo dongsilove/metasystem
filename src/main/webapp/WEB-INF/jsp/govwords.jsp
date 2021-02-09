@@ -2,6 +2,14 @@
 <!DOCTYPE html>
 <html lang="ko">
 <jsp:include page="/WEB-INF/jsp/layout/header.jsp"/>
+<%
+//========================================
+// @brief 데이터사전 > 행정단어 > 목록
+//========================================
+// @history 
+//  	2021.02.09 박이정(마인드원) 최초작성
+//========================================
+%>
 <script src="/js/govwords.js"></script>
 <body>
     <div class="bg"></div>
@@ -14,16 +22,19 @@
             <div class="write"><!-- 검색 -->
                 <div class="write_inner">
 					<div class="write_search">
-					<form name="frm" method="GET" onsubmit="search()" >
-					    <input type="checkbox" name="onoff" value="0"  onChange="search()" /> 비활성 &nbsp;
+					<form name="searchfrm" id="searchfrm" method="GET" onsubmit="search()" >
+						<input type="hidden" id="page" name="page">
+						<input type="hidden" id="searchtmp" name="" value=""  />
 						<select name="post" id="post" onChange="search()" class="selectp">
-							   <option value=''> -- 부서 선택 -- </option>
+							   <option value=''> -- 주제구분 선택 -- </option>
 							
 						</select>
 						<select name="searchField" id="searchField" onChange="setPlaceholder(this)"  class="selectp">
 								<option value=''> -- 검색선택 -- </option>
-								<option value="name" >이름</option>
-								<option value="id" >ID</option>
+								<option value="wordNm" >단어명</option>
+								<option value="wordEnAbbr" >단어영문약어</option>
+								<option value="wordEnNm" >단어영문명</option>
+								<option value="registYmd" >등록일자</option>
 						</select>
 						<input type="text" name="searchWord" id="searchWord" value="" placeholder="검색할 내용을 입력해주세요"  class="inputp"
 										   onkeypress="if(event.keyCode==13) {search(); return false;}"/>
@@ -52,8 +63,8 @@
                         <tr>
                             <th scope="col">번호</th>
                             <th scope="col">단어명</th>
-                            <th scope="col">영문단어약어</th>
-                            <th scope="col">영문단어명</th>
+                            <th scope="col">단어영문약어</th>
+                            <th scope="col">단어영문명</th>
                             <th scope="col">단어설명</th>
                             <th scope="col">구분</th>
                             <th scope="col">주제 구분</th>
