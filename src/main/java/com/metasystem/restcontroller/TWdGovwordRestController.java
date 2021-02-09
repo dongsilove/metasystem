@@ -33,12 +33,14 @@ public class TWdGovwordRestController<TWdGovword> {
 	public Page<TWdGovword> list( @RequestParam Map<String,Object> param,
 			@RequestParam(name = "perPage", required = true, defaultValue = "20") int perPage,
 			@RequestParam(name = "page", required = true, defaultValue = "1") int page) throws Exception {
-		
+		Page<TWdGovword> list;
 		param.forEach((k,v)->logger.debug("key:" + k + "\tvalue:" +v));
-		logger.debug("perPage : " + perPage);
-		logger.debug("page : " + page);
-		PageRequest pageRequest = PageRequest.of(page - 1, perPage); // , new Sort(Direction.ASC, "ordr"
-		Page<TWdGovword> list = (Page<TWdGovword>) govwordRepository.findAll(pageRequest);
+		//PageRequest pageRequest = PageRequest.of(page - 1, perPage); // , new Sort(Direction.ASC, "ordr"
+		if(param.get("wordNm") != null && param.get("wordNm").toString() != null) {
+			list = (Page<TWdGovword>) govwordRepository.findByWordNmContaining(param.get("wordNm").toString(), PageRequest.of(page - 1, perPage));
+		} else {
+			list = (Page<TWdGovword>) govwordRepository.findAll(PageRequest.of(page - 1, perPage));
+		}
 		return list;
 		
 	}
