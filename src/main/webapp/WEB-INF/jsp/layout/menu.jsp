@@ -7,16 +7,16 @@
             <ul>
                 <li><a href="#">데이터사전</a>
                     <ul class="depth">
-                        <li class="on"><a href="#"><i class="fas fa-book"></i>행정단어</a></li><!-- fas fa-edit -->
-                        <li><a href="#"><i class="far fa-square"></i>도메인</a></li><!-- far fa-window-maximize -->
-                        <li><a href="#"><i class="fas fa-cube"></i>단어</a></li><!-- fas fa-address-book, far fa-file-word-->
-                        <li><a href="#"><i class="fas fa-cubes"></i>용어</a></li>
+                        <li class="on"><a href="/govword_list"><i class="fas fa-book"></i>행정단어</a></li><!-- fas fa-edit -->
+                        <li><a href="/domain_list"><i class="far fa-square"></i>도메인</a></li><!-- far fa-window-maximize -->
+                        <li><a href="/word_list"><i class="fas fa-cube"></i>단어</a></li><!-- fas fa-address-book, far fa-file-word-->
+                        <li><a href="/term_list"><i class="fas fa-cubes"></i>용어</a></li>
                     </ul>
                 </li>
                 <li><a href="#">관리도구</a>
                     <ul class="depth">
-                        <li><a href="#"><i class="fas fa-user"></i>직원정보</a></li>
-                        <li><a href="#"><i class="fas fa-address-book"></i>부서정보</a></li>
+                        <li><a href="/user_list"><i class="fas fa-user"></i>직원정보</a></li>
+                        <li><a href="/dept_list"><i class="fas fa-address-book"></i>부서정보</a></li>
                     </ul>
                 </li>
             </ul>

@@ -1,5 +1,5 @@
 /**
- * @FileName 	words.js
+ * @FileName 	domains.js
  * @author 		ljpark
  * @Date 		2021.02.11
  * @Description 도메인
@@ -31,13 +31,13 @@ var _list = {
 		
 		//$("#searchfrm")[0].reset(); //오른쪽 상세정보 리셋
 		
-		_ajaxUtils.ajax({"url" : "/govwords", "form" : $("#searchForm")
+		_ajaxUtil.ajax({"url" : "/domains", "form" : $("#searchForm")
 			,"successCallback": function(data) { console.log(data);
 				$("#listData").html(""); // 목록 초기화
 				data.content.forEach(function(f){
-					$("#listData").append("<tr onclick=\"getDetail('"+f.wordSn+"')\">"
-						+"<td>" +f.wordSn+"</td><td>"+f.wordNm+"</td><td>"+f.wordEnAbbr+"</td><td>"+f.wordEnNm+"</td><td>"
-						+f.wordDc+"</td><td>"+f.wordSe+"</td><td>"+f.themaSe+"</td><td>"+f.sttusSe+"</td><td>"+f.registYmd+"</td>"
+					$("#listData").append("<tr onclick=\"getDetail('"+f.domainSn+"')\">"
+						+"<td>" +f.domainSn+"</td><td>"+f.domainCl+"</td><td>"+f.domainNm+"</td><td>"+f.domainEnAbbr+"</td><td>"+f.domainEnNm+"</td><td>"
+						+f.dataType+"</td><td>"+f.dataLt+"</td><td>"+f.dcmlpointLt+"</td><td>"+f.registDt+"</td>"
 						+"</tr>"
 					);
 				});

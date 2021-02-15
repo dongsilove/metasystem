@@ -45,131 +45,89 @@ $.validator.setDefaults({
 	}
 });
 
-/* input 파일사이즈 체크 */
-$.validator.addMethod('fileSize', function(value, element, param) {
-	return this.optional(element)
-			|| (element.files[0].size <= (param * 1000000))
+/*input 파일사이즈 체크*/
+$.validator.addMethod('fileSize', function (value, element, param) {
+    return this.optional(element) || (element.files[0].size <= ( param * 1000000 ) )
 });
 
 /* 날짜 비교 */
-$.validator.addMethod("dateChk", function(value, element, param) {
-	var result = new Date(value) > new Date($('#' + param).val()) ? false
-			: true;
-	return result;
+$.validator.addMethod("dateChk", function (value, element, param) {
+    var result = new Date(value) > new Date($(param).val()) ? false : true;
+    return result;
 });
 
 /* 날짜 비교 : 범위의 to 데이터가 없더라도 true */
-$.validator.addMethod("dateChk2", function(value, element, param) {
-	if (isEmpty($('#' + param).val()))
-		return true;
-	var result = new Date(value) > new Date($('#' + param).val()) ? false
-			: true;
+$.validator.addMethod("dateChk2", function (value, element, param) {
+	if (isEmpty($(param).val())) return true;
+	var result = new Date(value) > new Date($(param).val()) ? false : true;
 	return result;
 });
 
 /* 숫자 범위 비교 */
-$.validator.addMethod("numChk", function(value, element, param) {
+$.validator.addMethod("numChk", function (value, element, param) {
 	var _from = value * 1;
-	var _to = $('#' + param).val() * 1;
+	var _to = $(param).val() * 1;
 	var result = _from > _to ? false : true;
 	return result;
 });
 
 /* 숫자 범위 비교 : 범위의 to 데이터가 없더라도 true */
-$.validator.addMethod("numChk2", function(value, element, param) {
-	if (isEmpty($('#' + param).val())) {
-		return true;
-	}
+$.validator.addMethod("numChk2", function (value, element, param) {
+	if (isEmpty($(param).val())) { return true; }
 	var _from = value * 1;
-	var _to = $('#' + param).val() * 1;
+	var _to = $(param).val() * 1;
 	var result = _from > _to ? false : true;
 	return result;
 });
 
 /* 문자열의 Byte 길이를 반환 */
 String.prototype.getByteLength = function() {
-	// for(b=i=0;c=this.charCodeAt(i++);b+=c>>11?3:c>>7?2:1);
-	for (b = i = 0; c = this.charCodeAt(i++); b += c >> 11 ? 2 : c >> 7 ? 2 : 1)
-		;
+	//for(b=i=0;c=this.charCodeAt(i++);b+=c>>11?3:c>>7?2:1);
+	for(b=i=0;c=this.charCodeAt(i++);b+=c>>11?2:c>>7?2:1);
 	return b;
 };
 
-/* 한글, 영어를 체크하여 계산된 바이트 길이를 최소 길이와 비교 */
-$.validator.addMethod('minByteLength', function(value, element, param) {
-	var nMin = param;
-	var nBytes = $.type(value) !== "string" ? 0 : value.getByteLength(); // 문자열의
-																			// Byte
-																			// 길이를
-																			// 반환(한글은
-																			// 2byte이며
-																			// 영숫자는
-																			// 1byte)
-	return this.optional(element) || (nBytes === 0 || nBytes >= nMin);
+/*한글, 영어를 체크하여 계산된 바이트 길이를 최소 길이와 비교 */
+$.validator.addMethod('minByteLength', function (value, element, param) {
+    var nMin = param;
+    var nBytes = $.type(value) !== "string" ? 0 : value.getByteLength(); // 문자열의 Byte 길이를 반환(한글은 2byte이며 영숫자는 1byte)
+    return this.optional(element) || (nBytes === 0 || nBytes >= nMin);
 });
 
 /* 한글, 영어를 체크하여 계산된 바이트 길이를 최대 길이와 비교 */
-$.validator.addMethod('maxByteLength', function(value, element, param) {
-	var nMax = param;
-	var nBytes = $.type(value) !== "string" ? 0 : value.getByteLength(); // 문자열의
-																			// Byte
-																			// 길이를
-																			// 반환(한글은
-																			// 2byte이며
-																			// 영숫자는
-																			// 1byte)
-	return this.optional(element) || (nBytes === 0 || nBytes <= nMax);
+$.validator.addMethod('maxByteLength', function (value, element, param) {
+    var nMax = param;
+    var nBytes = $.type(value) !== "string" ? 0 : value.getByteLength(); // 문자열의 Byte 길이를 반환(한글은 2byte이며 영숫자는 1byte)
+    return this.optional(element) || (nBytes === 0 || nBytes <= nMax);
 });
 
 /* 한글, 영어를 체크하여 계산된 바이트 길이를 최소 길이와 최대 길이 비교 */
-$.validator.addMethod('rangeByteLength', function(value, element, params) {
-	var nMin = params.min;
-	var nMax = params.max;
-	var nBytes = $.type(value) !== "string" ? 0 : value.getByteLength(); // 문자열의
-																			// Byte
-																			// 길이를
-																			// 반환(한글은
-																			// 2byte이며
-																			// 영숫자는
-																			// 1byte)
-	return this.optional(element)
-			|| (nBytes === 0 || (nBytes >= nMin && nBytes <= nMax));
+$.validator.addMethod('rangeByteLength', function (value, element, params) {
+    var nMin = params.min;
+    var nMax = params.max;
+    var nBytes = $.type(value) !== "string" ? 0 : value.getByteLength(); // 문자열의 Byte 길이를 반환(한글은 2byte이며 영숫자는 1byte)
+    return this.optional(element) || (nBytes === 0 || (nBytes >= nMin && nBytes <= nMax));
 
 });
 
-/* 시간 포맷 체크 hh:mm */
-$.validator.addMethod('time', function(value, element, param) {
-	return value == '' || value.match(/^([01][0-9]|2[0-3]):[0-5][0-9]$/);
+/* 필수값 점검 전 trim()하기 */
+$.validator.addMethod('required', function (value, element, params) {
+	value = $.trim(value);
+	return (isEmpty(value))? false: true;
 });
 
-/* 한글, 영어를 체크하여 계산된 바이트 길이를 최소 길이와 최대 길이 비교 */
-$.validator.addMethod('rangeByteLength', function(value, element, params) {
-	var nMin = params.min;
-	var nMax = params.max;
-	var nBytes = $.type(value) !== "string" ? 0 : value.getByteLength(); // 문자열의
-																			// Byte
-																			// 길이를
-																			// 반환(한글은
-																			// 2byte이며
-																			// 영숫자는
-																			// 1byte)
-	return this.optional(element)
-			|| (nBytes === 0 || (nBytes >= nMin && nBytes <= nMax));
-
+/* 숫자 점검 this.optional(element)은 공백허용함 */
+$.validator.addMethod('digits', function( value, element ) {
+	return isEmpty(value) || /^\d+$/.test( value );
 });
 
-String.prototype.string = function(len) {
-	var s = '', i = 0;
-	while (i++ < len) {
-		s += this;
-	}
-	return s;
-};
-String.prototype.zf = function(len) {
-	return "0".string(len - this.length) + this;
-};
-Number.prototype.zf = function(len) {
-	return this.toString().zf(len);
-};
-String.prototype.date = function() {
-	return this.replace(/[-/:.\s]/gi, "")
-};
+/* 숫자(소수점이하포함) 점검 this.optional(element)은 공백허용함 */
+$.validator.addMethod('number', function( value, element ) {
+//	return isEmpty(value) || /^(?:-?\d+|-?\d{1,3}(?:,\d{3})+)?(?:\.\d+)?$/.test( value ); // , 입력 가능 -> db 에서 숫자로 인식 안함
+	return isEmpty(value) || /^[-]?\d+(?:[.]\d+)?$/.test( value ); // 숫자 + 소수점 입력 가능
+});
+
+String.prototype.string = function(len){var s = '', i = 0; while (i++ < len) { s += this; } return s;};
+String.prototype.zf = function(len){return "0".string(len - this.length) + this;};
+Number.prototype.zf = function(len){return this.toString().zf(len);};
+String.prototype.date = function(){return this.replace(/[-/:.\s]/gi, "")};

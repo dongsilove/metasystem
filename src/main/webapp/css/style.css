@@ -1,6 +1,5 @@
 @charset "utf-8";
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-/***polycube jeong ***/
 /*reset*/
 html, body, div, span, applet, object, iframe,h1, h2, h3, h4, h5, h6, p, blockquote, pre,a, abbr, acronym, address, big, cite, code,del, dfn, em, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var,b, u, i, center,dl, dt, dd, ol, ul, li,fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td,article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary,time, mark, audio, video {margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;/*vertical-align: baseline;*/}article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display: block;}body {line-height: 1;}ol, ul,li {list-style: none;}blockquote, q {quotes: none;}blockquote:before, blockquote:after,q:before, q:after {content: '';content:none;}table {border-collapse: collapse;border-spacing: 0;}a{text-decoration: none;color: #000;display: block}img{display: block;}legend{display: none}
 
@@ -17,6 +16,7 @@ textarea.hidden{display:none}
 input[type=month]{width:121px;text-align:center;height:28px;border-radius:3px;border:1px solid #aaa}
 input[type="text"]:read-only:not([read-only="false"]) { background-color:#f8f8f8; }
 input[type="date"]:read-only:not([read-only="false"]) { background-color:#f8f8f8; }
+input::placeholder {color: #cccccc; font-style: italic;}
 /*layout*/
 .wrap,.account .user_name{font-family: 'Nanum Gothic', Arial, Helvetica, sans-serif; font-weight: 100;/*overflow-x:hidden;*/}
 
@@ -151,11 +151,11 @@ input[type="date"]:read-only:not([read-only="false"]) { background-color:#f8f8f8
 .container_inner{max-width:1200px;padding:15px 5px;margin: 0 auto;box-sizing:border-box}
 .container_inner h4{margin-bottom:10px;font-size:14px;font-weight:bold;color:#0f5b8d}
 .edit_wrap,.user_wrap,.task_order_wrap,.theme_calcul_wrap{background-color: #fff}
-.container .title{margin-bottom:15px;padding:20px;background-color: #fff;border-bottom: 1px solid #cecece;font-size:18px;color: #297FB8;font-weight: bold}
+.container .title{height:20px;margin-bottom:15px;padding:20px;background-color: #fff;border-bottom: 1px solid #cecece;font-size:18px;color: #297FB8;font-weight: bold}
 .container .title p{margin-top:10px;font-size:14px;color:#595959;font-weight:normal;}
 .task_list{text-align: center;}
-.task_list th{padding:14px 0;border-top:2px solid #595959;border-bottom:1px solid #c4c4c4;font-weight: bold;background-color: #f8f8f8;color:#484848;}
-.task_list td{padding:18px 8px;line-height:1.6;border-bottom: 1px solid #eee;background-color: #fff;}
+.task_list th{padding:12px 0;border-top:2px solid #595959;border-bottom:1px solid #c4c4c4;font-weight: bold;background-color: #f8f8f8;color:#484848;}
+.task_list td{padding:5px 5px;line-height:1.6;border-bottom: 1px solid #eee;background-color: #fff;}
 .task_list table{width:100%;max-width:1600px;margin: 0 auto;overflow: hidden;font-size:14px;cursor:pointer;}
 .write {text-align: right}
 .write_inner{width: 100%;max-width:850px;margin:0 auto;padding:0 5px;box-sizing:border-box;}
@@ -164,7 +164,7 @@ input[type="date"]:read-only:not([read-only="false"]) { background-color:#f8f8f8
 .write_inner>a,.btn_search a{display:inline-block;padding:8px 20px;border-radius: 3px;background-color:#007bff;text-align: center;color:#fff;font-size: 14px;}
 .write_search{float:left;display:inline-block;border-radius: 3px;text-align: center;font-size: 14px;}
 .write_search .selectp {height:28px;border-radius: 3px;border:1px solid #aaa;font-size: 14px;}
-.write_search .inputp {width:180px;height:28px;border-radius: 3px;border:1px solid #aaa;font-size: 14px;padding:0 0}
+.write_search .inputp {width:220px;height:28px;border-radius: 3px;border:1px solid #aaa;font-size: 14px;padding:0 0}
 
 
 .paging{margin:10px 0;text-align: center}
@@ -307,16 +307,39 @@ input[type="date"]:read-only:not([read-only="false"]) { background-color:#f8f8f8
     margin-top:10px;
 }
 ._copy{font-size:10px;color:#555;margin-top:20px;}
+
+/* location */
+.title .location {float: right;}
+.title .location li.home {background: url(../../images/ico_home_linemap.png) left bottom no-repeat;}
+.title .location li {
+    display: inline-block;
+    height: 14px;
+    padding: 0 10px 0 15px;
+    font-size: 12px;
+    color: #999999;
+    line-height: 14px;
+    box-sizing: border-box;
+    background: url(../../images/ico_arrow_linemap.png) left 0 no-repeat;
+}
+/* 컨텐츠 좌, 우 형식 */
+.cont_divide {display: table; table-layout: fixed; width: 100%; }
+.cont_divide .left {display: table-cell; width: 70%; padding: 0 0 0 10px; box-sizing: border-box}
+.cont_divide .right {display: table-cell; width: calc(100% - 70%); padding: 0 10px 0 0; box-sizing: border-box}
+
 /*user_form*/
 .user_wrap{max-width:900px;padding:20px 10px;}
-.user_form,.theme_form{border-top:2px solid #000;overflow:hidden;font-size:14px;}
+.user_form,.theme_form{border-top:2px solid #000;overflow:hidden;font-size:14px;margin:15px 5px;}
 .user_form span{display:block;margin-top:5px;font-size:12px;font-weight:bold;color:#ff5656;margin-left:5px;line-height:1.4}
 .leave{font-weight:bold;color:#ff5656;margin:10px 0 0 0;}
 .user_form th{line-height:1.4;width:30%}
 .user_form th,.user_form td,.theme_form th,.theme_form td{padding:5px 5px;text-align: left;background-color: #f8f8f8;border-bottom:1px solid #ddd}
 .user_form td,.theme_form td{background-color: #fff;}
+.edit_table {width:100%}
+.edit_table tbody th.required{background:url(../../images/ico_required.png) #f8f8f8 left 5px center no-repeat}
+.edit_table tbody th{text-indent:15px;}
 
-.user_form input[type="text"],.user_form input[type="password"],.theme_form input[type="text"]{font-size:15px;height:30px;border-radius: 3px;border:1px solid #aaa;padding:5px;box-sizing: border-box}
+.user_form input[type="text"],.user_form input[type="password"],.user_form textarea,.theme_form input[type="text"]{font-size:15px;height:30px;border-radius: 3px;border:1px solid #aaa;padding:5px;box-sizing: border-box}
+.user_form textarea {min-height:50px;overflow:visible;}
 .user_form select,.theme_input input[type=date]{width:181px;height:28px;border-radius: 3px;border:1px solid #aaa;font-size:14px;}
 .user_form .tel_info input[type="tel"]{font-size:14px;width:29.3%;height:28px;text-align: center;border:1px solid #aaa;border-radius: 3px;box-sizing: border-box}
 .user_form  input[type="email"]{font-size:15px;padding:5px;width:200px;height:28px;border:1px solid #aaa;border-radius: 3px;box-sizing: border-box}
@@ -551,16 +574,16 @@ input#back_img{width:100%}
     }
     .container{margin:56px 0 0 260px;transition:.5s}
     .container._hide{margin:56px 0 0 0;}
-    .container .title h1{display:block;max-width:1200px;margin: 0 auto;}
+    .container .title h1{display:block;margin: 0 auto;}
     .container .title>div>h1{max-width:100%;}
     .task_list_wrap{max-width:1600px;}
     .container_inner{border-radius:14px;margin-bottom:25px;}
-    .container .title{padding:20px 55px;font-size:20px;}
+    .container .title{padding:20px 55px;font-size:20px;height:20px;}
     .task_list_wrap .title h1{max-width:1000px;margin:0 auto}
     .task_list tr:hover td{background-color: #f8f8f8;transition: .2s}
     .task_list table{box-shadow:3px 3px 5px rgba(0,0,0,.1);border-radius:3px;font-size:13px}
     .edit_wrap,.mm_list_table{box-shadow:3px 3px 5px rgba(0,0,0,.1)}
-    .task_list td{padding:14px 0}
+    /* .task_list td{padding:14px 0} */
     .write_inner>a:last-child:hover,.btn_edit .btn_submit:hover,.btn_task_submit:hover,.btn_sendRoport input:hover,btn_user_modify:hover{background-color: #0069d9;transition: .2s}
     ._calendar{padding:50px 50px 0 50px;}
     ._calendar tr td{font-size:14px;}
@@ -630,7 +653,7 @@ input#back_img{width:100%}
     .edit_wrap  .edit_form{float:left;width:45%;padding:0 50px 0 20px ;border-right:1px dashed #a3a3a3}
     .edit_task{border-top:0;float:left;width:45%;padding:20px 10px 20px 40px;margin:0;box-sizing: border-box;}
     .edit_wrap  .edit_form{max-width: 550px;}
-    .user_form th{width:20%}
+    /* .user_form th{width:20%} */
     .authSelect ul li{width:25%;}
     .user_form span{display:inline;margin-top:0}
     .weekly_edit,.weekly_edit .edit_task{padding:20px;}

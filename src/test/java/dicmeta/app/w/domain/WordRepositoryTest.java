@@ -1,7 +1,8 @@
-package com.metasystem.domain;
+package dicmeta.app.w.domain;
 
 import static org.junit.Assert.assertEquals;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.junit.Ignore;
@@ -13,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import dicmeta.app.w.code.TCmCode;
+import dicmeta.app.w.code.TCmCodeRepository;
 import dicmeta.app.w.govword.TWdGovword;
 import dicmeta.app.w.govword.TWdGovwordRepository;
 import dicmeta.app.w.word.TWdWord;
@@ -26,27 +29,27 @@ public class WordRepositoryTest {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired 
-	TWdWordRepository tWdWordRepository;
+	TCmCodeRepository codeRepository;
+	
 	@Autowired 
-	TWdGovwordRepository govwordRepository;
-	 
+	TWdDomainRepository domainRepository;
 	
-	@Test
-	public void name() throws Exception {
-		assertEquals("hello", "hello");
-	}
-	
-	
-	@Test @Ignore
-	public void save() throws Exception { 
-		TWdWord tWdWord = new TWdWord("ASST","자산", "ASSET", "자산" ); 
-		tWdWordRepository.save(tWdWord); 
-	}
-	 
-	@Test 
+	@Test  @Ignore
 	public void list() throws Exception { 
-		List<TWdGovword> list = (List<TWdGovword>) govwordRepository.findAll();
+		List<TCmCode> list =  codeRepository.findByGrpCd("WD004");
 		logger.info("govlist={}", list.size());
+	}
+	
+	@Test  
+	public void save() throws Exception { 
+		TWdDomain domain = new TWdDomain(new BigDecimal(200),"VARCHAR", "이름", "SYNONM","SYNONYM", "동의어"); 
+		domainRepository.save(domain); 
+	}
+
+	@Test  @Ignore
+	public void delete() throws Exception { 
+		Integer domainSn = new Integer("92");;
+		domainRepository.deleteById(domainSn); 
 	}
 	
 }
