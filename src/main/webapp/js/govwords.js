@@ -25,7 +25,7 @@ var _list = {
 	,getList : function(page) {
 		if (isEmpty(page)) page = 1;
 		$("#searchtmp").attr("name",$("#searchName option:selected").val());
-		$("#searchtmp").attr("value",$("#searchValue").val());
+		$("#searchtmp").attr("value",$("#searchValue").val().toUpperCase());
 		$("#page").val(page);
 		//console.log($("#page").val());
 		

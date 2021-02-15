@@ -55,7 +55,7 @@ var _list = {
 	,getList : function(page) {
 		if (isEmpty(page)) page = 1;
 		$("#searchtmp").attr("name",$("#searchName option:selected").val());
-		$("#searchtmp").attr("value",$("#searchValue").val());
+		$("#searchtmp").attr("value",$("#searchValue").val().toUpperCase());
 		$("#page").val(page);
 		//console.log($("#page").val());
 		
@@ -65,6 +65,7 @@ var _list = {
 			,"successCallback": function(data) { //console.log(data);
 				$("#listData").html(""); // 목록 초기화
 				data.content.forEach(function(f){
+					processNull(f);
 					$("#listData").append("<tr onclick=\"_list.getDetail('"+f.domainSn+"')\">"
 						+"<td>" +f.domainSn+"</td><td>"+f.domainCl+"</td><td>"+f.domainNm+"</td><td>"
 						+f.domainEnAbbr+"</td><td>"+f.domainEnNm+"</td><td>"

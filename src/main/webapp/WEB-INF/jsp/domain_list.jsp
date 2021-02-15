@@ -35,11 +35,11 @@
 									   <option value=''> -- 주제구분 선택 -- </option>
 								</select>
 								<select name="searchName" id="searchName" onChange="setPlaceholder(this)"  class="selectp">
-										<option value=''> -- 검색선택 -- </option>
-										<option value="wordNm" >도메인명</option>
-										<option value="wordEnAbbr" >도메인영문약어</option>
-										<option value="wordEnNm" >도메인영문명</option>
-										<option value="registYmd" >등록일자</option>
+										<!-- <option value=''> -- 검색선택 -- </option> -->
+										<option value="domainNm" >도메인명</option>
+										<option value="domainEnAbbr" >도메인영문약어</option>
+										<option value="domainEnNm" >도메인영문명</option>
+										<!-- <option value="registYmd" >등록일자</option> -->
 								</select>
 								<input type="text" name="searchValue" id="searchValue" value="" 
 									placeholder="검색할 내용을 입력해주세요"  class="inputp"

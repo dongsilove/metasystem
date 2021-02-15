@@ -18,8 +18,8 @@ var _ajaxUtils = {
 		// 옵션확장
 		var options = $.extend( {}, _defaultOptions, addOptions );
 		var pars = {};
-		console.log(options.method);
-		console.log(options.form);
+		//console.log(options.method);
+		//console.log(options.form);
 		
 		if (options.form != null) {
 			pars = options.form.serializeObject();

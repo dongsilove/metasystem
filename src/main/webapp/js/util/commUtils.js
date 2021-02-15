@@ -8,7 +8,20 @@
  * -------------------------------------------------
  * 2021.02.14	ljpark		신규
  */
-
+function isEmpty(str){
+     
+    if(typeof str == "undefined" || str == null || str == "")
+        return true;
+    else
+        return false ;
+}
+function processNull(obj) {
+	if ( typeof obj == "object" ) {
+		for ( var key in obj) {
+			if (isEmpty(obj[key])) obj[key] = "";
+		}
+	}
+}
 var _commUtils = {
 	stripXSS : function(value) {
 		if (typeof value == "undefined" || value == "") return;

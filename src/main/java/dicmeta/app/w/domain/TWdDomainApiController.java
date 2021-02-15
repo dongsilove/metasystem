@@ -39,9 +39,17 @@ public class TWdDomainApiController {
 			@RequestParam(name = "page", required = true, defaultValue = "1") int page) throws Exception {
 		
 		Page<TWdDomain> list;
-		//param.forEach((k,v)->logger.debug("key:" + k + "\tvalue:" +v));
+		param.forEach((k,v)->logger.debug("key:" + k + "\tvalue:" +v));
 		PageRequest pageRequest = PageRequest.of(page - 1, perPage, Sort.by(Direction.DESC, "domainSn"));
-		list = (Page<TWdDomain>) domainRepository.findAll(pageRequest);
+		if(param.get("domainNm") != null && param.get("domainNm").toString() != null) {
+			list = (Page<TWdDomain>) domainRepository.findByDomainNmContaining(param.get("domainNm").toString(),pageRequest);
+		} else if(param.get("domainEnAbbr") != null && param.get("domainEnAbbr").toString() != null) {
+			list = (Page<TWdDomain>) domainRepository.findByDomainEnAbbrContaining(param.get("domainEnAbbr").toString(),pageRequest);
+		} else if(param.get("domainEnNm") != null && param.get("domainEnNm").toString() != null) {
+			list = (Page<TWdDomain>) domainRepository.findByDomainEnNmContaining(param.get("domainEnNm").toString(),pageRequest);
+		} else {
+			list = (Page<TWdDomain>) domainRepository.findAll(pageRequest);
+		}
 		return list;
 		
 	}
@@ -59,6 +67,7 @@ public class TWdDomainApiController {
 	@Operation(summary = "도메인 저장", description = "도메인 저장한다.")
 	@PutMapping("/domains")
 	public TWdDomain put(@RequestBody TWdDomain tWdDomain) throws Exception {
+		
 		logger.debug("도메인 저장 호출 : {}", tWdDomain);
 		TWdDomain domain;
 		domain = domainRepository.save(tWdDomain);
@@ -72,9 +81,11 @@ public class TWdDomainApiController {
 	@Operation(summary = "도메인 삭제", description = "도메인 삭제한다.")
 	@DeleteMapping("/domains/{domainSn}")
 	public String delete(@PathVariable Integer domainSn) throws Exception {
+		
 		logger.debug("도메인 삭제 호출 :"+  Integer.toString(domainSn));
 		domainRepository.deleteById(domainSn);
 		return "200";
+		
 	}
 	
 	

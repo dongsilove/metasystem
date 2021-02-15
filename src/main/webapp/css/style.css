@@ -164,7 +164,7 @@ input::placeholder {color: #cccccc; font-style: italic;}
 .write_inner>a,.btn_search a{display:inline-block;padding:8px 20px;border-radius: 3px;background-color:#007bff;text-align: center;color:#fff;font-size: 14px;}
 .write_search{float:left;display:inline-block;border-radius: 3px;text-align: center;font-size: 14px;}
 .write_search .selectp {height:28px;border-radius: 3px;border:1px solid #aaa;font-size: 14px;}
-.write_search .inputp {width:220px;height:28px;border-radius: 3px;border:1px solid #aaa;font-size: 14px;padding:0 0}
+.write_search .inputp {width:220px;height:28px;border-radius: 3px;border:1px solid #aaa;font-size: 14px;padding:0 5px;}
 
 
 .paging{margin:10px 0;text-align: center}

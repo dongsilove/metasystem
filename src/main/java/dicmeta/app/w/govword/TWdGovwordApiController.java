@@ -35,6 +35,10 @@ public class TWdGovwordApiController {
 		PageRequest pageRequest = PageRequest.of(page - 1, perPage, Sort.by(Direction.DESC, "wordSn"));
 		if(param.get("wordNm") != null && param.get("wordNm").toString() != null) {
 			list = (Page<TWdGovword>) govwordRepository.findByWordNmContaining(param.get("wordNm").toString(), pageRequest);
+		} else if(param.get("wordEnAbbr") != null && param.get("wordEnAbbr").toString() != null) {
+			list = (Page<TWdGovword>) govwordRepository.findByWordEnAbbrContaining(param.get("wordEnAbbr").toString(), pageRequest);
+		} else if(param.get("wordEnNm") != null && param.get("wordEnNm").toString() != null) {
+			list = (Page<TWdGovword>) govwordRepository.findByWordEnNmContaining(param.get("wordEnNm").toString(), pageRequest);
 		} else {
 			list = (Page<TWdGovword>) govwordRepository.findAll(PageRequest.of(page - 1, perPage));
 		}

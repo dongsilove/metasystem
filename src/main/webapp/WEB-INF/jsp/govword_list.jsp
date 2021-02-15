@@ -1,7 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="ko">
-<jsp:include page="/WEB-INF/jsp/layout/header.jsp"/>
 <%
 //========================================
 // @brief 데이터사전 > 행정단어 > 목록
@@ -10,6 +7,9 @@
 //  	2021.02.09 박이정(마인드원) 최초작성
 //========================================
 %>
+<!DOCTYPE html>
+<html lang="ko">
+<jsp:include page="/WEB-INF/jsp/layout/header.jsp"/>
 <script src="/js/govwords.js"></script>
 <body>
     <div class="bg"></div>
@@ -30,17 +30,18 @@
 							
 						</select>
 						<select name="searchName" id="searchName" onChange="setPlaceholder(this)"  class="selectp">
-								<option value=''> -- 검색선택 -- </option>
+								<!-- <option value=''> -- 검색선택 -- </option> -->
 								<option value="wordNm" >단어명</option>
 								<option value="wordEnAbbr" >단어영문약어</option>
 								<option value="wordEnNm" >단어영문명</option>
-								<option value="registYmd" >등록일자</option>
+								<!-- <option value="registYmd" >등록일자</option> -->
 						</select>
-						<input type="text" name="searchValue" id="searchValue" value="" placeholder="검색할 내용을 입력해주세요"  class="inputp"
-										   onkeypress="if(event.keyCode==13) {_list.getList(1); return false;}"/>
+						<input type="text" name="searchValue" id="searchValue" value="" 
+							placeholder="검색할 내용을 입력해주세요"  class="inputp"
+							onkeypress="if(event.keyCode==13) {_list.getList(1); return false;}"/>
 					</form>
 					</div>
-					<a href="member_edit.php"><i class="fas fa-edit"></i>등록</a>
+					<a href="#" onclick="_list.getList(1);">조회</a>
 				</div> 
 				
 			</div>
