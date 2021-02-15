@@ -16,6 +16,7 @@
 	<description>metasystem</description>
 	<properties>
 		<java.version>1.8</java.version>
+		<start-class>com.metasystem.MetasystemApplication</start-class>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -67,6 +68,7 @@
 		    <artifactId>postgresql</artifactId>
 		    <version>8.1-404.jdbc3</version>
 		</dependency>
+		
 	</dependencies>
 
 	<build>
