@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <jsp:include page="/WEB-INF/jsp/layout/header.jsp"/>
-<script src="/js/govwords.js"></script>
+<script src="/js/govword.js"></script>
 <body>
     <div class="bg"></div>
     <div class="wrap">

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 //========================================
-// @brief 데이터사전 > 도메인 > 목록
+// @brief 데이터사전 > 용어 > 목록
 //========================================
 // @history 
 //  	2021.02.09 박이정(마인드원) 최초작성
@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <jsp:include page="/WEB-INF/jsp/layout/header.jsp"/>
-<script src="/js/domain.js"></script>
+<script src="/js/terms.js"></script>
 
 <body>
     <div class="bg"></div>
@@ -20,8 +20,8 @@
 
         <div class="container">
             <div class="title">
-            	<div style="float:left;"><h1>도메인</h1></div>
-            	<div class="location"><ul><li class="home"></li><li>데이터사전</li><li>도메인</li></ul></div>
+            	<div style="float:left;"><h1>용어</h1></div>
+            	<div class="location"><ul><li class="home"></li><li>데이터사전</li><li>용어</li></ul></div>
             </div>
             <div class="cont_divide">
             	<div class="left">
@@ -36,9 +36,9 @@
 								</select>
 								<select name="searchName" id="searchName" onChange="setPlaceholder(this)"  class="selectp">
 										<!-- <option value=''> -- 검색선택 -- </option> -->
-										<option value="domainNm" >도메인명</option>
-										<option value="domainEnAbbr" >도메인영문약어</option>
-										<option value="domainEnNm" >도메인영문명</option>
+										<option value="termNm" >용어명</option>
+										<option value="termEnAbbr" >용어영문약어</option>
+										<option value="termEnNm" >용어영문명</option>
 										<!-- <option value="registYmd" >등록일자</option> -->
 								</select>
 								<input type="text" name="searchValue" id="searchValue" value="" 
@@ -67,10 +67,10 @@
 		                    <thead>
 		                        <tr>
 		                            <th scope="col">번호</th>
-		                            <th scope="col">도메인분류</th>
-		                            <th scope="col">도메인명</th>
-		                            <th scope="col">도메인영문약어</th>
-		                            <th scope="col">도메인영문명</th>
+		                            <th scope="col">용어분류</th>
+		                            <th scope="col">용어명</th>
+		                            <th scope="col">용어영문약어</th>
+		                            <th scope="col">용어영문명</th>
 		                            <th scope="col">데이터타입</th>
 		                            <th scope="col">데이터길이</th>
 		                            <th scope="col">소수점길이</th>
@@ -105,34 +105,34 @@
 	                        </colgroup>
 	                        <tbody>
 	                        <tr>
-	                            <th><label for="domainSn">도메인 일련번호</label></th>
-	                            <td><input type="text" name="domainSn" id="domainSn" value="" readonly ></td>
+	                            <th><label for="termSn">용어 일련번호</label></th>
+	                            <td><input type="text" name="termSn" id="termSn" value="" readonly ></td>
 	                        </tr>
 	                        <tr>
-	                            <th class="required"><label for="domainCl">도메인 분류</label></th>
+	                            <th class="required"><label for="termCl">용어 분류</label></th>
 	                            <td>
-	                                <select name="domainCl" id="domainCl" required></select>
+	                                <select name="termCl" id="termCl" required></select>
 	                            </td>
 	                        </tr>
 	                        <tr>
-	                            <th class="required"><label for="domainExprsnNm">도메인표현명</label></th>
-	                            <td><input type="text" name="domainExprsnNm" id="domainExprsnNm"  value="" ></td>
+	                            <th class="required"><label for="termExprsnNm">용어표현명</label></th>
+	                            <td><input type="text" name="termExprsnNm" id="termExprsnNm"  value="" ></td>
 	                        </tr>
 	                        <tr>
-	                            <th class="required"><label for="domainNm">도메인명</label></th>
-	                            <td><input type="text" name="domainNm" id="domainNm"  value="" ></td>
+	                            <th class="required"><label for="termNm">용어명</label></th>
+	                            <td><input type="text" name="termNm" id="termNm"  value="" ></td>
 	                        </tr>
 	                        <tr>
-	                            <th class="required"><label for="domainEnAbbr">도메인영문약어</label></th>
-	                            <td><input type="text" name="domainEnAbbr" id="domainEnAbbr"  value="" ></td>
+	                            <th class="required"><label for="termEnAbbr">용어영문약어</label></th>
+	                            <td><input type="text" name="termEnAbbr" id="termEnAbbr"  value="" ></td>
 	                        </tr>
 	                        <tr>
-	                            <th class="required"><label for="domainEnNm">도메인영문명</label></th>
-	                            <td><input type="text" name="domainEnNm" id="domainEnNm"  value="" style="width:100%"></td>
+	                            <th class="required"><label for="termEnNm">용어영문명</label></th>
+	                            <td><input type="text" name="termEnNm" id="termEnNm"  value="" style="width:100%"></td>
 	                        </tr>
 	                        <tr>
-	                            <th><label for="domainDc">도메인설명</label></th>
-	                            <td><textarea name="domainDc" id="domainDc"  value="" style="width:100%;"></textarea>
+	                            <th><label for="termDc">용어설명</label></th>
+	                            <td><textarea name="termDc" id="termDc"  value="" style="width:100%;"></textarea>
 	                        </tr>
 	                        <tr>
 	                            <th class="required"><label for="dataType">데이터타입</label></th>
