@@ -17,12 +17,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class TWdGovwordController {
 
-	@GetMapping("/govword_list")
-	public String govword_list() throws Exception {
-		return "govword_list";
+	@GetMapping("/govword")
+	public String govword() throws Exception {
+		return "govword";
 	}
-	@GetMapping("/govword_edit")
-	public String govword_edit() throws Exception {
-		return "govword_edit";
-	}
+
 }

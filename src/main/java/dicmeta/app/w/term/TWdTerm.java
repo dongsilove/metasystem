@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import dicmeta.app.common.CommonTbl;
+import dicmeta.app.w.domain.TWdDomain;
 
 import java.util.Date;
 
@@ -38,6 +39,10 @@ public class TWdTerm extends CommonTbl implements Serializable {
 
 	@Column(name="term_nm")
 	private String termNm;
+
+	//@ManyToOne(fetch = FetchType.LAZY) 
+	//@JoinColumn(name = "domain_sn", insertable=false) 
+	//private TWdDomain tWdDomain;
 
 	public TWdTerm() {
 	}

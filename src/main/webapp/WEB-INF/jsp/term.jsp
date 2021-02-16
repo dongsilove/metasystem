@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <jsp:include page="/WEB-INF/jsp/layout/header.jsp"/>
-<script src="/js/terms.js"></script>
+<script src="/js/term.js"></script>
 
 <body>
     <div class="bg"></div>
@@ -55,25 +55,21 @@
 		                <table id="list_t">
 		                    <colgroup>
 		                        <col style="width:5%">
-		                        <col style="width:8%">
 		                        <col style="width:15%">
-		                        <col style="width:12%">
+		                        <col style="width:15%">
 		                        <col style="width:auto">
-		                        <col style="width:10%">
-		                        <col style="width:10%">
-		                        <col style="width:10%">
+		                        <col style="width:15%">
+		                        <col style="width:15%">
 		                        <col style="width:8%">
 		                    </colgroup>
 		                    <thead>
 		                        <tr>
 		                            <th scope="col">번호</th>
-		                            <th scope="col">용어분류</th>
 		                            <th scope="col">용어명</th>
 		                            <th scope="col">용어영문약어</th>
 		                            <th scope="col">용어영문명</th>
-		                            <th scope="col">데이터타입</th>
-		                            <th scope="col">데이터길이</th>
-		                            <th scope="col">소수점길이</th>
+		                            <th scope="col">도메인명</th>
+		                            <th scope="col">데이터형태</th>
 		                            <th scope="col">등록 일자</th>
 		                        </tr>
 		                    </thead>

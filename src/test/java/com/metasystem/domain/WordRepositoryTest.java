@@ -37,12 +37,6 @@ public class WordRepositoryTest {
 	}
 	
 	
-	@Test @Ignore
-	public void save() throws Exception { 
-		TWdWord tWdWord = new TWdWord("ASST","자산", "ASSET", "자산" ); 
-		tWdWordRepository.save(tWdWord); 
-	}
-	 
 	@Test 
 	public void list() throws Exception { 
 		List<TWdGovword> list = (List<TWdGovword>) govwordRepository.findAll();

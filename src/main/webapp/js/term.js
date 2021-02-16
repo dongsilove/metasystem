@@ -67,9 +67,9 @@ var _list = {
 				data.content.forEach(function(f){
 					processNull(f);
 					$("#listData").append("<tr onclick=\"_list.getDetail('"+f.termSn+"')\">"
-						+"<td>" +f.termSn+"</td><td>"+f.termCl+"</td><td>"+f.termNm+"</td><td>"
+						+"<td>" +f.termSn+"</td><td>"+f.termNm+"</td><td>"
 						+f.termEnAbbr+"</td><td>"+f.termEnNm+"</td><td>"
-						+f.dataType+"</td><td>"+f.dataLt+"</td><td>"+f.dcmlpointLt+"</td><td>"+f.registDt+"</td>"
+						+f.domainSn+"</td><td>"+f.dataFomt+"</td><td>"+f.registDt+"</td>"
 						+"</tr>"
 					);
 				});
