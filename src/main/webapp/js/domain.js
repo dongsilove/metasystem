@@ -15,6 +15,10 @@ $(function() {
 	_list.getList(1);
 	_commUtils.getCodes($("#domainCl"),"WD004"); // 도메인 분류 코드 조회(EX. 일시,번호,식별...)
 	
+	// 영문 대문자처리
+	$('#domainEnAbbr').on('blur', function(){ $(this).val($(this).val().toUpperCase())});
+	$('#domainEnNm').on('blur', function(){ $(this).val($(this).val().toUpperCase())});
+	
 	$("#detailForm").validate({
 	
 		submitHandler : function () { //validation이 끝난 이후의 submit 직전 추가 작업할 부분
@@ -30,10 +34,10 @@ $(function() {
 			  domainCl       : {required:true} 								
 			, domainExprsnNm : {maxByteLength:200, required:true} 			
 			, domanNm        : {maxByteLength:200, required:true} 			    
-			, domainEnAbbr   : {maxByteLength:100, required:true} 	
-			, domainEnNm     : {maxByteLength:200} 							
+			, domainEnAbbr   : {maxLength:100, required:true} 	
+			, domainEnNm     : {maxLength:200} 							
 			, domainDc       : {maxByteLength:2000} 							
-			, dataType       : {maxByteLength:100} 							
+			, dataType       : {maxLength:100} 							
 			, dataLt         : {number:true} 							
 			, dcmlpointLt    : {number:true} 							
 			, exprsnFom      : {maxByteLength:100} 							
@@ -67,7 +71,8 @@ var _list = {
 				data.content.forEach(function(f){
 					processNull(f);
 					$("#listData").append("<tr onclick=\"_list.getDetail('"+f.domainSn+"')\">"
-						+"<td>" +f.domainSn+"</td><td>"+f.domainCl+"</td><td>"+f.domainNm+"</td><td>"
+						+"<td>" +f.domainSn+"</td><td>"+f.domainCl+"</td><td>"
+						+f.domainExprsnNm+"</td><td>"+f.domainNm+"</td><td>"
 						+f.domainEnAbbr+"</td><td>"+f.domainEnNm+"</td><td>"
 						+f.dataType+"</td><td>"+f.dataLt+"</td><td>"+f.dcmlpointLt+"</td><td>"+f.registDt+"</td>"
 						+"</tr>"

@@ -1,17 +1,23 @@
 package dicmeta.app.w.word;
 
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.*;
 
 import dicmeta.app.common.CommonTbl;
+import lombok.Getter;
+import lombok.Setter;
 
 
 /**
  * The persistent class for the t_wd_word database table.
  * 
  */
+
 @Entity
 @Table(name="t_wd_word")
+@Getter @Setter
 @NamedQuery(name="TWdWord.findAll", query="SELECT t FROM TWdWord t")
 public class TWdWord extends CommonTbl implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -46,7 +52,7 @@ public class TWdWord extends CommonTbl implements Serializable {
 	}
 
 	public Integer getWordSn() {
-		return this.wordSn;
+		return wordSn;
 	}
 
 	public void setWordSn(Integer wordSn) {
@@ -54,7 +60,7 @@ public class TWdWord extends CommonTbl implements Serializable {
 	}
 
 	public String getPrhibtWord() {
-		return this.prhibtWord;
+		return prhibtWord;
 	}
 
 	public void setPrhibtWord(String prhibtWord) {
@@ -62,7 +68,7 @@ public class TWdWord extends CommonTbl implements Serializable {
 	}
 
 	public String getSynonm() {
-		return this.synonm;
+		return synonm;
 	}
 
 	public void setSynonm(String synonm) {
@@ -70,7 +76,7 @@ public class TWdWord extends CommonTbl implements Serializable {
 	}
 
 	public String getThemaSe() {
-		return this.themaSe;
+		return themaSe;
 	}
 
 	public void setThemaSe(String themaSe) {
@@ -78,7 +84,7 @@ public class TWdWord extends CommonTbl implements Serializable {
 	}
 
 	public String getWordDc() {
-		return this.wordDc;
+		return wordDc;
 	}
 
 	public void setWordDc(String wordDc) {
@@ -86,7 +92,7 @@ public class TWdWord extends CommonTbl implements Serializable {
 	}
 
 	public String getWordEnAbbr() {
-		return this.wordEnAbbr;
+		return wordEnAbbr;
 	}
 
 	public void setWordEnAbbr(String wordEnAbbr) {
@@ -94,7 +100,7 @@ public class TWdWord extends CommonTbl implements Serializable {
 	}
 
 	public String getWordEnNm() {
-		return this.wordEnNm;
+		return wordEnNm;
 	}
 
 	public void setWordEnNm(String wordEnNm) {
@@ -102,11 +108,44 @@ public class TWdWord extends CommonTbl implements Serializable {
 	}
 
 	public String getWordNm() {
-		return this.wordNm;
+		return wordNm;
 	}
 
 	public void setWordNm(String wordNm) {
 		this.wordNm = wordNm;
 	}
+
+	public Date getModifyDt() {
+		return this.modifyDt;
+	}
+
+	public void setModifyDt(Date modifyDt) {
+		this.modifyDt = modifyDt;
+	}
+
+	public String getModifyId() {
+		return this.modifyId;
+	}
+
+	public void setModifyId(String modifyId) {
+		this.modifyId = modifyId;
+	}
+
+	public Date getRegistDt() {
+		return this.registDt;
+	}
+
+	public void setRegistDt(Date registDt) {
+		this.registDt = registDt;
+	}
+
+	public String getRegistId() {
+		return this.registId;
+	}
+
+	public void setRegistId(String registId) {
+		this.registId = registId;
+	}
+
 
 }

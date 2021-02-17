@@ -2,7 +2,7 @@
  * @FileName 	words.js
  * @author 		ljpark
  * @Date 		2021.02.11
- * @Description 도메인
+ * @Description 단어
  * @History
  * DATE			AUTHOR		NOTE	
  * -------------------------------------------------
@@ -14,6 +14,10 @@ $(function() {
 	_list.paginationInit();
 	_list.getList(1);
 	_commUtils.getCodes($("#wordCl"),"WD004"); // 도메인 분류 코드 조회(EX. 일시,번호,식별...)
+
+	// 영문 대문자처리
+	$('#wordEnAbbr').on('blur', function(){ $(this).val($(this).val().toUpperCase())});
+	$('#wordEnNm').on('blur', function(){ $(this).val($(this).val().toUpperCase())});
 	
 	$("#detailForm").validate({
 	
@@ -27,15 +31,14 @@ $(function() {
 			});
 		}
 		, rules: { //규칙 - id 값으로 
-			  wordCl       : {required:true} 								
-			, wordExprsnNm : {maxByteLength:200, required:true} 			
-			, domanNm      : {maxByteLength:200, required:true} 			    
-			, wordEnAbbr   : {maxByteLength:100, required:true} 	
-			, wordEnNm     : {maxByteLength:200} 							
-			, wordDc       : {maxByteLength:2000} 							
-			, synonm       : {maxByteLength:200} 							
-			, prhibtWord   : {maxByteLength:200} 							
-			, themaSe      : {maxByteLength:50} 							
+			  wordSn       : {number:true}                      // 단어 일련번호
+			, wordNm       : {maxByteLength:200, required:true} // 단어 명
+			, wordEnAbbr   : {maxLength:100, required:true}     // 단어 영문 약어
+			, wordEnNm     : {maxLength:200}                    // 단어 영문 명
+			, wordDc       : {maxByteLength:2000}               // 단어 설명
+			, synonm       : {maxByteLength:200}                // 동의어
+			, prhibtWord   : {maxByteLength:200}                // 금지 단어
+			, themaSe      : {maxByteLength:50}                 // 주제 구분
 		}
 	});
 	
@@ -59,7 +62,7 @@ var _list = {
 		//$("#searchfrm")[0].reset(); //오른쪽 상세정보 리셋
 		
 		_ajaxUtils.ajax({"url" : "/words", "form" : $("#searchForm")
-			,"successCallback": function(data) { //console.log(data);
+			,"successCallback": function(data) { console.log(data);
 				$("#listData").html(""); // 목록 초기화
 				data.content.forEach(function(f){
 					processNull(f);

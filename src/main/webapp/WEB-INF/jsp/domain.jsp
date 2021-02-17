@@ -56,7 +56,8 @@
 		                    <colgroup>
 		                        <col style="width:5%">
 		                        <col style="width:8%">
-		                        <col style="width:15%">
+		                        <col style="width:10%">
+		                        <col style="width:10%">
 		                        <col style="width:12%">
 		                        <col style="width:auto">
 		                        <col style="width:10%">
@@ -68,6 +69,7 @@
 		                        <tr>
 		                            <th scope="col">번호</th>
 		                            <th scope="col">도메인분류</th>
+		                            <th scope="col">도메인표현명</th>
 		                            <th scope="col">도메인명</th>
 		                            <th scope="col">도메인영문약어</th>
 		                            <th scope="col">도메인영문명</th>

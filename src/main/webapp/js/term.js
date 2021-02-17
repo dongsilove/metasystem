@@ -23,6 +23,11 @@ function setDomain( obj ) { // domainList의 index
 
 $(function() {
 
+	// 영문 대문자처리
+	$('#termEnAbbr').on('blur', function(){ $(this).val($(this).val().toUpperCase())});
+	$('#termEnNm').on('blur', function(){ $(this).val($(this).val().toUpperCase())});
+	
+
 	// 도메인 명 자동완성기능 
 	// keypress는 enter키, 숫자key일 경우 반응.. 문자일경우 enter키 입력 필요.. keyup, keydown은 너무 많은 api호출을 하게 됨.
 	$("#domainNm").on("keypress", function (evt) {
@@ -69,12 +74,12 @@ $(function() {
 			});
 		}
 		, rules: { //규칙 - id 값으로 
-			  termCl       : {required:true} 								
-			, termExprsnNm : {maxByteLength:200, required:true} 			
-			, domanNm        : {maxByteLength:200, required:true} 			    
-			, termEnAbbr   : {maxByteLength:100, required:true} 	
-			, termEnNm     : {maxByteLength:200} 							
-			, termDc       : {maxByteLength:2000} 							
+			  termSn		: {number:true}	 				 // 용어 일련번호
+			, domainSn		: {number:true, required:true}	 // 도메인 일련번호
+			, termEnAbbr	: {maxLength:100, required:true} // 용어 영문 약어
+			, termEnNm		: {maxLength:200}                // 용어 영문 명
+			, termDc		: {maxByteLength:2000}           // 용어 설명
+			, dataFom		: {maxLength:100}                // 데이터 형식
 		}
 	});
 	
@@ -104,7 +109,7 @@ var _list = {
 					$("#listData").append("<tr onclick=\"_list.getDetail('"+f.termSn+"')\">"
 						+"<td>" +f.termSn+"</td><td>"+f.termNm+"</td><td>"
 						+f.termEnAbbr+"</td><td>"+f.termEnNm+"</td><td>"
-						+f.twdDomain.domainNm+"</td><td>"+f.dataFomt+"</td><td>"+f.registDt+"</td>"
+						+f.twdDomain.domainNm+"</td><td>"+f.dataFom+"</td><td>"+f.registDt+"</td>"
 						+"</tr>"
 					);
 				});
