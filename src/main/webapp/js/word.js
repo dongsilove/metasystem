@@ -29,16 +29,13 @@ $(function() {
 		, rules: { //규칙 - id 값으로 
 			  wordCl       : {required:true} 								
 			, wordExprsnNm : {maxByteLength:200, required:true} 			
-			, domanNm        : {maxByteLength:200, required:true} 			    
+			, domanNm      : {maxByteLength:200, required:true} 			    
 			, wordEnAbbr   : {maxByteLength:100, required:true} 	
 			, wordEnNm     : {maxByteLength:200} 							
 			, wordDc       : {maxByteLength:2000} 							
-			, dataType       : {maxByteLength:100} 							
-			, dataLt         : {number:true} 							
-			, dcmlpointLt    : {number:true} 							
-			, exprsnFom      : {maxByteLength:100} 							
-			, unit           : {maxByteLength:50} 							
-			, permValDc      : {maxByteLength:2000} 							
+			, synonm       : {maxByteLength:200} 							
+			, prhibtWord   : {maxByteLength:200} 							
+			, themaSe      : {maxByteLength:50} 							
 		}
 	});
 	

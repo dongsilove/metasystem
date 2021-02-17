@@ -1,5 +1,7 @@
 package dicmeta.app.w.domain;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -8,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -86,6 +89,23 @@ public class TWdDomainApiController {
 		return "200";
 		
 	}
-	
+
+	@Operation(summary = "공통 도메인 목록 조회", description = "검색 값으로 도메인 목록을 반환한다.")
+	@GetMapping("/common/domains")
+	public Page<TWdDomain> common_list( @RequestParam Map<String,Object> param,
+			@RequestParam(name = "perPage", required = true, defaultValue = "20") int perPage,
+			@RequestParam(name = "page", required = true, defaultValue = "1") int page) throws Exception {
+		
+		Page<TWdDomain> list;
+		param.forEach((k,v)->logger.debug("key:" + k + "\tvalue:" +v));
+		//PageRequest pageRequest = PageRequest.of(page - 1, perPage, Sort.by(Direction.DESC, "domainSn"));
+		if(param.get("domainNm") != null && param.get("domainNm").toString() != null) {
+			list = domainRepository.findByDomainNmContaining(param.get("domainNm").toString(), Pageable.unpaged());
+		} else {
+			list = domainRepository.findAll(Pageable.unpaged());
+		}
+		return list; 
+		
+	}
 	
 }

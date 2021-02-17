@@ -8,12 +8,54 @@
  * -------------------------------------------------
  * 2021.02.11	ljpark		신규
  */
+var domainList;
+function setDomain( obj ) { // domainList의 index 
+	$("#domainNm").val($(obj).data("domainnm"));
+	$("#domainSn").val($(obj).data("domainsn"));
+	var dataFom = $(obj).data("datatype");
+	if ($(obj).data("datalt")) {
+		dataFom = dataFom + '('+ $(obj).data("datalt") + (($(obj).data("dcmlpointlt"))? '+'+$(obj).data("dcmlpointlt"):'') +')';
+	}
+	$("#dataFom").val(dataFom);
+	$("#domainNmList").html(""); // 목록 초기화
+}
+
 
 $(function() {
-	
+
+	// 도메인 명 자동완성기능 
+	// keypress는 enter키, 숫자key일 경우 반응.. 문자일경우 enter키 입력 필요.. keyup, keydown은 너무 많은 api호출을 하게 됨.
+	$("#domainNm").on("keypress", function (evt) {
+		// 도메인 조회
+		$("#searchtmp").attr("name","domainNm");
+		$("#searchtmp").attr("value",$("#domainNm").val());
+		
+		_ajaxUtils.ajax({"url" : "/common/domains" , "form" : $("#searchForm")
+			,"successCallback": function(data) { console.log(data);
+				domainList = []; // 목록 초기화
+				$("#domainNmList").html(""); // 목록 초기화
+				if (!data || !data.content) return;
+				data.content.forEach(function(f, idx){
+					domainList.push({ 
+						 "domainNm": f.domainNm, "domainSn": f.domainSn
+						,"dataType": f.dataType, "dataLt": f.dataLt
+					});
+					$("#domainNmList").append("<li onclick='setDomain(this)' data-domainsn='"+ f.domainSn 
+						+ "' data-domainnm='" + f.domainNm  
+						+ "' data-datatype='" + f.dataType  
+						+ "' data-dcmlpointlt='" + f.dcmlpointLt  
+						+ "' data-datalt='" + f.dataLt + "'>" 
+						+ f.domainNm + "&nbsp;&nbsp;" 
+						+ f.dataType + ":" + f.dataLt + "</li>");
+				});
+				console.log(domainList);
+			}
+		})
+	});
+
 	_list.paginationInit();
 	_list.getList(1);
-	_commUtils.getCodes($("#termCl"),"WD004"); // 용어 분류 코드 조회(EX. 일시,번호,식별...)
+
 	
 	$("#detailForm").validate({
 	
@@ -33,12 +75,6 @@ $(function() {
 			, termEnAbbr   : {maxByteLength:100, required:true} 	
 			, termEnNm     : {maxByteLength:200} 							
 			, termDc       : {maxByteLength:2000} 							
-			, dataType       : {maxByteLength:100} 							
-			, dataLt         : {number:true} 							
-			, dcmlpointLt    : {number:true} 							
-			, exprsnFom      : {maxByteLength:100} 							
-			, unit           : {maxByteLength:50} 							
-			, permValDc      : {maxByteLength:2000} 							
 		}
 	});
 	
@@ -47,7 +83,6 @@ $(function() {
 var _list = {
 	pagination : {}
 	,paginationInit : function() {
-		console.log( _paging.paginationOptions);
 		var pagination = new tui.Pagination('paging', _paging.paginationOptions); // _paging :paging.js에 정의되어 있음.
 		pagination.on('beforeMove', function(evt) { _list.getList(evt.page); });
 		this.pagination = pagination;
@@ -62,14 +97,14 @@ var _list = {
 		//$("#searchfrm")[0].reset(); //오른쪽 상세정보 리셋
 		
 		_ajaxUtils.ajax({"url" : "/terms", "form" : $("#searchForm")
-			,"successCallback": function(data) { //console.log(data);
+			,"successCallback": function(data) { console.log(data);
 				$("#listData").html(""); // 목록 초기화
 				data.content.forEach(function(f){
 					processNull(f);
 					$("#listData").append("<tr onclick=\"_list.getDetail('"+f.termSn+"')\">"
 						+"<td>" +f.termSn+"</td><td>"+f.termNm+"</td><td>"
 						+f.termEnAbbr+"</td><td>"+f.termEnNm+"</td><td>"
-						+f.domainSn+"</td><td>"+f.dataFomt+"</td><td>"+f.registDt+"</td>"
+						+f.twdDomain.domainNm+"</td><td>"+f.dataFomt+"</td><td>"+f.registDt+"</td>"
 						+"</tr>"
 					);
 				});

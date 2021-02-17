@@ -3,8 +3,16 @@ package dicmeta.app.w.term;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import org.hibernate.annotations.JoinColumnOrFormula;
+import org.hibernate.annotations.JoinColumnsOrFormulas;
+import org.hibernate.annotations.JoinFormula;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
+
 import dicmeta.app.common.CommonTbl;
 import dicmeta.app.w.domain.TWdDomain;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.Date;
 
@@ -23,29 +31,66 @@ public class TWdTerm extends CommonTbl implements Serializable {
 	@SequenceGenerator(name="T_WD_TERM_TERMSN_GENERATOR", sequenceName="T_WD_TERM_TERM_SN_SEQ", allocationSize = 1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="T_WD_TERM_TERMSN_GENERATOR")
 	@Column(name="term_sn")
+	@Schema(description ="용어 일련번호" )
 	private Integer termSn;
 
 	@Column(name="data_fom")
+	@Schema(description ="데이터 형식" )
 	private String dataFom;
 
 	@Column(name="domain_sn")
+	@Schema(description ="도메인 일련번호" )
 	private Integer domainSn;
 
 	@Column(name="term_en_abbr")
+	@Schema(description ="용어 영문 약어" )
 	private String termEnAbbr;
 
 	@Column(name="term_en_nm")
+	@Schema(description ="용어 영문 명" )
 	private String termEnNm;
 
 	@Column(name="term_nm")
+	@Schema(description ="용어 명" )
 	private String termNm;
 
+	@Column(name="term_dc")
+	@Schema(description ="용어 설명" )
+	private String termDc;
+
+	
 	//@ManyToOne(fetch = FetchType.LAZY) 
-	//@JoinColumn(name = "domain_sn", insertable=false) 
+	//@JoinColumn(name = "domain_sn", insertable=false) //  org.hibernate.MappingException: Repeated column in mapping for entity
 	//private TWdDomain tWdDomain;
+
+	@NotFound(action=NotFoundAction.IGNORE)
+	@ManyToOne
+	@JoinColumnsOrFormulas({ @JoinColumnOrFormula(column = @JoinColumn(referencedColumnName = "domain_sn", name = "domain_sn", insertable = false, updatable = false)) })
+	private TWdDomain tWdDomain;
 
 	public TWdTerm() {
 	}
+
+	
+	public String getTermDc() {
+		return termDc;
+	}
+
+
+	public void setTermDc(String termDc) {
+		this.termDc = termDc;
+	}
+
+
+	public TWdDomain getTWdDomain() {
+		return tWdDomain;
+	}
+
+
+	public void setTWdDomain(TWdDomain tWdDomain) {
+		this.tWdDomain = tWdDomain;
+	}
+
 
 	public Integer getTermSn() {
 		return this.termSn;

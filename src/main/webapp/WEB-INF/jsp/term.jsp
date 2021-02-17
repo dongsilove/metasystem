@@ -105,16 +105,6 @@
 	                            <td><input type="text" name="termSn" id="termSn" value="" readonly ></td>
 	                        </tr>
 	                        <tr>
-	                            <th class="required"><label for="termCl">용어 분류</label></th>
-	                            <td>
-	                                <select name="termCl" id="termCl" required></select>
-	                            </td>
-	                        </tr>
-	                        <tr>
-	                            <th class="required"><label for="termExprsnNm">용어표현명</label></th>
-	                            <td><input type="text" name="termExprsnNm" id="termExprsnNm"  value="" ></td>
-	                        </tr>
-	                        <tr>
 	                            <th class="required"><label for="termNm">용어명</label></th>
 	                            <td><input type="text" name="termNm" id="termNm"  value="" ></td>
 	                        </tr>
@@ -131,28 +121,15 @@
 	                            <td><textarea name="termDc" id="termDc"  value="" style="width:100%;"></textarea>
 	                        </tr>
 	                        <tr>
-	                            <th class="required"><label for="dataType">데이터타입</label></th>
-	                            <td><input type="text" name="dataType" id="dataType"  value="" ></td>
+	                            <th class="required"><label for="domainNm">도메인 명</label></th>
+	                            <td>
+	                            	<input type="text" name="domainNm" id="domainNm"  value="" autocomplete="off">
+	                            	<input type="hidden" name="domainSn" id="domainSn"  value="">
+	                            </td>
 	                        </tr>
 	                        <tr>
-	                            <th><label for="dataLt">데이터길이</label></th>
-	                            <td><input type="text" name="dataLt" id="dataLt"  value="" ></td>
-	                        </tr>
-	                        <tr>
-	                            <th><label for="dcmlpointLt">소수점길이</label></th>
-	                            <td><input type="text" name="dcmlpointLt" id="dcmlpointLt"  value="" ></td>
-	                        </tr>
-	                        <tr>
-	                            <th><label for="exprsnFom">표현형식</label></th>
-	                            <td><input type="text" name="exprsnFom" id="exprsnFom"  value="" style="width:100%"></td>
-	                        </tr>
-	                        <tr>
-	                            <th><label for="unit">단위</label></th>
-	                            <td><input type="text" name="unit" id="unit"  value="" ></td>
-	                        </tr>
-	                        <tr>
-	                            <th><label for="permValDc">허용값설명</label></th>
-	                            <td><input type="text" name="permValDc" id="permValDc"  value="" style="width:100%"></td>
+	                            <th class="required"><label for="dataFom">데이터 형태</label></th>
+	                            <td><input type="text" name="dataFom" id="dataFom"  value="" style="width:100%"></td>
 	                        </tr>
 	                        <tr>
 	                            <th><label for="registId">등록아이디</label></th>
@@ -172,6 +149,9 @@
 	                        </tr>
 	                        </tbody>
 	                    </table>
+	                    <div class="domainNmDiv">
+	                    	<ul id="domainNmList"></ul>
+	                    </div>
 	                    <!-- <div class="btn_user_form_wrap">
 	                        <input class="btn_user_modify" type="button" value="저장" >
 	                        <input class="btn_user_delete" type="button" value="삭제" >									
