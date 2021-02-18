@@ -1,5 +1,5 @@
 /**
- * @FileName 	words.js
+ * @FileName 	word.js
  * @author 		ljpark
  * @Date 		2021.02.11
  * @Description 단어
@@ -8,16 +8,56 @@
  * -------------------------------------------------
  * 2021.02.11	ljpark		신규
  */
+function setDetail( obj ) { // domainList의 index 
+	$("#wordNm").val($(obj).data("wordnm"));
+	$("#wordEnAbbr").val($(obj).data("wordenabbr"));
+	$("#wordEnNm").val($(obj).data("wordennm"));
+	$("#wordEnNm").val($(obj).data("wordennm"));
+	$("#wordDc").val($(obj).data("worddc"));
+	$("#nmList").html(""); // 목록 초기화
+}
 
 $(function() {
 	
 	_list.paginationInit();
 	_list.getList(1);
-	_commUtils.getCodes($("#wordCl"),"WD004"); // 도메인 분류 코드 조회(EX. 일시,번호,식별...)
 
 	// 영문 대문자처리
 	$('#wordEnAbbr').on('blur', function(){ $(this).val($(this).val().toUpperCase())});
 	$('#wordEnNm').on('blur', function(){ $(this).val($(this).val().toUpperCase())});
+	//$("#wordNm").val("주제");
+	
+	// 행정단어 명 검색기능 
+	// keypress는 enter키, 숫자key일 경우 반응.. 문자일경우 enter키 입력 필요.. keyup, keydown은 너무 많은 api호출을 하게 됨.
+	$("#wordNm").on("keypress", function (evt) {
+		// 행정단어 조회
+		$("#searchtmp").attr("name","wordNm");
+		$("#searchtmp").attr("value",$("#wordNm").val());
+		_ajaxUtils.ajax({"url" : "/common/govwords" , "form" : $("#searchForm")
+			,"successCallback": function(data) { console.log(data);
+				$("#nmList").html(""); // 목록 초기화
+				if (!data || !data.content) return;
+				$("#nmList").append("<ul><li>행정단어명</li><li>단어영문약어</li><li>단어영문명</li></ul>");
+				data.content.forEach(function(f, idx){
+					
+					$("#nmList").append("<ul onclick='setDetail(this)' data-wordsn='"+ f.wordSn 
+						+ "' data-wordnm='" + f.wordNm  
+						+ "' data-wordenabbr='" + f.wordEnAbbr  
+						+ "' data-worddc='" + f.wordDc  
+						+ "' data-wordEnNm='" + f.wordEnNm  + "'>" 
+						+ "<li>" + f.wordNm + "</li>" 
+						+ "<li>" + f.wordEnAbbr + "</li>" 
+						+ "<li>" + f.wordEnNm + "</li>"
+						+ "</ul>");
+				});
+			}
+		});
+		
+		// 단어조회
+		$("#searchName option[value='wordNm']").attr("selected","selected");
+		$("#searchValue").val($("#wordNm").val());
+		_list.getList(1);
+	});
 	
 	$("#detailForm").validate({
 	
@@ -33,8 +73,8 @@ $(function() {
 		, rules: { //규칙 - id 값으로 
 			  wordSn       : {number:true}                      // 단어 일련번호
 			, wordNm       : {maxByteLength:200, required:true} // 단어 명
-			, wordEnAbbr   : {maxLength:100, required:true}     // 단어 영문 약어
-			, wordEnNm     : {maxLength:200}                    // 단어 영문 명
+			, wordEnAbbr   : {maxlength:100, required:true}     // 단어 영문 약어
+			, wordEnNm     : {maxlength:200}                    // 단어 영문 명
 			, wordDc       : {maxByteLength:2000}               // 단어 설명
 			, synonm       : {maxByteLength:200}                // 동의어
 			, prhibtWord   : {maxByteLength:200}                // 금지 단어

@@ -1,8 +1,8 @@
 /**
- * @FileName 	domains.js
+ * @FileName 	prjct.js
  * @author 		ljpark
  * @Date 		2021.02.11
- * @Description 도메인
+ * @Description 프로젝트
  * @History
  * DATE			AUTHOR		NOTE	
  * -------------------------------------------------
@@ -13,17 +13,12 @@ $(function() {
 	
 	_list.paginationInit();
 	_list.getList(1);
-	_commUtils.getCodes($("#domainCl"),"WD004"); // 도메인 분류 코드 조회(EX. 일시,번호,식별...)
-	
-	// 영문 대문자처리
-	$('#domainEnAbbr').on('blur', function(){ $(this).val($(this).val().toUpperCase())});
-	$('#domainEnNm').on('blur', function(){ $(this).val($(this).val().toUpperCase())});
 	
 	$("#detailForm").validate({
 	
 		submitHandler : function () { //validation이 끝난 이후의 submit 직전 추가 작업할 부분
 			console.log("validation 성공 이후 ");
- 			_ajaxUtils.ajax({"url" : "/domains/", "method": "PUT", "form" : $("#detailForm")
+ 			_ajaxUtils.ajax({"url" : "/prjcts/", "method": "PUT", "form" : $("#detailForm")
 				,"successCallback": function(result) {
 					_list.getList();
 					detailForm.reset();
@@ -31,18 +26,11 @@ $(function() {
 			});
 		}
 		, rules: { //규칙 - id 값으로 
-			  domainCl       : {required:true} 								
-			, domainExprsnNm : {maxByteLength:200, required:true} 			
-			, domainNm        : {maxByteLength:200, required:true} 			    
-			, domainEnAbbr   : {maxlength:100, required:true} 	
-			, domainEnNm     : {maxlength:200} 							
-			, domainDc       : {maxByteLength:2000} 							
-			, dataType       : {maxlength:100} 							
-			, dataLt         : {number:true} 							
-			, dcmlpointLt    : {number:true} 							
-			, exprsnFom      : {maxByteLength:100} 							
-			, unit           : {maxByteLength:50} 							
-			, permValDc      : {maxByteLength:2000} 							
+			  prjctSn       : {number:true} 								
+			, prjctNm        : {maxByteLength:200, required:true} 			    
+			, prjctDc       : {maxByteLength:2000} 							
+			, prjctBgngYmd   : {maxlength:100} 							
+			, prjctEndYmd    : {number:true} 							
 		}
 	});
 	
@@ -63,18 +51,16 @@ var _list = {
 		$("#page").val(page);
 		//console.log($("#page").val());
 		
-		//$("#searchfrm")[0].reset(); //오른쪽 상세정보 리셋
-		
-		_ajaxUtils.ajax({"url" : "/domains", "form" : $("#searchForm")
+		_ajaxUtils.ajax({"url" : "/prjcts", "form" : $("#searchForm")
 			,"successCallback": function(data) { //console.log(data);
 				$("#listData").html(""); // 목록 초기화
 				data.content.forEach(function(f){
 					processNull(f);
-					$("#listData").append("<tr onclick=\"_list.getDetail('"+f.domainSn+"')\">"
-						+"<td>" +f.domainSn+"</td><td>"+f.domainCl+"</td><td>"
-						+f.domainExprsnNm+"</td><td>"+f.domainNm+"</td><td>"
-						+f.domainEnAbbr+"</td><td>"+f.domainEnNm+"</td><td>"
-						+f.dataType+"</td><td>"+f.dataLt+"</td><td>"+f.dcmlpointLt+"</td><td>"+f.registDt+"</td>"
+					$("#listData").append("<tr onclick=\"_list.getDetail('"+f.prjctSn+"')\">"
+						+"<td>" +f.prjctSn+"</td><td>"
+						+f.prjctNm+"</td><td>"+f.prjctDc+"</td><td>"
+						+f.prjctbngnYmd+"</td><td>"+f.prjctEndYmd+"</td><td>"
+						+f.registDt+"</td>"
 						+"</tr>"
 					);
 				});
@@ -90,9 +76,9 @@ var _list = {
 		detailForm.reset();
 		mode = "POST";
 	}
-	,getDetail : function(domainSn) {
+	,getDetail : function(prjctSn) {
 		mode="PUT"; // 수정모드
-		_ajaxUtils.ajax({"url" : "/domains/"+domainSn
+		_ajaxUtils.ajax({"url" : "/prjcts/"+prjctSn
 			,"successCallback": function(data) { console.log(data);
 				for(key in data) {	
 					_commUtils.setVal("detailForm", key, data[key] );
@@ -104,12 +90,12 @@ var _list = {
 
 	}
 	,deleteOne : function() {
-		var pk = $("#domainSn").val();
+		var pk = $("#prjctSn").val();
 		//console.log("삭제 호출" + pk);
 		if (isEmpty(pk)) {alert('삭제할 데이터를 선택하세요.'); return;}
 		if(confirm("삭제하시겠습니까? 삭제 후에는 복구가 불가능 합니다."))
 		{
-			_ajaxUtils.ajax({"url" : "/domains/"+pk, "method": "DELETE"
+			_ajaxUtils.ajax({"url" : "/prjcts/"+pk, "method": "DELETE"
 				,"successCallback": function(result) { console.log(result);
 					alert("삭제되었습니다.");
 					_list.getList();

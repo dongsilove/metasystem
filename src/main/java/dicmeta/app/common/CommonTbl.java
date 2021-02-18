@@ -13,7 +13,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @MappedSuperclass
-@Getter @Setter
+//@Getter @Setter
 public abstract class CommonTbl {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="regist_dt",insertable=false, updatable=false, columnDefinition="timestamp DEFAULT CURRENT_TIMESTAMP")
@@ -32,6 +32,38 @@ public abstract class CommonTbl {
 	@Column(name="modify_id", length=50)
 	@Schema(description ="수정 아이디" )
 	protected String modifyId;
+
+	public Date getRegistDt() {
+		return registDt;
+	}
+
+	public void setRegistDt(Date registDt) {
+		this.registDt = registDt;
+	}
+
+	public String getRegistId() {
+		return registId;
+	}
+
+	public void setRegistId(String registId) {
+		this.registId = registId;
+	}
+
+	public Date getModifyDt() {
+		return modifyDt;
+	}
+
+	public void setModifyDt(Date modifyDt) {
+		this.modifyDt = modifyDt;
+	}
+
+	public String getModifyId() {
+		return modifyId;
+	}
+
+	public void setModifyId(String modifyId) {
+		this.modifyId = modifyId;
+	}
 
 	////@ApiModelProperty(value = "생성자")
 	//@Column(name = "REG_ID")
@@ -54,4 +86,6 @@ public abstract class CommonTbl {
 	//@UpdateTimestamp
 	//@Column(name = "UPD_DT", nullable=true)
 	//protected LocalDateTime  updDt;
+	
+	
 }

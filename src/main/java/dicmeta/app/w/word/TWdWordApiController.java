@@ -87,5 +87,27 @@ public class TWdWordApiController {
 		
 	}
 	
+	@Operation(summary = "단어 목록 조회", description = "검색 값으로 페이징된 단어 목록 화면을 호출한다.")
+	@GetMapping("/common/words")
+	public Page<TWdWord> common_list( @RequestParam Map<String,Object> param,
+			@RequestParam(name = "perPage", required = true, defaultValue = "50") int perPage,
+			@RequestParam(name = "page", required = true, defaultValue = "1") int page) throws Exception {
+		
+		Page<TWdWord> list;
+		param.forEach((k,v)->logger.debug("key:" + k + "\tvalue:" +v));
+		PageRequest pageRequest = PageRequest.of(page - 1, perPage, Sort.by(Direction.DESC, "wordSn"));
+		if(param.get("wordNm") != null && param.get("wordNm").toString() != null) {
+			list = (Page<TWdWord>) wordRepository.findByWordNmContaining(param.get("wordNm").toString(),pageRequest);
+		} else if(param.get("wordEnAbbr") != null && param.get("wordEnAbbr").toString() != null) {
+			list = (Page<TWdWord>) wordRepository.findByWordEnAbbrContaining(param.get("wordEnAbbr").toString(),pageRequest);
+		} else if(param.get("wordEnNm") != null && param.get("wordEnNm").toString() != null) {
+			list = (Page<TWdWord>) wordRepository.findByWordEnNmContaining(param.get("wordEnNm").toString(),pageRequest);
+		} else {
+			list = (Page<TWdWord>) wordRepository.findAll(pageRequest);
+		}
+		return list;
+		
+	}
+	
 	
 }

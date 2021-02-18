@@ -115,37 +115,4 @@ public class TWdWord extends CommonTbl implements Serializable {
 		this.wordNm = wordNm;
 	}
 
-	public Date getModifyDt() {
-		return this.modifyDt;
-	}
-
-	public void setModifyDt(Date modifyDt) {
-		this.modifyDt = modifyDt;
-	}
-
-	public String getModifyId() {
-		return this.modifyId;
-	}
-
-	public void setModifyId(String modifyId) {
-		this.modifyId = modifyId;
-	}
-
-	public Date getRegistDt() {
-		return this.registDt;
-	}
-
-	public void setRegistDt(Date registDt) {
-		this.registDt = registDt;
-	}
-
-	public String getRegistId() {
-		return this.registId;
-	}
-
-	public void setRegistId(String registId) {
-		this.registId = registId;
-	}
-
-
 }

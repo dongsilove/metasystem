@@ -106,7 +106,7 @@
 	                            <th><label for="wordSn">단어 일련번호</label></th>
 	                            <td><input type="text" name="wordSn" id="wordSn" value="" readonly ></td>
 	                        </tr>
-	                        <tr>
+	                        <tr title="일부단어 입력 후 행정단어 검색 가능">
 	                            <th class="required"><label for="wordNm">단어명</label></th>
 	                            <td><input type="text" name="wordNm" id="wordNm"  value="" ></td>
 	                        </tr>
@@ -152,6 +152,7 @@
 	                        </tr>
 	                        </tbody>
 	                    </table>
+	                    <div id="nmList"> </div>
 	                    <!-- <div class="btn_user_form_wrap">
 	                        <input class="btn_user_modify" type="button" value="저장" >
 	                        <input class="btn_user_delete" type="button" value="삭제" >									

@@ -1,7 +1,5 @@
 package dicmeta.app.w.domain;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -10,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Tag( name = "TWdDomainRestController", description = "도메인")
+@Tag( name = "TWdDomainApiController", description = "도메인")
 @RestController
 public class TWdDomainApiController {
 
@@ -98,11 +95,15 @@ public class TWdDomainApiController {
 		
 		Page<TWdDomain> list;
 		param.forEach((k,v)->logger.debug("key:" + k + "\tvalue:" +v));
-		//PageRequest pageRequest = PageRequest.of(page - 1, perPage, Sort.by(Direction.DESC, "domainSn"));
+		PageRequest pageRequest = PageRequest.of(page - 1, perPage, Sort.by(Direction.DESC, "domainSn"));
 		if(param.get("domainNm") != null && param.get("domainNm").toString() != null) {
-			list = domainRepository.findByDomainNmContaining(param.get("domainNm").toString(), Pageable.unpaged());
+			list = (Page<TWdDomain>) domainRepository.findByDomainNmContaining(param.get("domainNm").toString(),pageRequest);
+		} else if(param.get("domainEnAbbr") != null && param.get("domainEnAbbr").toString() != null) {
+			list = (Page<TWdDomain>) domainRepository.findByDomainEnAbbrContaining(param.get("domainEnAbbr").toString(),pageRequest);
+		} else if(param.get("domainEnNm") != null && param.get("domainEnNm").toString() != null) {
+			list = (Page<TWdDomain>) domainRepository.findByDomainEnNmContaining(param.get("domainEnNm").toString(),pageRequest);
 		} else {
-			list = domainRepository.findAll(Pageable.unpaged());
+			list = (Page<TWdDomain>) domainRepository.findAll(pageRequest);
 		}
 		return list; 
 		

@@ -13,10 +13,11 @@
                         <li><a href="/term"><i class="fas fa-cubes"></i>용어</a></li>
                     </ul>
                 </li>
-                <li><a href="#">관리도구</a>
+                <li><a href="#">관리</a>
                     <ul class="depth">
-                        <li><a href="/user_list"><i class="fas fa-user"></i>직원정보</a></li>
-                        <li><a href="/dept_list"><i class="fas fa-address-book"></i>부서정보</a></li>
+                        <li><a href="/prjct"><i class="fas fa-project-diagram"></i>프로젝트</a></li>
+                        <li><a href="/user"><i class="fas fa-user"></i>직원정보</a></li>
+                        <li><a href="/dept"><i class="fas fa-address-book"></i>부서정보</a></li>
                     </ul>
                 </li>
             </ul>

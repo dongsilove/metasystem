@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 //========================================
-// @brief 데이터사전 > 용어 > 목록
+// @brief 데이터사전 > 프로젝트 > 목록
 //========================================
 // @history 
 //  	2021.02.09 박이정(마인드원) 최초작성
@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <jsp:include page="/WEB-INF/jsp/layout/header.jsp"/>
-<script src="/js/term.js"></script>
+<script src="/js/prjct.js"></script>
 
 <body>
     <div class="bg"></div>
@@ -20,8 +20,8 @@
 
         <div class="container">
             <div class="title">
-            	<div style="float:left;"><h1>용어</h1></div>
-            	<div class="location"><ul><li class="home"></li><li>데이터사전</li><li>용어</li></ul></div>
+            	<div style="float:left;"><h1>프로젝트</h1></div>
+            	<div class="location"><ul><li class="home"></li><li>데이터사전</li><li>프로젝트</li></ul></div>
             </div>
             <div class="cont_divide">
             	<div class="left">
@@ -31,14 +31,12 @@
 							<form name="searchForm" id="searchForm" method="GET">
 								<input type="hidden" id="page" name="page">
 								<input type="hidden" id="searchtmp" name="" value=""  />
-								<select name="prjctSn" onChange="_list.getList(1);" class="selectp prjctNm">
-									   <option value=''> -- 프로젝트 선택 -- </option>
+								<select name="post" id="post" onChange="_list.getList(1);" class="selectp">
+									   <option value=''> -- 주제구분 선택 -- </option>
 								</select>
 								<select name="searchName" id="searchName" onChange="setPlaceholder(this)"  class="selectp">
 										<!-- <option value=''> -- 검색선택 -- </option> -->
-										<option value="termNm" >용어명</option>
-										<option value="termEnAbbr" >용어영문약어</option>
-										<option value="termEnNm" >용어영문명</option>
+										<option value="prjctNm" >프로젝트명</option>
 										<!-- <option value="registYmd" >등록일자</option> -->
 								</select>
 								<input type="text" name="searchValue" id="searchValue" value="" 
@@ -55,22 +53,20 @@
 		                <table id="list_t">
 		                    <colgroup>
 		                        <col style="width:5%">
-		                        <col style="width:15%">
-		                        <col style="width:15%">
+		                        <col style="width:18%">
 		                        <col style="width:auto">
-		                        <col style="width:15%">
-		                        <col style="width:15%">
-		                        <col style="width:8%">
+		                        <col style="width:10%">
+		                        <col style="width:10%">
+		                        <col style="width:10%">
 		                    </colgroup>
 		                    <thead>
 		                        <tr>
 		                            <th scope="col">번호</th>
-		                            <th scope="col">용어명</th>
-		                            <th scope="col">용어영문약어</th>
-		                            <th scope="col">용어영문명</th>
-		                            <th scope="col">도메인명</th>
-		                            <th scope="col">데이터형태</th>
-		                            <th scope="col">프로젝트</th>
+		                            <th scope="col">프로젝트명</th>
+		                            <th scope="col">프로젝트설명</th>
+		                            <th scope="col">프로젝트 시작 일자</th>
+		                            <th scope="col">프로젝트 종료 일자</th>
+		                            <th scope="col">등록 일자</th>
 		                        </tr>
 		                    </thead>
 		                    <tbody id="listData">
@@ -101,41 +97,24 @@
 	                        </colgroup>
 	                        <tbody>
 	                        <tr>
-	                            <th><label for="termSn">용어 일련번호</label></th>
-	                            <td><input type="text" name="termSn" id="termSn" value="" readonly ></td>
+	                            <th><label for="prjctSn">프로젝트 일련번호</label></th>
+	                            <td><input type="text" name="prjctSn" id="prjctSn" value="" readonly ></td>
 	                        </tr>
 	                        <tr>
-	                            <th class="required"><label for="termNm">용어명</label></th>
-	                            <td><input type="text" name="termNm" id="termNm"  value="" ></td>
+	                            <th class="required"><label for="prjctNm">프로젝트명</label></th>
+	                            <td><input type="text" name="prjctNm" id="prjctNm"  value="" ></td>
 	                        </tr>
 	                        <tr>
-	                            <th class="required"><label for="termEnAbbr">용어영문약어</label></th>
-	                            <td><input type="text" name="termEnAbbr" id="termEnAbbr"  value="" ></td>
+	                            <th><label for="prjctDc">프로젝트설명</label></th>
+	                            <td><textarea name="prjctDc" id="prjctDc"  value="" style="width:100%;"></textarea>
 	                        </tr>
 	                        <tr>
-	                            <th class="required"><label for="termEnNm">용어영문명</label></th>
-	                            <td><input type="text" name="termEnNm" id="termEnNm"  value="" style="width:100%"></td>
+	                            <th class="required"><label for="prjctBgngYmd">프로젝트 시작 일자</label></th>
+	                            <td><input type="text" name="prjctBgngYmd" id="prjctBgngYmd"  value="" ></td>
 	                        </tr>
 	                        <tr>
-	                            <th><label for="termDc">용어설명</label></th>
-	                            <td><textarea name="termDc" id="termDc"  value="" style="width:100%;"></textarea>
-	                        </tr>
-	                        <tr>
-	                            <th class="required"><label for="domainNm">도메인 명</label></th>
-	                            <td>
-	                            	<input type="text" name="domainNm" id="domainNm"  value="" autocomplete="off">
-	                            	<input type="hidden" name="domainSn" id="domainSn"  value="">
-	                            </td>
-	                        </tr>
-	                        <tr>
-	                            <th class="required"><label for="dataFom">데이터 형태</label></th>
-	                            <td><input type="text" name="dataFom" id="dataFom"  value="" style="width:100%"></td>
-	                        </tr>
-	                        <tr>
-	                            <th class="required"><label for="prjctSn">프로젝트</label></th>
-	                            <td>
-	                                <select name="prjctSn" id="prjctSn" required class="prjctNm"></select>
-	                            </td>
+	                            <th><label for="prjctEndYmd">프로젝트 종료 일자</label></th>
+	                            <td><input type="text" name="prjctEndYmd" id="prjctEndYmd"  value="" ></td>
 	                        </tr>
 	                        <tr>
 	                            <th><label for="registId">등록아이디</label></th>
@@ -155,8 +134,6 @@
 	                        </tr>
 	                        </tbody>
 	                    </table>
-	                    <div id="nmList">
-	                    </div>
 	                </form>
 	                </div>            	
             	</div>

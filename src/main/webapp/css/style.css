@@ -153,10 +153,6 @@ input::placeholder {color: #cccccc; font-style: italic;}
 .edit_wrap,.user_wrap,.task_order_wrap,.theme_calcul_wrap{background-color: #fff}
 .container .title{height:20px;margin-bottom:15px;padding:20px;background-color: #fff;border-bottom: 1px solid #cecece;font-size:18px;color: #297FB8;font-weight: bold}
 .container .title p{margin-top:10px;font-size:14px;color:#595959;font-weight:normal;}
-.task_list{text-align: center;}
-.task_list th{padding:12px 0;border-top:2px solid #595959;border-bottom:1px solid #c4c4c4;font-weight: bold;background-color: #f8f8f8;color:#484848;}
-.task_list td{padding:5px 5px;line-height:1.6;border-bottom: 1px solid #eee;background-color: #fff;}
-.task_list table{width:100%;max-width:1600px;margin: 0 auto;overflow: hidden;font-size:14px;cursor:pointer;}
 .write {text-align: right}
 .write_inner{width: 100%;max-width:850px;margin:0 auto;padding:0 5px;box-sizing:border-box;}
 .write_inner i {margin-right:5px;}
@@ -326,12 +322,22 @@ input::placeholder {color: #cccccc; font-style: italic;}
 .cont_divide .left {display: table-cell; width: 70%; padding: 0 0 0 10px; box-sizing: border-box}
 .cont_divide .right {display: table-cell; width: calc(100% - 70%); padding: 0 10px 0 0; box-sizing: border-box}
 
-/*user_form*/
+/* list task_list */
+.task_list{text-align: center;}
+.task_list table{width:100%;max-width:1600px;margin: 0 auto;overflow: hidden;font-size:14px;cursor:pointer;
+		box-shadow:3px 3px 5px rgba(0,0,0,.1);border-radius:3px;}
+.task_list th{padding:12px 0;border-top:2px solid #595959;border-bottom:1px solid #c4c4c4;font-weight: bold;
+		background-color: #f8f8f8;color:#484848;}
+.task_list tr:hover td{background-color: #f8f8f8;transition: .2s}
+.task_list td{padding:5px 5px;line-height:1.6;border-bottom: 1px solid #eee;background-color: #fff;}
+
+/* user_form */
 .user_wrap{max-width:900px;padding:20px 10px;}
 .user_form,.theme_form{border-top:2px solid #000;overflow:hidden;font-size:14px;margin:15px 5px;}
 .user_form span{display:block;margin-top:5px;font-size:12px;font-weight:bold;color:#ff5656;margin-left:5px;line-height:1.4}
 .leave{font-weight:bold;color:#ff5656;margin:10px 0 0 0;}
-.user_form th{line-height:1.4;width:30%}
+.user_form table{box-shadow:3px 3px 5px rgba(0,0,0,.1);border-radius:3px;}
+.user_form th{line-height:1.4;width:30%;}
 .user_form th,.user_form td,.theme_form th,.theme_form td{padding:5px 5px;text-align: left;background-color: #f8f8f8;border-bottom:1px solid #ddd}
 .user_form td,.theme_form td{background-color: #fff;}
 .edit_table {width:100%}
@@ -360,6 +366,14 @@ input::placeholder {color: #cccccc; font-style: italic;}
     color:#fff
 }
 
+#nmList {width:100%;margin-top:10px;background-color: #fff;}
+#nmList ul {list-style:none;padding:4px 0px;border-bottom:1px solid #eeeeee;}
+#nmList ul:hover {background-color: #f8f8f8;cursor:pointer}
+#nmList ul:first-child{font-weight:bold; background-color: #f8f8f8;transition: .2s;cursor:none}
+#nmList ul li {display:inline-block; padding:0px 5px;}
+#nmList ul li:nth-child(1){width:80px;}
+#nmList ul li:nth-child(2){width:15%;}
+#nmList ul li:nth-child(3){width:auto;}
 /*member_order*/
 .task_order_wrap{max-width:500px;padding:15px 10px;}
 .task_order_wrap .task_order_title{font-weight:bold;font-size:14px;background-color:#117bf4;color:#fff;padding:10px 5px;}
@@ -545,7 +559,7 @@ input#back_img{width:100%}
 
 /*.btn_search a{padding:2px 14px}*/
 .btn_search a i,.btn_search{margin-left:5px;}
-@media screen and (min-width:768px){
+@media screen and (min-width:768px){ /* 768px보다 크면 */
     .header{transition:.5s;} 
     .account{margin-left:260px;display: block;position:relative;transition:.5s}
     .header._hide .account{margin-left:0}
@@ -580,10 +594,7 @@ input#back_img{width:100%}
     .container_inner{border-radius:14px;margin-bottom:25px;}
     .container .title{padding:20px 55px;font-size:20px;height:20px;}
     .task_list_wrap .title h1{max-width:1000px;margin:0 auto}
-    .task_list tr:hover td{background-color: #f8f8f8;transition: .2s}
-    .task_list table{box-shadow:3px 3px 5px rgba(0,0,0,.1);border-radius:3px;font-size:13px}
-    .edit_wrap,.mm_list_table{box-shadow:3px 3px 5px rgba(0,0,0,.1)}
-    /* .task_list td{padding:14px 0} */
+    .edit_wrap,.mm_list_table{box-shadow:3px 3px 5px rgba(0,0,0,.1)}   
     .write_inner>a:last-child:hover,.btn_edit .btn_submit:hover,.btn_task_submit:hover,.btn_sendRoport input:hover,btn_user_modify:hover{background-color: #0069d9;transition: .2s}
     ._calendar{padding:50px 50px 0 50px;}
     ._calendar tr td{font-size:14px;}

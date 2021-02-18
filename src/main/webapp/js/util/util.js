@@ -512,9 +512,9 @@ function validateData(rules, data, failFunc) {
 				}
 				
 				//문자열 길이 20.12.31 Wonlee 추가
-				if( flag && !isEmpty(rule.maxLength) ) {
-					flag = value.length > rule.maxLength ? false : true; 
-					msg = rule.maxLength+"자를 넘을 수 없습니다.";
+				if( flag && !isEmpty(rule.maxlength) ) {
+					flag = value.length > rule.maxlength ? false : true; 
+					msg = rule.maxlength+"자를 넘을 수 없습니다.";
 				}
 				
 				// 날짜 YYYY-MM-DD 형태

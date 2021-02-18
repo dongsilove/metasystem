@@ -58,6 +58,10 @@ public class TWdTerm extends CommonTbl implements Serializable {
 	@Schema(description ="용어 설명" )
 	private String termDc;
 
+	@Column(name="prjct_sn")
+	@Schema(description ="프로젝트 일련번호" )
+	private Integer prjctSn;
+	
 	
 	//@ManyToOne(fetch = FetchType.LAZY) 
 	//@JoinColumn(name = "domain_sn", insertable=false) //  org.hibernate.MappingException: Repeated column in mapping for entity
@@ -116,38 +120,6 @@ public class TWdTerm extends CommonTbl implements Serializable {
 		this.domainSn = domainSn;
 	}
 
-	public Date getModifyDt() {
-		return this.modifyDt;
-	}
-
-	public void setModifyDt(Date modifyDt) {
-		this.modifyDt = modifyDt;
-	}
-
-	public String getModifyId() {
-		return this.modifyId;
-	}
-
-	public void setModifyId(String modifyId) {
-		this.modifyId = modifyId;
-	}
-
-	public Date getRegistDt() {
-		return this.registDt;
-	}
-
-	public void setRegistDt(Date registDt) {
-		this.registDt = registDt;
-	}
-
-	public String getRegistId() {
-		return this.registId;
-	}
-
-	public void setRegistId(String registId) {
-		this.registId = registId;
-	}
-
 	public String getTermEnAbbr() {
 		return this.termEnAbbr;
 	}
@@ -171,5 +143,16 @@ public class TWdTerm extends CommonTbl implements Serializable {
 	public void setTermNm(String termNm) {
 		this.termNm = termNm;
 	}
+
+
+	public Integer getPrjctSn() {
+		return prjctSn;
+	}
+
+
+	public void setPrjctSn(Integer prjctSn) {
+		this.prjctSn = prjctSn;
+	}
+
 
 }
