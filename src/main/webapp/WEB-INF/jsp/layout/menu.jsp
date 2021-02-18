@@ -7,15 +7,21 @@
             <ul>
                 <li><a href="#">데이터사전</a>
                     <ul class="depth">
-                        <li class="on"><a href="/govword"><i class="fas fa-book"></i>행정단어</a></li><!-- fas fa-edit -->
+                        <li><a href="/govword"><i class="fas fa-book"></i>행정단어</a></li><!-- class="on" -->
                         <li><a href="/domain"><i class="far fa-square"></i>도메인</a></li><!-- far fa-window-maximize -->
                         <li><a href="/word"><i class="fas fa-cube"></i>단어</a></li><!-- fas fa-address-book, far fa-file-word-->
                         <li><a href="/term"><i class="fas fa-cubes"></i>용어</a></li>
                     </ul>
                 </li>
-                <li><a href="#">관리</a>
+                <li><a href="#">기본정보</a>
                     <ul class="depth">
-                        <li><a href="/prjct"><i class="fas fa-project-diagram"></i>프로젝트</a></li>
+                        <li><a href="/prjct"><i class="fas fa-object-group"></i>프로젝트</a></li>
+                        <li><a href="/code"><i class="fas fa-user"></i>코드</a></li>
+                        <li><a href="/cdgrp"><i class="fas fa-address-book"></i>코드그룹</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">사용자</a>
+                    <ul class="depth">
                         <li><a href="/user"><i class="fas fa-user"></i>직원정보</a></li>
                         <li><a href="/dept"><i class="fas fa-address-book"></i>부서정보</a></li>
                     </ul>

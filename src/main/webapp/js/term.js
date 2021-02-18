@@ -18,23 +18,23 @@ $(function() {
 	setTimeout(function(){
 		_list.paginationInit();
 		_list.getList(1);
-	},700);
+	},300);
 
 	// 용어명 입력 완료 후 도메인 조회
-	$('#termNm').on('blur', function(){ 
+	$('#termNm').on('blur', function(){ // focus이동시 
 		let iword;// space로 구분된 마지막 단어 가져오기
 		let iwordarr = $("#termNm").val().split(' ');
 		iword = iwordarr[iwordarr.length-1];
-		console.log(iword);
 		$("#domainNm").val(iword);
-		_list.getDomainList();
+		_list.getDomainList(); // 마지막 단어로 도메인 조회
+		$("#termDc").val($("#termNm").val()); // 용어명 값을 용어설명에 넣는다.
 	});
 	// 영문 대문자처리
 	$('#termEnAbbr').on('blur', function(){ $(this).val($(this).val().toUpperCase())});
 	$('#termEnNm').on('blur', function(){ $(this).val($(this).val().toUpperCase())});
 	
 	
-	$("#detailForm").validate({
+	$("#detailForm").validate({ // $("#detailForm").submit() 호출시 실행됨.
 	
 		submitHandler : function () { //validation이 끝난 이후의 submit 직전 추가 작업할 부분
 			console.log("validation 성공 이후 ");
@@ -64,8 +64,8 @@ $(function() {
 
 	// 용어명 입력란에서 단어 검색기능 
 	$("#termNm").on("keypress", function (evt) {
-		if(event.keyCode!=13) return; //enter키 아니면 ignore 
-		_list.getWordList();
+		if(event.keyCode==13 ||event.keyCode==32)  //enter키 or space키
+			_list.getWordList();
 	});
 
 
@@ -200,6 +200,7 @@ var _list = {
 		})		
 	}
 	,setDetail : function ( obj ) {
+		// 조회된 단어 setting
 		let enabbr = $("#termEnAbbr").val();
 		enabbr = (enabbr)? enabbr+'_'+$(obj).data("wordenabbr") : $(obj).data("wordenabbr"); // 이전 입력된 영문약어가 있으면 '_'를 붙이고 아니면 선택한 단어로만..
 		$("#termEnAbbr").val( enabbr );
