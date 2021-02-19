@@ -16,8 +16,8 @@
                 <li><a href="#">기본정보</a>
                     <ul class="depth">
                         <li><a href="/prjct"><i class="fas fa-object-group"></i>프로젝트</a></li>
-                        <li><a href="/code"><i class="fas fa-user"></i>코드</a></li>
-                        <li><a href="/cdgrp"><i class="fas fa-address-book"></i>코드그룹</a></li>
+                        <li><a href="/code"><i class="fab fa-cuttlefish"></i>코드</a></li>
+                        <li><a href="/cdgrp"><i class="fas fa-copyright"></i>코드그룹</a></li>
                     </ul>
                 </li>
                 <li><a href="#">사용자</a>

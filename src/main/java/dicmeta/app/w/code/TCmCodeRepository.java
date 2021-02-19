@@ -12,5 +12,8 @@ public interface TCmCodeRepository extends JpaRepository<TCmCode, Integer> {
 	
 	// 공통 목록 조회
 	List<TCmCode> findByGrpCd(String grpCd);
+
+	// 삭제
+	void deleteByGrpCdAndCd(String grpCd, String cd);
 	
 }

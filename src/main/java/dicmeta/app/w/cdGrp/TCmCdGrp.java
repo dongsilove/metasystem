@@ -13,7 +13,7 @@ import dicmeta.app.common.CommonTbl;
 @Entity
 @Table(name="t_cm_cd_grp")
 @NamedQuery(name="TCmCdGrp.findAll", query="SELECT t FROM TCmCdGrp t")
-public class TCmCdGrp extends CommonTbl implements Serializable {
+public class TCmCdGrp implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -23,6 +23,12 @@ public class TCmCdGrp extends CommonTbl implements Serializable {
 	@Column(name="grp_cd_nm")
 	private String grpCdNm;
 
+	@Column(name="table_nm")
+	private String tableNm;
+	
+	@Column(name="column_nm")
+	private String columnNm;
+	
 	public TCmCdGrp() {
 	}
 
@@ -40,6 +46,22 @@ public class TCmCdGrp extends CommonTbl implements Serializable {
 
 	public void setGrpCdNm(String grpCdNm) {
 		this.grpCdNm = grpCdNm;
+	}
+
+	public String getTableNm() {
+		return tableNm;
+	}
+
+	public void setTableNm(String tableNm) {
+		this.tableNm = tableNm;
+	}
+
+	public String getColumnNm() {
+		return columnNm;
+	}
+
+	public void setColumnNm(String columnNm) {
+		this.columnNm = columnNm;
 	}
 
 }

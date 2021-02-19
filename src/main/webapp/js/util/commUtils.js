@@ -108,4 +108,29 @@ var _commUtils = {
 
 		return returnVal;
 	}
+	// selectBox setting
+	,getSelectBox: function(urls, objs ,textNm,valueNm) {
+		var returnVal = [];
+		_ajaxUtils.ajax({"url" : urls //, "form" : $("#searchForm")
+			,"successCallback": function(data) { console.log(data);
+				if (!data || !data.content) return;
+				var list = data.content;
+				$.each(objs, function(index, item){
+					$(item).find("option").remove(); // 목록 초기화
+					$(item).append("<option value=''>선택</option>");
+					var returnVal = [];
+					for (var i=0; i<list.length; i++) {
+						var text = list[i][textNm];
+						var value = list[i][valueNm];
+						var option = "<option value='"+value+"'>"+text+"</option>";
+						$(item).append(option);
+						
+						returnVal[value] = text;
+					}
+					prjctList = returnVal;
+					
+				});
+			}
+		});
+	} 
 }

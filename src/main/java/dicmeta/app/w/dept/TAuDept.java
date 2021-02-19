@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="t_au_dept")
 @NamedQuery(name="TAuDept.findAll", query="SELECT t FROM TAuDept t")
-public class TAuDept extends dicmeta.app.common.CommonTbl implements Serializable {
+public class TAuDept implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 //========================================
-// @brief 데이터사전 > 코드 > 목록
+// @brief 데이터사전 > 사용자 > 목록
 //========================================
 // @history 
 //  	2021.02.09 박이정(마인드원) 최초작성
@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <jsp:include page="/WEB-INF/jsp/layout/header.jsp"/>
-<script src="/js/code.js"></script>
+<script src="/js/user.js"></script>
 
 <body>
     <div class="bg"></div>
@@ -20,8 +20,8 @@
 
         <div class="container">
             <div class="title">
-            	<div style="float:left;"><h1>코드</h1></div>
-            	<div class="location"><ul><li class="home"></li><li>기본정보</li><li>코드</li></ul></div>
+            	<div style="float:left;"><h1>코그그룹</h1></div>
+            	<div class="location"><ul><li class="home"></li><li>사용자</li><li>직원정보</li></ul></div>
             </div>
             <div class="cont_divide">
             	<div class="left">
@@ -32,18 +32,21 @@
 								<input type="hidden" id="page" name="page">
 								<input type="hidden" id="searchtmp" name="" value=""  />
 								<span>
-								코드그룹 : 
-								<select name="post" id="post" onChange="_list.getList(1);" class="selectp grpCdNm">
-									   <option value=''> -- 코드 그룹 선택 -- </option>
-								</select>
+									소속부서:
+									<select name="deptCd" id="deptCd" onChange="_list.getList(1);" class="selectp deptNm"></select>
+								</span>
+								<span>
+									직급: 
+									<select name="clsfCd" id="clsfCd" onChange="_list.getList(1);" class="selectp clsfCd"></select>
 								</span>
 								<select name="searchName" id="searchName" onChange="setPlaceholder(this)"  class="selectp">
 										<!-- <option value=''> -- 검색선택 -- </option> -->
-										<option value="cdNm" >코드명</option>
+										<option value="userId" >그굽코드</option>
+										<option value="userNm" >그굽코드명</option>
 								</select>
 								<input type="text" name="searchValue" id="searchValue" value="" 
 									placeholder="검색할 내용을 입력해주세요"  class="inputp"
-									onkeypress="if(event.keyCode==13) {_list.getList(1); return false;}"/>
+									onkeypress="if(event.keyCode==13) { _list.getList(1); return false;}"/>
 							</form>
 							</div>
 							<a href="#" onclick="_list.getList(1);">조회</a>
@@ -55,14 +58,17 @@
 		                <table id="list_t">
 		                    <colgroup>
 		                        <col style="width:20%">
-		                        <col style="width:20%">
 		                        <col style="width:auto">
+		                        <col style="width:20%">
+		                        <col style="width:20%">
 		                    </colgroup>
 		                    <thead>
 		                        <tr>
-		                            <th scope="col">그룹코드</th>
-		                            <th scope="col">코드</th>
-		                            <th scope="col">코드명</th>
+		                            <th scope="col">사용자아이디</th>
+		                            <th scope="col">사용자명</th>
+		                            <th scope="col">직급</th>
+		                            <th scope="col">입사일자</th>
+		                            <th scope="col">소속부서</th>
 		                        </tr>
 		                    </thead>
 		                    <tbody id="listData">
@@ -93,18 +99,28 @@
 	                        </colgroup>
 	                        <tbody>
 	                        <tr>
-	                            <th class="required"><label for="grpCd">그룹코드</label></th>
+	                            <th class="required"><label for="userId">사용자아이디</label></th>
+	                            <td><input type="text" name="userId" id="userId"  value="" ></td>
+	                        </tr>
+	                        <tr>
+	                            <th class="required"><label for="userNm">사용자명</label></th>
+	                            <td><input type="text" name="userNm" id="userNm"  value="" ></td>
+	                        </tr>
+	                        <tr>
+	                            <th class="required"><label for="clsfCd">직급코드</label></th>
 	                            <td>
-	                                <select name="grpCd" id="grpCd" required class="grpCdNm"></select>
+	                                <select name="clsfCd" id="clsfCd" class="clsfCd"></select>
 	                            </td>
 	                        </tr>
 	                        <tr>
-	                            <th class="required"><label for="cd">코드</label></th>
-	                            <td><input type="text" name="cd" id="cd"  value="" ></td>
+	                            <th class="required"><label for="ecnyYmd">입사일자</label></th>
+	                            <td><input type="text" name="ecnyYmd" id="ecnyYmd"  value="" ></td>
 	                        </tr>
 	                        <tr>
-	                            <th class="required"><label for="cdNm">코드명</label></th>
-	                            <td><input type="text" name="cdNm" id="cdNm"  value="" ></td>
+	                            <th class="required"><label for="deptCd">소속부서</label></th>
+	                            <td>
+	                                <select name="deptCd" id="deptCd" class="deptNm"></select>
+	                            </td>
 	                        </tr>
 
 	                        </tbody>

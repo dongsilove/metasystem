@@ -10,12 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import dicmeta.app.w.domain.TWdDomain;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
@@ -47,6 +50,30 @@ public class TCmCodeApiController {
 		Optional<TCmCode> code = codeRepository.findByGrpCdAndCd(grpCd, cd);
 		
 		return code;
+		
+	}
+	
+	@Operation(summary = "코드 저장", description = "코드 저장한다.")
+	@PutMapping("/codes")
+	public TCmCode put(@RequestBody TCmCode tCmCode) throws Exception {
+		
+		logger.debug("코드 저장 호출 : {}", tCmCode);
+		TCmCode code;
+		code = codeRepository.save(tCmCode);
+		if (code == null) {
+			logger.debug("저장시 오류발생");
+		}
+		return code;
+		
+	}
+	
+	@Operation(summary = "코드 삭제", description = "코드 삭제한다.")
+	@DeleteMapping("/codes/{grpCd}/{cd}")
+	public String delete(@PathVariable String grpCd, @PathVariable String cd) throws Exception {
+		
+		logger.debug("코드 삭제 호출 :(grpCd-"+  grpCd + ", cd-" + cd);
+		codeRepository.deleteByGrpCdAndCd(grpCd, cd);
+		return "200";
 		
 	}
 	

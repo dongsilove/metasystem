@@ -1,8 +1,8 @@
 /**
- * @FileName 	code.js
+ * @FileName 	cdgrp.js
  * @author 		ljpark
  * @Date 		2021.02.11
- * @Description 도메인
+ * @Description 코드그룹
  * @History
  * DATE			AUTHOR		NOTE	
  * -------------------------------------------------
@@ -13,16 +13,17 @@ $(function() {
 	
 	_list.paginationInit();
 	_list.getList(1);
-	prjctList = _commUtils.getSelectBox('/cdgrps', $(".grpCdNm"),'grpCdNm','grpCd'); // 코드그룹조회
 	
 	// 영문 대문자처리
-	$('#cdNm').on('blur', function(){ $(this).val($(this).val().toUpperCase())});
+	$('#grpCd').on('blur', function(){ $(this).val($(this).val().toUpperCase())});
+	$('#tableNm').on('blur', function(){ $(this).val($(this).val().toUpperCase())});
+	$('#columnNm').on('blur', function(){ $(this).val($(this).val().toUpperCase())});
 	
 	// 저장 click시 호출
 	$("#detailForm").validate({
 	
 		submitHandler : function () { //validation이 끝난 이후의 submit 직전 추가 작업할 부분
- 			_ajaxUtils.ajax({"url" : "/codes/", "method": "PUT", "form" : $("#detailForm")
+ 			_ajaxUtils.ajax({"url" : "/cdgrps/", "method": "PUT", "form" : $("#detailForm")
 				,"successCallback": function(result) {
 					_list.getList();
 					detailForm.reset();
@@ -30,9 +31,10 @@ $(function() {
 			});
 		}
 		, rules: { //규칙 - id 값으로 
-			  cdGrp       : {required:true} 								
-			, cd		  : {maxlength:5, required:true} 			
-			, cdNm        : {maxByteLength:200, required:true} 			    
+			  grpCd       : {maxlength:5, required:true} 								
+			, grpCdNm     : {maxByteLength:200, required:true} 			    
+			, tableNm     : {maxByteLength:200, required:true} 			    
+			, columnNm    : {maxByteLength:200, required:true} 			    
 		}
 	});
 	
@@ -51,17 +53,15 @@ var _list = {
 		$("#searchtmp").attr("name",$("#searchName option:selected").val());
 		$("#searchtmp").attr("value",$("#searchValue").val().toUpperCase());
 		$("#page").val(page);
-		//console.log($("#page").val());
 		
-		//$("#searchfrm")[0].reset(); //오른쪽 상세정보 리셋
-		
-		_ajaxUtils.ajax({"url" : "/codes", "form" : $("#searchForm")
+		_ajaxUtils.ajax({"url" : "/cdgrps", "form" : $("#searchForm")
 			,"successCallback": function(data) { //console.log(data);
 				$("#listData").html(""); // 목록 초기화
 				data.content.forEach(function(f){
 					processNull(f);
-					$("#listData").append("<tr onclick=\"_list.getDetail('"+ f.grpCd + "," + f.cd +"')\">"
-						+"<td>" +f.grpCd+"</td><td>"+f.cd+"</td><td>"+f.cdNm
+					$("#listData").append("<tr onclick=\"_list.getDetail('"+ f.grpCd +"')\">"
+						+"<td>" +f.grpCd+"</td><td>"+f.grpCdNm
+						+"</td><td>"+f.tableNm+"</td><td>"+f.columnNm
 						+"</td></tr>"
 					);
 				});
@@ -73,13 +73,9 @@ var _list = {
 			}
 		});
 	} // getList()
-	,detailFormReset : function() {
-		detailForm.reset();
-		mode = "POST";
-	}
-	,getDetail : function(grpCd, cd) {
+	,getDetail : function(grpCd) {
 		mode="PUT"; // 수정모드
-		_ajaxUtils.ajax({"url" : "/codes/"+grpCd+"/"+cd
+		_ajaxUtils.ajax({"url" : "/cdgrps/"+grpCd
 			,"successCallback": function(data) { console.log(data);
 				for(key in data) {	
 					_commUtils.setVal("detailForm", key, data[key] );
@@ -88,13 +84,12 @@ var _list = {
 		});
 	}
 	,deleteOne : function() {
-		let grpCd = $("#grpCd").val();
-		let cd = $("#cd").val();
+		let pk = $("#grpCd").val();
 		//console.log("삭제 호출" + pk);
 		if (isEmpty(cd)) {alert('삭제할 데이터를 선택하세요.'); return;}
 		if(confirm("삭제하시겠습니까? 삭제 후에는 복구가 불가능 합니다."))
 		{
-			_ajaxUtils.ajax({"url" : "/codes/"+grpCd+"/"+cd, "method": "DELETE"
+			_ajaxUtils.ajax({"url" : "/cdgrps/"+pk, "method": "DELETE"
 				,"successCallback": function(result) { console.log(result);
 					alert("삭제되었습니다.");
 					_list.getList();

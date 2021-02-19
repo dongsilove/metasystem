@@ -95,7 +95,7 @@ var _list = {
 					$("#listData").append("<tr onclick=\"_list.getDetail('"+f.termSn+"')\">"
 						+"<td>" +f.termSn+"</td><td>"+f.termNm+"</td><td>"
 						+f.termEnAbbr+"</td><td>"+f.termEnNm+"</td><td>"
-						+f.twdDomain.domainNm+"</td><td>"+f.dataFom+"</td><td>"+prjctList[f.prjctSn]+"</td><td>"+f.registDt+"</td>"
+						+f.twdDomain.domainNm+"</td><td>"+f.dataFom+"</td><td>"+prjctList[f.prjctSn]+"</td>"
 						+"</tr>"
 					);
 				});
