@@ -53,9 +53,8 @@
 		                        <col style="width:5%">
 		                        <col style="width:18%">
 		                        <col style="width:auto">
-		                        <col style="width:10%">
-		                        <col style="width:10%">
-		                        <col style="width:10%">
+		                        <col style="width:20%">
+		                        <col style="width:20%">
 		                    </colgroup>
 		                    <thead>
 		                        <tr>
@@ -64,7 +63,6 @@
 		                            <th scope="col">프로젝트설명</th>
 		                            <th scope="col">프로젝트 시작 일자</th>
 		                            <th scope="col">프로젝트 종료 일자</th>
-		                            <th scope="col">등록 일자</th>
 		                        </tr>
 		                    </thead>
 		                    <tbody id="listData">
@@ -108,12 +106,19 @@
 	                        </tr>
 	                        <tr>
 	                            <th class="required"><label for="prjctBgngYmd">프로젝트 시작 일자</label></th>
-	                            <td><span class="date_input"><input class="datepicker input_calendar" type="text" name="prjctBgngYmd"></span>
-	                            </td><!-- <input type="text" name="prjctBgngYmd" id="prjctBgngYmd"  value="" > -->
+	                            <td>
+	                            	<span class="date_input">
+	                            	<input class="datepicker input_calendar" type="text" name="prjctBgngYmd">
+	                            	</span>
+	                            </td>
 	                        </tr>
 	                        <tr>
 	                            <th><label for="prjctEndYmd">프로젝트 종료 일자</label></th>
-	                            <td><input type="text" name="prjctEndYmd" id="prjctEndYmd"  value="" ></td>
+	                            <td>
+	                            	<span class="date_input">
+	                            	<input class="datepicker input_calendar" type="text" name="prjctEndYmd">
+	                            	</span>
+	                            </td>
 	                        </tr>
 	                        <tr>
 	                            <th><label for="registId">등록아이디</label></th>
@@ -141,7 +146,5 @@
         </div><!--//container-->
     </div>
 </body>
-<script>
-ui_datepickerInit();
-</script>
+
 </html>

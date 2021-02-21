@@ -18,7 +18,20 @@ function isEmpty(str){
 function processNull(obj) {
 	if ( typeof obj == "object" ) {
 		for ( var key in obj) {
-			if (isEmpty(obj[key])) obj[key] = "";
+			//obj[key] = obj[key].replace(/\s/gi, ""); // 공백제거
+			if (isEmpty(obj[key])) {obj[key] = "";} // null -> ""
+			if (key.indexOf('Ymd')>-1 && !isEmpty(obj[key])) {
+				console.log(obj[key]);
+				obj[key] = obj[key].replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3');; // 날짜형식으로
+			}
+		}
+	}
+}
+function processYmd(obj) {
+	if ( typeof obj == "object" ) {
+		for ( var key in obj) {
+			//obj[key] = obj[key].replace(/\s/gi, ""); // 공백제거
+			if (key.indexOf('Ymd')>-1) obj[key] = obj[key].replaceAll('-','');
 		}
 	}
 }
@@ -53,7 +66,7 @@ var _commUtils = {
 				_commUtils.setVal(formId, key, value[key] );
 			}
 		}
-		
+		//value = value.replace(/\s/gi, ""); // 공백제거
 		var el = $("#"+formId+" [name=" + elName + "]");
 
 		if(el.is("select")){
@@ -152,3 +165,6 @@ var _commUtils = {
 	} 
 
 }
+
+
+

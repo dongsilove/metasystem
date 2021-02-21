@@ -307,7 +307,14 @@ input::placeholder {color: #cccccc; font-style: italic;}
 ._copy{font-size:10px;color:#555;margin-top:20px;}
 
 /* datepicker */
-span.date_input { display: inline-block; position: relative; width: 100%;}
+span.date_input {display:inline-block;position:relative;width: 100%;}
+.search .calendar { display: block; position: absolute; top: 0; right: 10px; width: 14px; height:30px; background: url(../../images/ico_input_calendar.png) right center no-repeat; text-indent: -9999px;}
+.search input[readonly] + .search .calendar, .search input[disabled] + .search .calendar { display: block; position: absolute; top: 0; right: 10px; width: 14px; height:24px; background: url(../../images/ico_input_calendar_disabled.png) right center no-repeat; text-indent: -9999px;}
+.calendar { display: block; position: absolute; top: 0; right: 10px; width: 14px; height:24px; background: url(../../images/ico_input_calendar.png) right center no-repeat; text-indent: -9999px;}
+input[readonly] + .calendar, input[disabled] + .calendar { display: block; position: absolute; top: 0; right: 10px; width: 14px; height:24px; background: url(../../images/ico_input_calendar_disabled.png) right center no-repeat; text-indent: -9999px;}
+.search .ui-datepicker-trigger { display: block; position: absolute; top: 0; right: 10px; text-indent: -9999px; padding-top: 9px; cursor: pointer;}
+.ui-datepicker-trigger { display: block; position: absolute; top: 0; right: 10px; text-indent: -9999px;  cursor: pointer;}/* padding-top: 5px; */
+
 /* location */
 .title .location {float: right;}
 .title .location li.home {background: url(../../images/ico_home_linemap.png) left bottom no-repeat;}
@@ -338,7 +345,7 @@ span.date_input { display: inline-block; position: relative; width: 100%;}
 /* user_form */
 .user_wrap{max-width:900px;padding:20px 10px;}
 .user_form,.theme_form{border-top:2px solid #000;overflow:hidden;font-size:14px;margin:15px 5px;padding-bottom:5px;}
-.user_form span{display:block;margin-top:5px;font-size:12px;font-weight:bold;color:#ff5656;margin-left:5px;line-height:1.4}
+.user_form span{display:block;margin-top:5px;font-size:12px;font-weight:bold;color:#ff5656;line-height:1.4}/* margin-left:5px; */
 .leave{font-weight:bold;color:#ff5656;margin:10px 0 0 0;}
 .user_form table{box-shadow:3px 3px 5px rgba(0,0,0,.1);border-radius:3px;}
 .user_form th{line-height:1.4;width:30%;}

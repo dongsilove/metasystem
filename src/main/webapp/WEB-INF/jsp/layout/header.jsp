@@ -24,8 +24,8 @@
     <!-- <script src="/js/util/common.js"></script> -->
     <!-- <script src="/js/util/util.js"></script> -->
     <script src="/js/util/paging.js"></script>
-    <script src="/js/util/ajaxUtils.js"></script>
     <script src="/js/util/commUtils.js"></script>
+    <script src="/js/util/ajaxUtils.js"></script>
     <script src="/js/util/datepickerUtils.js"></script>
 
 	<script>

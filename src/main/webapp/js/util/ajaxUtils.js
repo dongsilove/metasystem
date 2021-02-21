@@ -4,6 +4,7 @@
  * @Date 		2021.02.07
  * @Description ajax 호출
  */
+
 var _ajaxUtils = {
 	ajax : function(addOptions) {
 
@@ -22,6 +23,7 @@ var _ajaxUtils = {
 		
 		if (options.form != null) {
 			pars = options.form.serializeObject();
+			processYmd(pars); // '-'제거, 공백제거
 			if (options.method.toUpperCase() != "GET") {
 				pars = JSON.stringify(pars);
 			} else {

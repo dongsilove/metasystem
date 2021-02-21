@@ -122,7 +122,11 @@
 	                        </tr>
 	                        <tr>
 	                            <th class="required"><label for="ecnyYmd">입사일자</label></th>
-	                            <td><input type="text" name="ecnyYmd" id="ecnyYmd"  value="" ></td>
+	                            <td>
+	                            	<span class="date_input">
+	                            	<input class="datepicker input_calendar" type="text" name="ecnyYmd">
+	                            	</span>
+	                            </td>
 	                        </tr>
 	                        <tr>
 	                            <th class="required"><label for="deptCd">소속부서</label></th>

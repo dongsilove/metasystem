@@ -17,7 +17,7 @@ $(function() {
 	$("#detailForm").validate({
 	
 		submitHandler : function () { //validation이 끝난 이후의 submit 직전 추가 작업할 부분
-			console.log("validation 성공 이후 ");
+			console.log($("input[name=prjctEndYmd]").val());		
  			_ajaxUtils.ajax({"url" : "/api/prjcts/", "method": "PUT", "form" : $("#detailForm")
 				,"successCallback": function(result) {
 					_list.getList();
@@ -29,8 +29,8 @@ $(function() {
 			  prjctSn       : {number:true} 								
 			, prjctNm        : {maxByteLength:200, required:true} 			    
 			, prjctDc       : {maxByteLength:2000} 							
-			, prjctBgngYmd   : {maxlength:100} 							
-			, prjctEndYmd    : {number:true} 							
+			, prjctBgngYmd   : {dateISO:true} 							
+			, prjctEndYmd    : {dateISO:true} 							
 		}
 	});
 	
@@ -59,9 +59,8 @@ var _list = {
 					$("#listData").append("<tr onclick=\"_list.getDetail('"+f.prjctSn+"')\">"
 						+"<td>" +f.prjctSn+"</td><td>"
 						+f.prjctNm+"</td><td>"+f.prjctDc+"</td><td>"
-						+f.prjctbngnYmd+"</td><td>"+f.prjctEndYmd+"</td><td>"
-						+f.registDt+"</td>"
-						+"</tr>"
+						+f.prjctbngnYmd+"</td><td>"+f.prjctEndYmd
+						+"</td></tr>"
 					);
 				});
 				if (data.numberOfElements == 0) {

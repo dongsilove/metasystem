@@ -30,7 +30,7 @@ var _datepicker = {
 			showOtherMonths : true, /* 이전/다음 달 일수 보이기 */
 			selectOtherMonths : true, /* 이전/다음 달 일 선택하기 */
 			showOn : "both",
-			buttonImage : "/images/ii/ico_input_calendar.png",
+			buttonImage : "/images/ico_input_calendar.png",
 			buttonImageOnly : true,
 			minDate : '-130y',
 			closeText : '닫기',
