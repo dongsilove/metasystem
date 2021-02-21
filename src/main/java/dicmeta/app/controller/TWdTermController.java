@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class TWdTermController {
 
-	@GetMapping("/term")
+	@GetMapping("/term/page")
 	public String term() throws Exception {
 		return "term";
 	}

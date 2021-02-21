@@ -6,7 +6,7 @@
     <title>마인드원</title>
     <link href="/asset/fontawesome/css/fontawesome-all.css" rel="stylesheet">
     <script src="/js/lib/jquery/jquery-3.4.1.min.js"></script>
-    <script src="/js/init2.js"></script>
+    <script src="/js/util/init2.js"></script>
 
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/template.css">
@@ -21,10 +21,14 @@
 	<script src="/js/lib/jquery/moment.js"></script>
 
     <script src="/js/util/validations.js"></script>
-    <script src="/js/util/common.js"></script>
-    <script src="/js/util/util.js"></script>
+    <!-- <script src="/js/util/common.js"></script> -->
+    <!-- <script src="/js/util/util.js"></script> -->
     <script src="/js/util/paging.js"></script>
     <script src="/js/util/ajaxUtils.js"></script>
     <script src="/js/util/commUtils.js"></script>
+    <script src="/js/util/datepickerUtils.js"></script>
 
+	<script>
+	
+	</script>
 </head>

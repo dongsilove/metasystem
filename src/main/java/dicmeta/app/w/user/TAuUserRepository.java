@@ -9,6 +9,6 @@ public interface TAuUserRepository extends JpaRepository<TAuUser, String> {
 
 	
 	Page<TAuUser> findByUserNmContaining(String searchValue, Pageable pageable);
-	
+	TAuUser findByUserIdAndPwd(String userId, String pwd); // 로그인 점검
 	
 }

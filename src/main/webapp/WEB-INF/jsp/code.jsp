@@ -33,16 +33,16 @@
 								<input type="hidden" id="searchtmp" name="" value=""  />
 								<span>
 								코드그룹 : 
-								<select name="post" id="post" onChange="_list.getList(1);" class="selectp grpCdNm">
+								<select name="grpCd" id="grpCd" onChange="_list.getList(1);" class="selectp grpCdNm">
 									   <option value=''> -- 코드 그룹 선택 -- </option>
 								</select>
 								</span>
-								<select name="searchName" id="searchName" onChange="setPlaceholder(this)"  class="selectp">
+								<select name="searchName" id="searchName"   >
 										<!-- <option value=''> -- 검색선택 -- </option> -->
 										<option value="cdNm" >코드명</option>
 								</select>
 								<input type="text" name="searchValue" id="searchValue" value="" 
-									placeholder="검색할 내용을 입력해주세요"  class="inputp"
+									placeholder="검색할 내용을 입력해주세요"  
 									onkeypress="if(event.keyCode==13) {_list.getList(1); return false;}"/>
 							</form>
 							</div>
@@ -54,13 +54,15 @@
 		                <div class="task_list">
 		                <table id="list_t">
 		                    <colgroup>
+		                        <col style="width:12%">
 		                        <col style="width:20%">
-		                        <col style="width:20%">
+		                        <col style="width:12%">
 		                        <col style="width:auto">
 		                    </colgroup>
 		                    <thead>
 		                        <tr>
 		                            <th scope="col">그룹코드</th>
+		                            <th scope="col">그룹코드명</th>
 		                            <th scope="col">코드</th>
 		                            <th scope="col">코드명</th>
 		                        </tr>
@@ -74,7 +76,7 @@
 		            </div>            	
             	</div>
             	<div class="right">
-	                <div class="write">
+	                <div class="writer">
 		                <div class="write_inner">
 							<a href="#" onclick="detailForm.reset();">신규</a>
 							<a href="#" onclick="$('#detailForm').submit();">저장</a>

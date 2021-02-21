@@ -58,10 +58,12 @@ var _commUtils = {
 
 		if(el.is("select")){
 			$("#"+formId+" [name='" + elName + "']").val(value).prop("selected", true);
-		}else if(el.is(":checkbox") || el.is(":radio")){ 
+		} else if(el.is(":checkbox") || el.is(":radio")){ 
 			$("#"+formId+" [name='" + elName + "']").prop("checked", false);
 			$("#"+formId+" [name='" + elName + "']"+"[value='" + value + "']").prop("checked", true);
-		}else { // text, hidden, textarea
+		} else if(el.is(":password")){
+			
+		} else { // text, hidden, textarea
 			$("#"+formId+" [name='" + elName + "']").val(value);
 		}
 	},
@@ -76,49 +78,58 @@ var _commUtils = {
 		return x.replace(/,/g,"");
 	},
 	getCodes : function(objs,grpCd) {
-		console.log("grpCd : " + grpCd); 
+		var dfd = $.Deferred();
 		var returnVal = [];
-		var urlT = "/common/codes/" + grpCd;
+		var urlT = "/api/common/codes/" + grpCd;
 		$.ajax({
 			url : urlT,
 			type : "GET",
 			datatype : "JSON",
 			//async : false,
-			success : function(list) {
+			success : function(data) {
+				if (!data || !data.content) return;
+				var list = data.content;
 				$.each(objs, function(index, item){
 					//console.log(item);
 					$(item).find("option").remove();
 					$(item).append("<option value=''>선택</option>");
-					returnVal.push({ text: '선택', value: '' });
+					returnVal = [];
 					for (var i=0; i<list.length; i++) {
 						var text = list[i].cdNm;
 						var value = list[i].cd;
 						var option = "<option value='"+value+"'>"+text+"</option>";
 						$(item).append(option);
 						
-						returnVal.push({ text: text, value: value });
+						returnVal[value] = text;
 					}
+					dfd.resolve(returnVal);
 				});
 			},
 			error : function(request, error) {
 				if (request.status == 401) { alert("세션이 종료되었습니다.(세션유지시간 : 30분)"); window.location.href = "/login/actionLogout.do"; return; }  // 2019.11.13 추가 by ljpark
 				console.log("message: " + request.responseText + ", error:" + error);
+				dfd.reject("error");
 			}
 		});
 
-		return returnVal;
+		return dfd.promise();
 	}
-	// selectBox setting
+	// select option setting
 	,getSelectBox: function(urls, objs ,textNm,valueNm) {
+		var dfd = $.Deferred();
 		var returnVal = [];
-		_ajaxUtils.ajax({"url" : urls //, "form" : $("#searchForm")
-			,"successCallback": function(data) { console.log(data);
+		
+		$.ajax({
+			url : urls+"?perPage=200",
+			type : "GET",
+			datatype : "JSON",
+			success : function(data) { console.log(data);
 				if (!data || !data.content) return;
 				var list = data.content;
 				$.each(objs, function(index, item){
 					$(item).find("option").remove(); // 목록 초기화
 					$(item).append("<option value=''>선택</option>");
-					var returnVal = [];
+					returnVal = [];
 					for (var i=0; i<list.length; i++) {
 						var text = list[i][textNm];
 						var value = list[i][valueNm];
@@ -127,10 +138,17 @@ var _commUtils = {
 						
 						returnVal[value] = text;
 					}
-					prjctList = returnVal;
-					
+					dfd.resolve(returnVal);
 				});
+				//dfd.resolve(returnVal);
+			},
+			error : function(request, error) {
+				if (request.status == 401) { alert("세션이 종료되었습니다.(세션유지시간 : 30분)"); window.location.href = "/login/actionLogout.do"; return; }  // 2019.11.13 추가 by ljpark
+				console.log("message: " + request.responseText + ", error:" + error);
+				dfd.reject("error");
 			}
 		});
+		return dfd.promise();
 	} 
+
 }

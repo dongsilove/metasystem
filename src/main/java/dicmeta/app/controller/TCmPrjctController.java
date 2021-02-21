@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class TCmPrjctController {
 
-	@GetMapping("/prjct")
+	@GetMapping("/prjct/page")
 	public String prjct() throws Exception {
 		return "prjct";
 	}

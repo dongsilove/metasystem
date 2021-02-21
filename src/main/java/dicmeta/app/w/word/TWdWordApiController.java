@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,7 +24,8 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @Tag( name = "TWdWordApiController", description = "단어")
-@RestController
+@RestController 
+@RequestMapping(value="/api")
 public class TWdWordApiController {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -40,12 +42,18 @@ public class TWdWordApiController {
 		Page<TWdWord> list;
 		param.forEach((k,v)->logger.debug("key:" + k + "\tvalue:" +v));
 		PageRequest pageRequest = PageRequest.of(page - 1, perPage, Sort.by(Direction.DESC, "wordSn"));
-		if(param.get("wordNm") != null && param.get("wordNm").toString() != null) {
+		if(param.get("wordNm") != null && !param.get("wordNm").toString().equals("")) {
 			list = (Page<TWdWord>) wordRepository.findByWordNmContaining(param.get("wordNm").toString(),pageRequest);
-		} else if(param.get("wordEnAbbr") != null && param.get("wordEnAbbr").toString() != null) {
+		} else if(param.get("wordEnAbbr") != null && !param.get("wordEnAbbr").toString().equals("")) {
 			list = (Page<TWdWord>) wordRepository.findByWordEnAbbrContaining(param.get("wordEnAbbr").toString(),pageRequest);
-		} else if(param.get("wordEnNm") != null && param.get("wordEnNm").toString() != null) {
+		} else if(param.get("wordEnNm") != null && !param.get("wordEnNm").toString().equals("")) {
 			list = (Page<TWdWord>) wordRepository.findByWordEnNmContaining(param.get("wordEnNm").toString(),pageRequest);
+		} else if(param.get("themaSe") != null && !param.get("themaSe").toString().equals("")) {
+			list = (Page<TWdWord>) wordRepository.findByThemaSeContaining(param.get("themaSe").toString(),pageRequest);
+		} else if(param.get("synonm") != null && !param.get("synonm").toString().equals("")) {
+			list = (Page<TWdWord>) wordRepository.findBySynonmContaining(param.get("synonm").toString(),pageRequest);
+		} else if(param.get("prhibtWord") != null && !param.get("prhibtWord").toString().equals("")) {
+			list = (Page<TWdWord>) wordRepository.findByPrhibtWordContaining(param.get("prhibtWord").toString(),pageRequest);
 		} else {
 			list = (Page<TWdWord>) wordRepository.findAll(pageRequest);
 		}
@@ -96,11 +104,11 @@ public class TWdWordApiController {
 		Page<TWdWord> list;
 		param.forEach((k,v)->logger.debug("key:" + k + "\tvalue:" +v));
 		PageRequest pageRequest = PageRequest.of(page - 1, perPage, Sort.by(Direction.DESC, "wordSn"));
-		if(param.get("wordNm") != null && param.get("wordNm").toString() != null) {
+		if(param.get("wordNm") != null && !param.get("wordNm").toString().equals("")) {
 			list = (Page<TWdWord>) wordRepository.findByWordNmContaining(param.get("wordNm").toString(),pageRequest);
-		} else if(param.get("wordEnAbbr") != null && param.get("wordEnAbbr").toString() != null) {
+		} else if(param.get("wordEnAbbr") != null && !param.get("wordEnAbbr").toString().equals("")) {
 			list = (Page<TWdWord>) wordRepository.findByWordEnAbbrContaining(param.get("wordEnAbbr").toString(),pageRequest);
-		} else if(param.get("wordEnNm") != null && param.get("wordEnNm").toString() != null) {
+		} else if(param.get("wordEnNm") != null && !param.get("wordEnNm").toString().equals("")) {
 			list = (Page<TWdWord>) wordRepository.findByWordEnNmContaining(param.get("wordEnNm").toString(),pageRequest);
 		} else {
 			list = (Page<TWdWord>) wordRepository.findAll(pageRequest);

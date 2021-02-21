@@ -10,7 +10,7 @@
  */
 
 $(function() {
-	
+	_datepicker.dateInit();
 	_list.paginationInit();
 	_list.getList(1);
 	
@@ -18,7 +18,7 @@ $(function() {
 	
 		submitHandler : function () { //validation이 끝난 이후의 submit 직전 추가 작업할 부분
 			console.log("validation 성공 이후 ");
- 			_ajaxUtils.ajax({"url" : "/prjcts/", "method": "PUT", "form" : $("#detailForm")
+ 			_ajaxUtils.ajax({"url" : "/api/prjcts/", "method": "PUT", "form" : $("#detailForm")
 				,"successCallback": function(result) {
 					_list.getList();
 					detailForm.reset();
@@ -39,7 +39,7 @@ $(function() {
 var _list = {
 	pagination : {}
 	,paginationInit : function() {
-		console.log( _paging.paginationOptions);
+		 
 		var pagination = new tui.Pagination('paging', _paging.paginationOptions); // _paging :paging.js에 정의되어 있음.
 		pagination.on('beforeMove', function(evt) { _list.getList(evt.page); });
 		this.pagination = pagination;
@@ -51,7 +51,7 @@ var _list = {
 		$("#page").val(page);
 		//console.log($("#page").val());
 		
-		_ajaxUtils.ajax({"url" : "/prjcts", "form" : $("#searchForm")
+		_ajaxUtils.ajax({"url" : "/api/prjcts", "form" : $("#searchForm")
 			,"successCallback": function(data) { //console.log(data);
 				$("#listData").html(""); // 목록 초기화
 				data.content.forEach(function(f){
@@ -78,7 +78,7 @@ var _list = {
 	}
 	,getDetail : function(prjctSn) {
 		mode="PUT"; // 수정모드
-		_ajaxUtils.ajax({"url" : "/prjcts/"+prjctSn
+		_ajaxUtils.ajax({"url" : "/api/prjcts/"+prjctSn
 			,"successCallback": function(data) { console.log(data);
 				for(key in data) {	
 					_commUtils.setVal("detailForm", key, data[key] );
@@ -95,7 +95,7 @@ var _list = {
 		if (isEmpty(pk)) {alert('삭제할 데이터를 선택하세요.'); return;}
 		if(confirm("삭제하시겠습니까? 삭제 후에는 복구가 불가능 합니다."))
 		{
-			_ajaxUtils.ajax({"url" : "/prjcts/"+pk, "method": "DELETE"
+			_ajaxUtils.ajax({"url" : "/api/prjcts/"+pk, "method": "DELETE"
 				,"successCallback": function(result) { console.log(result);
 					alert("삭제되었습니다.");
 					_list.getList();

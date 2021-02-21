@@ -1,5 +1,6 @@
 package dicmeta.app.w.domain;
 
+import java.math.BigDecimal;
 import java.util.Map;
 import java.util.Optional;
 
@@ -8,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,7 +26,8 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @Tag( name = "TWdDomainApiController", description = "도메인")
-@RestController
+@RestController 
+@RequestMapping(value="/api")
 public class TWdDomainApiController {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -40,12 +44,21 @@ public class TWdDomainApiController {
 		Page<TWdDomain> list;
 		param.forEach((k,v)->logger.debug("key:" + k + "\tvalue:" +v));
 		PageRequest pageRequest = PageRequest.of(page - 1, perPage, Sort.by(Direction.DESC, "domainSn"));
-		if(param.get("domainNm") != null && param.get("domainNm").toString() != null) {
+		if(param.get("domainNm") != null && !param.get("domainNm").toString().equals("")) {
 			list = (Page<TWdDomain>) domainRepository.findByDomainNmContaining(param.get("domainNm").toString(),pageRequest);
-		} else if(param.get("domainEnAbbr") != null && param.get("domainEnAbbr").toString() != null) {
+		} else if(param.get("domainCl") != null && !param.get("domainCl").toString().equals("")) {
+			list = (Page<TWdDomain>) domainRepository.findByDomainCl(param.get("domainCl").toString(),pageRequest);
+		} else if(param.get("domainEnAbbr") != null && !param.get("domainEnAbbr").toString().equals("")) {
 			list = (Page<TWdDomain>) domainRepository.findByDomainEnAbbrContaining(param.get("domainEnAbbr").toString(),pageRequest);
-		} else if(param.get("domainEnNm") != null && param.get("domainEnNm").toString() != null) {
+		} else if(param.get("domainEnNm") != null && !param.get("domainEnNm").toString().equals("")) {
 			list = (Page<TWdDomain>) domainRepository.findByDomainEnNmContaining(param.get("domainEnNm").toString(),pageRequest);
+		} else if(param.get("domainExprsnNm") != null && !param.get("domainExprsnNm").toString().equals("")) {
+			list = (Page<TWdDomain>) domainRepository.findByDomainExprsnNmContaining(param.get("domainExprsnNm").toString(),pageRequest);
+		} else if(param.get("dataType") != null && !param.get("dataType").toString().equals("")) {
+			list = (Page<TWdDomain>) domainRepository.findByDataTypeContaining(param.get("dataType").toString(),pageRequest);
+		} else if(param.get("dataLt") != null && !param.get("dataLt").toString().equals("")) {
+			BigDecimal dataLt = new BigDecimal(param.get("dataLt").toString());
+			list = (Page<TWdDomain>) domainRepository.findByDataLt(dataLt,pageRequest);
 		} else {
 			list = (Page<TWdDomain>) domainRepository.findAll(pageRequest);
 		}
@@ -96,14 +109,14 @@ public class TWdDomainApiController {
 		Page<TWdDomain> list;
 		param.forEach((k,v)->logger.debug("key:" + k + "\tvalue:" +v));
 		PageRequest pageRequest = PageRequest.of(page - 1, perPage, Sort.by(Direction.DESC, "domainSn"));
-		if(param.get("domainNm") != null && param.get("domainNm").toString() != null) {
-			list = (Page<TWdDomain>) domainRepository.findByDomainNmContaining(param.get("domainNm").toString(),pageRequest);
-		} else if(param.get("domainEnAbbr") != null && param.get("domainEnAbbr").toString() != null) {
+		if(param.get("domainNm") != null && !param.get("domainNm").toString().equals("")) {
+			list = (Page<TWdDomain>) domainRepository.findByDomainNmContaining(param.get("domainNm").toString(),Pageable.unpaged());
+		} else if(param.get("domainEnAbbr") != null && !param.get("domainEnAbbr").toString().equals("")) {
 			list = (Page<TWdDomain>) domainRepository.findByDomainEnAbbrContaining(param.get("domainEnAbbr").toString(),pageRequest);
-		} else if(param.get("domainEnNm") != null && param.get("domainEnNm").toString() != null) {
+		} else if(param.get("domainEnNm") != null && !param.get("domainEnNm").toString().equals("")) {
 			list = (Page<TWdDomain>) domainRepository.findByDomainEnNmContaining(param.get("domainEnNm").toString(),pageRequest);
 		} else {
-			list = (Page<TWdDomain>) domainRepository.findAll(pageRequest);
+			list = (Page<TWdDomain>) domainRepository.findAll(Pageable.unpaged());
 		}
 		return list; 
 		

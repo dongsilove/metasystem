@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,13 +24,17 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @Tag( name = "TWdTermApiController", description = "용어")
-@RestController
+@RestController 
+@RequestMapping(value="/api")
 public class TWdTermApiController {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
 	TWdTermRepository termRepository;
+	@Autowired
+	TWdTermQuerydslRepository termQuerydslRepository;
+	
 
 	@Operation(summary = "용어 목록 조회", description = "검색 값으로 페이징된 용어 목록 화면을 호출한다.")
 	@GetMapping("/terms")
@@ -40,15 +45,7 @@ public class TWdTermApiController {
 		Page<TWdTerm> list;
 		param.forEach((k,v)->logger.debug("key:" + k + "\tvalue:" +v));
 		PageRequest pageRequest = PageRequest.of(page - 1, perPage, Sort.by(Direction.DESC, "termSn"));
-		if(param.get("termNm") != null && param.get("termNm").toString() != null) {
-			list = (Page<TWdTerm>) termRepository.findByTermNmContaining(param.get("termNm").toString(),pageRequest);
-		} else if(param.get("termEnAbbr") != null && param.get("termEnAbbr").toString() != null) {
-			list = (Page<TWdTerm>) termRepository.findByTermEnAbbrContaining(param.get("termEnAbbr").toString(),pageRequest);
-		} else if(param.get("termEnNm") != null && param.get("termEnNm").toString() != null) {
-			list = (Page<TWdTerm>) termRepository.findByTermEnNmContaining(param.get("termEnNm").toString(),pageRequest);
-		} else {
-			list = (Page<TWdTerm>) termRepository.findAll(pageRequest);
-		}
+		list = termQuerydslRepository.findList(param, pageRequest);
 		return list;
 		
 	}

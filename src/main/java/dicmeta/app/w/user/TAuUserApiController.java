@@ -15,14 +15,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import dicmeta.app.util.CryptoUtil;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @Tag( name = "TAuUserApiController", description = "코드")
-@RestController
+@RestController 
+@RequestMapping(value="/api")
 public class TAuUserApiController {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -38,7 +42,7 @@ public class TAuUserApiController {
 		Page<TAuUser> list;
 		param.forEach((k,v)->logger.debug("key:" + k + "\tvalue:" +v));
 		PageRequest pageRequest = PageRequest.of(page - 1, perPage, Sort.by(Direction.ASC, "userId"));
-		if(param.get("userNm") != null && param.get("userNm").toString() != null) {
+		if(param.get("userNm") != null && !param.get("userNm").toString().equals("")) {
 			list = (Page<TAuUser>) userRepository.findByUserNmContaining(param.get("userNm").toString(),pageRequest);
 		} else {
 			list = (Page<TAuUser>) userRepository.findAll(PageRequest.of(page - 1, perPage));
@@ -58,15 +62,33 @@ public class TAuUserApiController {
 	
 	@Operation(summary = "사용자 저장", description = "사용자 저장한다.")
 	@PutMapping("/users")
-	public TAuUser put(@RequestBody TAuUser tAuUser) throws Exception {
+	public String put(@RequestBody TAuUser tAuUser) throws Exception {
 		
 		logger.debug("사용자 저장 호출 : {}", tAuUser);
+		
+		// 개인정보 수정화면에서 사용자가 개인정보 수정시
+		// 점검비밀번호가 있다면 DB에 저장된 비밀번호와 비교
+		String checkPwd = tAuUser.getCheckPwd();
+		if (checkPwd != null && !checkPwd.equals("")) { 
+			Optional<TAuUser> rsltUser = userRepository.findById(tAuUser.getUserId());
+			
+			String prePwd = rsltUser.get().getPwd(); // 조회한 비밀번호
+			String preSalt = rsltUser.get().getPwdSalt();	// 조회한 salt
+			if (!prePwd.equals(CryptoUtil.encryptSHA256salt(checkPwd, preSalt))) { // 입력된 기존비밀번호가 맞지 않다면
+				return "201";
+			}
+		}
+
+		// 사용자 저장 처리
 		TAuUser user;
+		tAuUser.setPwdSalt(CryptoUtil.getSalt());
+		tAuUser.setPwd(CryptoUtil.encryptSHA256salt(tAuUser.getPwd(), tAuUser.getPwdSalt()));
 		user = userRepository.save(tAuUser);
 		if (user == null) {
 			logger.debug("저장시 오류발생");
 		}
-		return user;
+		
+		return "200";
 		
 	}
 	

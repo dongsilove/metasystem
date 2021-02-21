@@ -23,7 +23,7 @@ $(function() {
 	$("#detailForm").validate({
 	
 		submitHandler : function () { //validation이 끝난 이후의 submit 직전 추가 작업할 부분
- 			_ajaxUtils.ajax({"url" : "/cdgrps/", "method": "PUT", "form" : $("#detailForm")
+ 			_ajaxUtils.ajax({"url" : "/api/cdgrps/", "method": "PUT", "form" : $("#detailForm")
 				,"successCallback": function(result) {
 					_list.getList();
 					detailForm.reset();
@@ -43,7 +43,7 @@ $(function() {
 var _list = {
 	pagination : {}
 	,paginationInit : function() {
-		console.log( _paging.paginationOptions);
+		 
 		var pagination = new tui.Pagination('paging', _paging.paginationOptions); // _paging :paging.js에 정의되어 있음.
 		pagination.on('beforeMove', function(evt) { _list.getList(evt.page); });
 		this.pagination = pagination;
@@ -54,7 +54,7 @@ var _list = {
 		$("#searchtmp").attr("value",$("#searchValue").val().toUpperCase());
 		$("#page").val(page);
 		
-		_ajaxUtils.ajax({"url" : "/cdgrps", "form" : $("#searchForm")
+		_ajaxUtils.ajax({"url" : "/api/cdgrps", "form" : $("#searchForm")
 			,"successCallback": function(data) { //console.log(data);
 				$("#listData").html(""); // 목록 초기화
 				data.content.forEach(function(f){
@@ -75,7 +75,7 @@ var _list = {
 	} // getList()
 	,getDetail : function(grpCd) {
 		mode="PUT"; // 수정모드
-		_ajaxUtils.ajax({"url" : "/cdgrps/"+grpCd
+		_ajaxUtils.ajax({"url" : "/api/cdgrps/"+grpCd
 			,"successCallback": function(data) { console.log(data);
 				for(key in data) {	
 					_commUtils.setVal("detailForm", key, data[key] );
@@ -89,7 +89,7 @@ var _list = {
 		if (isEmpty(cd)) {alert('삭제할 데이터를 선택하세요.'); return;}
 		if(confirm("삭제하시겠습니까? 삭제 후에는 복구가 불가능 합니다."))
 		{
-			_ajaxUtils.ajax({"url" : "/cdgrps/"+pk, "method": "DELETE"
+			_ajaxUtils.ajax({"url" : "/api/cdgrps/"+pk, "method": "DELETE"
 				,"successCallback": function(result) { console.log(result);
 					alert("삭제되었습니다.");
 					_list.getList();

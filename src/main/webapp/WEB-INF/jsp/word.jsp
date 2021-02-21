@@ -31,10 +31,11 @@
 							<form name="searchForm" id="searchForm" method="GET">
 								<input type="hidden" id="page" name="page">
 								<input type="hidden" id="searchtmp" name="" value=""  />
-								<select name="post" id="post" onChange="_list.getList(1);" class="selectp">
-									   <option value=''> -- 주제구분 선택 -- </option>
-								</select>
-								<select name="searchName" id="searchName" onChange="setPlaceholder(this)"  class="selectp">
+								<span> 주제 구분 : 
+									<select name="themaSe" id="themaSe" onChange="_list.getList(1);" class="themaSe">
+									</select>
+								</span>
+								<select name="searchName" id="searchName"   >
 										<!-- <option value=''> -- 검색선택 -- </option> -->
 										<option value="wordNm" >단어명</option>
 										<option value="wordEnAbbr" >단어영문약어</option>
@@ -42,7 +43,7 @@
 										<!-- <option value="registYmd" >등록일자</option> -->
 								</select>
 								<input type="text" name="searchValue" id="searchValue" value="" 
-									placeholder="검색할 내용을 입력해주세요"  class="inputp"
+									placeholder="검색할 내용을 입력해주세요"  
 									onkeypress="if(event.keyCode==13) {_list.getList(1); return false;}"/>
 							</form>
 							</div>
@@ -84,7 +85,7 @@
 		            </div>            	
             	</div>
             	<div class="right">
-	                <div class="write">
+	                <div class="writer">
 		                <div class="write_inner">
 							<a href="#" onclick="detailForm.reset();">신규</a>
 							<a href="#" onclick="$('#detailForm').submit();">저장</a>
@@ -132,7 +133,9 @@
 	                        </tr>
 	                        <tr>
 	                            <th><label for="themaSe">주제 구분</label></th>
-	                            <td><input type="text" name="themaSe" id="themaSe"  value="" ></td>
+	                            <td>
+	                                <select name="themaSe" id="themaSe" required  class="themaSe"></select>
+	                            </td>
 	                        </tr>
 	                        <tr>
 	                            <th><label for="registId">등록아이디</label></th>

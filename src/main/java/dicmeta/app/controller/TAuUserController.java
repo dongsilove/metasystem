@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class TAuUserController {
 
-	@GetMapping("/user")
+	@GetMapping("/user/page")
 	public String user() throws Exception {
 		return "user";
 	}

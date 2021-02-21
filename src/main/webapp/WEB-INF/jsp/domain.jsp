@@ -31,18 +31,25 @@
 							<form name="searchForm" id="searchForm" method="GET">
 								<input type="hidden" id="page" name="page">
 								<input type="hidden" id="searchtmp" name="" value=""  />
-								<select name="post" id="post" onChange="_list.getList(1);" class="selectp">
-									   <option value=''> -- 주제구분 선택 -- </option>
-								</select>
-								<select name="searchName" id="searchName" onChange="setPlaceholder(this)"  class="selectp">
+								
+								<span> 도메인분류 : 
+									<select name="domainCl" id="domainCl" onChange="_list.getList(1);" class="domainCl">
+										   <option value=''> -- 주제구분 선택 -- </option>
+									</select>
+								</span>
+								
+								<select name="searchName" id="searchName" >
 										<!-- <option value=''> -- 검색선택 -- </option> -->
 										<option value="domainNm" >도메인명</option>
+										<option value="domainExprsnNm" >도메인표현명</option>
 										<option value="domainEnAbbr" >도메인영문약어</option>
 										<option value="domainEnNm" >도메인영문명</option>
+										<option value="dataType" >데이터타입</option>
+										<option value="dataLt" >데이터길이</option>
 										<!-- <option value="registYmd" >등록일자</option> -->
 								</select>
 								<input type="text" name="searchValue" id="searchValue" value="" 
-									placeholder="검색할 내용을 입력해주세요"  class="inputp"
+									placeholder="검색할 내용을 입력해주세요"  
 									onkeypress="if(event.keyCode==13) {_list.getList(1); return false;}"/>
 							</form>
 							</div>
@@ -88,7 +95,7 @@
 		            </div>            	
             	</div>
             	<div class="right">
-	                <div class="write">
+	                <div class="writer">
 		                <div class="write_inner">
 							<a href="#" onclick="detailForm.reset();">신규</a>
 							<a href="#" onclick="$('#detailForm').submit();">저장</a>
@@ -113,7 +120,7 @@
 	                        <tr>
 	                            <th class="required"><label for="domainCl">도메인 분류</label></th>
 	                            <td>
-	                                <select name="domainCl" id="domainCl" required></select>
+	                                <select name="domainCl" id="domainCl" required class="domainCl"></select>
 	                            </td>
 	                        </tr>
 	                        <tr>

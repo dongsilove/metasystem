@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +24,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @Tag( name = "TCmCdGrpApiController", description = "코드")
 @RestController
+@RequestMapping(value="/api")
 public class TCmCdGrpApiController {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -38,7 +40,7 @@ public class TCmCdGrpApiController {
 		Page<TCmCdGrp> list;
 		param.forEach((k,v)->logger.debug("key:" + k + "\tvalue:" +v));
 		PageRequest pageRequest = PageRequest.of(page - 1, perPage, Sort.by(Direction.ASC, "grpCd"));
-		if(param.get("grpCdNm") != null && param.get("grpCdNm").toString() != null) {
+		if(param.get("grpCdNm") != null && !param.get("grpCdNm").toString().equals("")) {
 			list = (Page<TCmCdGrp>) cdgrpRepository.findByGrpCdNmContaining(param.get("grpCdNm").toString(),pageRequest);
 		} else {
 			list = (Page<TCmCdGrp>) cdgrpRepository.findAll(PageRequest.of(page - 1, perPage));

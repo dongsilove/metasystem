@@ -31,18 +31,23 @@
 							<form name="searchForm" id="searchForm" method="GET">
 								<input type="hidden" id="page" name="page">
 								<input type="hidden" id="searchtmp" name="" value=""  />
-								<select name="prjctSn" onChange="_list.getList(1);" class="selectp prjctNm">
-									   <option value=''> -- 프로젝트 선택 -- </option>
-								</select>
-								<select name="searchName" id="searchName" onChange="setPlaceholder(this)"  class="selectp">
+								<span> 프로젝트 : 
+									<select name="prjctSn" onChange="_list.getList(1);" class="prjctNm">
+									</select>
+								</span>
+								<span> 도메인 : 
+									<select name="domainSn" onChange="_list.getList(1);" class="domainSn">
+									</select>
+								</span>
+								<select name="searchName" id="searchName"   >
 										<!-- <option value=''> -- 검색선택 -- </option> -->
 										<option value="termNm" >용어명</option>
 										<option value="termEnAbbr" >용어영문약어</option>
 										<option value="termEnNm" >용어영문명</option>
-										<!-- <option value="registYmd" >등록일자</option> -->
+										<option value="dataFom" >데이터형태</option>
 								</select>
 								<input type="text" name="searchValue" id="searchValue" value="" 
-									placeholder="검색할 내용을 입력해주세요"  class="inputp"
+									placeholder="검색할 내용을 입력해주세요"  
 									onkeypress="if(event.keyCode==13) {_list.getList(1); return false;}"/>
 							</form>
 							</div>
@@ -82,7 +87,7 @@
 		            </div>            	
             	</div>
             	<div class="right">
-	                <div class="write">
+	                <div class="writer">
 		                <div class="write_inner">
 							<a href="#" onclick="detailForm.reset();">신규</a>
 							<a href="#" onclick="$('#detailForm').submit();">저장</a>

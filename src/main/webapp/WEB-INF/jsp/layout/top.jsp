@@ -6,7 +6,7 @@
                     <a href="#" class="user_name"><span>BA2</span> 박이정<i class="fas fa-chevron-down"></i></a>
                     <ul>
                         <li><a href="#">비밀번호 변경</a></li>
-                        <li><a href="#">로그아웃</a></li>
+                        <li><a href="/login/logout">로그아웃</a></li>
                     </ul>
                    
                 </div>

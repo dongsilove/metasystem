@@ -3,6 +3,8 @@
  * @author 		ljpark
  * @Date 		2021.02.11
  * @Description 단어
+ *              주제구분에 코드로 저장하지 않고 코드값을 저장하였다. 주제구분 변경시 주제구분 값으로 검색한다. 
+ *              그러나 용어는 프로젝트로 관리하여, 프로젝트 일련번호가 저장되어 있다.
  * @History
  * DATE			AUTHOR		NOTE	
  * -------------------------------------------------
@@ -18,6 +20,8 @@ function setDetail( obj ) { // domainList의 index
 }
 
 $(function() {
+	// 주제구분 selectBox setting
+	_commUtils.getSelectBox('/api/common/codes/WD005', $(".themaSe"),'cdNm','cdNm'); 
 	
 	_list.paginationInit();
 	_list.getList(1);
@@ -33,7 +37,7 @@ $(function() {
 		// 행정단어 조회
 		$("#searchtmp").attr("name","wordNm");
 		$("#searchtmp").attr("value",$("#wordNm").val());
-		_ajaxUtils.ajax({"url" : "/common/govwords" , "form" : $("#searchForm")
+		_ajaxUtils.ajax({"url" : "/api/common/govwords" , "form" : $("#searchForm")
 			,"successCallback": function(data) { console.log(data);
 				$("#nmList").html(""); // 목록 초기화
 				if (!data || !data.content) return;
@@ -63,7 +67,7 @@ $(function() {
 	
 		submitHandler : function () { //validation이 끝난 이후의 submit 직전 추가 작업할 부분
 			console.log("validation 성공 이후 ");
- 			_ajaxUtils.ajax({"url" : "/words/", "method": "PUT", "form" : $("#detailForm")
+ 			_ajaxUtils.ajax({"url" : "/api/words/", "method": "PUT", "form" : $("#detailForm")
 				,"successCallback": function(result) {
 					_list.getList();
 					detailForm.reset();
@@ -87,7 +91,7 @@ $(function() {
 var _list = {
 	pagination : {}
 	,paginationInit : function() {
-		console.log( _paging.paginationOptions);
+		 
 		var pagination = new tui.Pagination('paging', _paging.paginationOptions); // _paging :paging.js에 정의되어 있음.
 		pagination.on('beforeMove', function(evt) { _list.getList(evt.page); });
 		this.pagination = pagination;
@@ -96,12 +100,15 @@ var _list = {
 		if (isEmpty(page)) page = 1;
 		$("#searchtmp").attr("name",$("#searchName option:selected").val());
 		$("#searchtmp").attr("value",$("#searchValue").val().toUpperCase());
+		if ($("#searchName option:selected").val() == "themaSe") {
+			$("#themaSe").val($("#searchValue").val());
+		}
 		$("#page").val(page);
 		//console.log($("#page").val());
 		
 		//$("#searchfrm")[0].reset(); //오른쪽 상세정보 리셋
 		
-		_ajaxUtils.ajax({"url" : "/words", "form" : $("#searchForm")
+		_ajaxUtils.ajax({"url" : "/api/words", "form" : $("#searchForm")
 			,"successCallback": function(data) { console.log(data);
 				$("#listData").html(""); // 목록 초기화
 				data.content.forEach(function(f){
@@ -127,7 +134,7 @@ var _list = {
 	}
 	,getDetail : function(wordSn) {
 		mode="PUT"; // 수정모드
-		_ajaxUtils.ajax({"url" : "/words/"+wordSn
+		_ajaxUtils.ajax({"url" : "/api/words/"+wordSn
 			,"successCallback": function(data) { console.log(data);
 				for(key in data) {	
 					_commUtils.setVal("detailForm", key, data[key] );
@@ -144,7 +151,7 @@ var _list = {
 		if (isEmpty(pk)) {alert('삭제할 데이터를 선택하세요.'); return;}
 		if(confirm("삭제하시겠습니까? 삭제 후에는 복구가 불가능 합니다."))
 		{
-			_ajaxUtils.ajax({"url" : "/words/"+pk, "method": "DELETE"
+			_ajaxUtils.ajax({"url" : "/api/words/"+pk, "method": "DELETE"
 				,"successCallback": function(result) { console.log(result);
 					alert("삭제되었습니다.");
 					_list.getList();

@@ -11,15 +11,15 @@
 var prjctList; // 프로젝트명 저장 배열
 
 $(function() {
-	// 프로젝트 선택
-	prjctList = _list.getSelectBox('/prjcts', $(".prjctNm"),'prjctNm','prjctSn'); // selectBox setting
-	//console.log(prjctList);
-	
-	setTimeout(function(){
+	// 프로젝트 선택 select setting
+	_commUtils.getSelectBox('/api/common/prjcts', $(".prjctNm"),'prjctNm','prjctSn').done(function(r){
+		prjctList = r;
 		_list.paginationInit();
 		_list.getList(1);
-	},300);
-
+	}); 
+	// 도메인 선택 select setting
+	_commUtils.getSelectBox('/api/common/domains', $(".domainSn"),'domainNm','domainSn');
+	
 	// 용어명 입력 완료 후 도메인 조회
 	$('#termNm').on('blur', function(){ // focus이동시 
 		let iword;// space로 구분된 마지막 단어 가져오기
@@ -38,7 +38,7 @@ $(function() {
 	
 		submitHandler : function () { //validation이 끝난 이후의 submit 직전 추가 작업할 부분
 			console.log("validation 성공 이후 ");
- 			_ajaxUtils.ajax({"url" : "/terms/", "method": "PUT", "form" : $("#detailForm")
+ 			_ajaxUtils.ajax({"url" : "/api/terms/", "method": "PUT", "form" : $("#detailForm")
 				,"successCallback": function(result) {
 					_list.getList();
 					detailForm.reset();
@@ -87,7 +87,7 @@ var _list = {
 		
 		//$("#searchfrm")[0].reset(); //오른쪽 상세정보 리셋
 		
-		_ajaxUtils.ajax({"url" : "/terms", "form" : $("#searchForm")
+		_ajaxUtils.ajax({"url" : "/api/terms", "form" : $("#searchForm")
 			,"successCallback": function(data) { console.log(data);
 				$("#listData").html(""); // 목록 초기화
 				data.content.forEach(function(f){
@@ -113,7 +113,7 @@ var _list = {
 	}
 	,getDetail : function(termSn) {
 		mode="PUT"; // 수정모드
-		_ajaxUtils.ajax({"url" : "/terms/"+termSn
+		_ajaxUtils.ajax({"url" : "/api/terms/"+termSn
 			,"successCallback": function(data) { console.log(data);
 				for(key in data) {	
 					_commUtils.setVal("detailForm", key, data[key] );
@@ -130,7 +130,7 @@ var _list = {
 		if (isEmpty(pk)) {alert('삭제할 데이터를 선택하세요.'); return;}
 		if(confirm("삭제하시겠습니까? 삭제 후에는 복구가 불가능 합니다."))
 		{
-			_ajaxUtils.ajax({"url" : "/terms/"+pk, "method": "DELETE"
+			_ajaxUtils.ajax({"url" : "/api/terms/"+pk, "method": "DELETE"
 				,"successCallback": function(result) { console.log(result);
 					alert("삭제되었습니다.");
 					_list.getList();
@@ -163,7 +163,7 @@ var _list = {
 				});
 			}
 		});
-	} // getList()
+	} 
 	,setDomain : function ( obj ) { 
 		$("#domainNm").val($(obj).data("domainnm"));
 		$("#domainSn").val($(obj).data("domainsn"));
@@ -177,7 +177,7 @@ var _list = {
 	,getDomainList : function() {
 		$("#searchtmp").attr("name","domainNm");
 		$("#searchtmp").attr("value",$("#domainNm").val());
-		_ajaxUtils.ajax({"url" : "/common/domains" , "form" : $("#searchForm")
+		_ajaxUtils.ajax({"url" : "/api/common/domains" , "form" : $("#searchForm")
 			,"successCallback": function(data) { console.log(data);
 				$("#nmList").html(""); // 목록 초기화
 				if (!data || !data.content) return;
@@ -219,7 +219,7 @@ var _list = {
 		iword = iwordarr[iwordarr.length-1];
 		console.log(iword);
 		$("#searchtmp").attr("value",iword);
-		_ajaxUtils.ajax({"url" : "/common/words" , "form" : $("#searchForm")
+		_ajaxUtils.ajax({"url" : "/api/common/words" , "form" : $("#searchForm")
 			,"successCallback": function(data) { console.log(data);
 				$("#nmList").html(""); // 목록 초기화
 				if (!data || !data.content) return;

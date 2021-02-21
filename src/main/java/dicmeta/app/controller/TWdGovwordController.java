@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class TWdGovwordController {
 
-	@GetMapping("/govword")
+	@GetMapping("/govword/page")
 	public String govword() throws Exception {
 		return "govword";
 	}

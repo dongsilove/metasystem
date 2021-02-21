@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class TCmCodeController {
 
-	@GetMapping("/code")
+	@GetMapping("/code/page")
 	public String code() throws Exception {
 		return "code";
 	}

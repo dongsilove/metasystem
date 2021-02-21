@@ -32,13 +32,12 @@
 								<input type="hidden" id="page" name="page">
 								<input type="hidden" id="searchtmp" name="" value=""  />
 								
-								<select name="searchName" id="searchName" onChange="setPlaceholder(this)"  class="selectp">
+								<select name="searchName" id="searchName"   >
 										<!-- <option value=''> -- 검색선택 -- </option> -->
-										<option value="deptCd" >부서코드</option>
-										<option value="deptNm" >부서코드명</option>
+										<option value="deptNm" >부서명</option>
 								</select>
 								<input type="text" name="searchValue" id="searchValue" value="" 
-									placeholder="검색할 내용을 입력해주세요"  class="inputp"
+									placeholder="검색할 내용을 입력해주세요"  
 									onkeypress="if(event.keyCode==13) { _list.getList(1); return false;}"/>
 							</form>
 							</div>
@@ -71,7 +70,7 @@
 		            </div>            	
             	</div>
             	<div class="right">
-	                <div class="write">
+	                <div class="writer">
 		                <div class="write_inner">
 							<a href="#" onclick="detailForm.reset();">신규</a>
 							<a href="#" onclick="$('#detailForm').submit();">저장</a>
@@ -107,7 +106,7 @@
 
 	                        </tbody>
 	                    </table>
-
+						
 	                </form>
 	                </div>            	
             	</div>

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,7 +27,8 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @Tag( name = "TCmPrjctApiController", description = "프로젝트")
-@RestController
+@RestController 
+@RequestMapping(value="/api")
 public class TCmPrjctApiController {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -43,7 +45,7 @@ public class TCmPrjctApiController {
 		Page<TCmPrjct> list;
 		param.forEach((k,v)->logger.debug("key:" + k + "\tvalue:" +v));
 		PageRequest pageRequest = PageRequest.of(page - 1, perPage, Sort.by(Direction.DESC, "prjctSn"));
-		if(param.get("prjctNm") != null && param.get("prjctNm").toString() != null) {
+		if(param.get("prjctNm") != null && !param.get("prjctNm").toString().equals("")) {
 			list = (Page<TCmPrjct>) prjctRepository.findByPrjctNmContaining(param.get("prjctNm").toString(),pageRequest);
 		} else {
 			list = (Page<TCmPrjct>) prjctRepository.findAll(pageRequest);
@@ -95,10 +97,10 @@ public class TCmPrjctApiController {
 		Page<TCmPrjct> list;
 		param.forEach((k,v)->logger.debug("key:" + k + "\tvalue:" +v));
 		PageRequest pageRequest = PageRequest.of(page - 1, perPage, Sort.by(Direction.DESC, "prjctSn"));
-		if(param.get("prjctNm") != null && param.get("prjctNm").toString() != null) {
+		if(param.get("prjctNm") != null && !param.get("prjctNm").toString().equals("")) {
 			list = (Page<TCmPrjct>) prjctRepository.findByPrjctNmContaining(param.get("prjctNm").toString(),pageRequest);
 		} else {
-			list = (Page<TCmPrjct>) prjctRepository.findAll(pageRequest);
+			list = (Page<TCmPrjct>) prjctRepository.findAll(Pageable.unpaged());
 		}
 		return list; 
 		

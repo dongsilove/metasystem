@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class TWdWordController {
 
-	@GetMapping("/word")
+	@GetMapping("/word/page")
 	public String word() throws Exception {
 		return "word";
 	}

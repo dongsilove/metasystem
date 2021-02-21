@@ -20,7 +20,7 @@
 
         <div class="container">
             <div class="title">
-            	<div style="float:left;"><h1>코그그룹</h1></div>
+            	<div style="float:left;"><h1>사용자</h1></div>
             	<div class="location"><ul><li class="home"></li><li>사용자</li><li>직원정보</li></ul></div>
             </div>
             <div class="cont_divide">
@@ -39,13 +39,13 @@
 									직급: 
 									<select name="clsfCd" id="clsfCd" onChange="_list.getList(1);" class="selectp clsfCd"></select>
 								</span>
-								<select name="searchName" id="searchName" onChange="setPlaceholder(this)"  class="selectp">
+								<select name="searchName" id="searchName"   >
 										<!-- <option value=''> -- 검색선택 -- </option> -->
-										<option value="userId" >그굽코드</option>
-										<option value="userNm" >그굽코드명</option>
+										<option value="userId" >사용자아이디</option>
+										<option value="userNm" >사용자명</option>
 								</select>
 								<input type="text" name="searchValue" id="searchValue" value="" 
-									placeholder="검색할 내용을 입력해주세요"  class="inputp"
+									placeholder="검색할 내용을 입력해주세요"  
 									onkeypress="if(event.keyCode==13) { _list.getList(1); return false;}"/>
 							</form>
 							</div>
@@ -80,7 +80,7 @@
 		            </div>            	
             	</div>
             	<div class="right">
-	                <div class="write">
+	                <div class="writer">
 		                <div class="write_inner">
 							<a href="#" onclick="detailForm.reset();">신규</a>
 							<a href="#" onclick="$('#detailForm').submit();">저장</a>
@@ -105,6 +105,14 @@
 	                        <tr>
 	                            <th class="required"><label for="userNm">사용자명</label></th>
 	                            <td><input type="text" name="userNm" id="userNm"  value="" ></td>
+	                        </tr>
+	                        <tr>
+	                            <th class="required"><label for="pwd">비밀번호</label></th>
+	                            <td><input type="password" name="pwd" id="pwd"  value="" ></td>
+	                        </tr>
+	                        <tr>
+	                            <th class="required"><label for="pwd2">비밀번호 확인</label></th>
+	                            <td><input type="password" name="pwd2" id="pwd2"  value="" ></td>
 	                        </tr>
 	                        <tr>
 	                            <th class="required"><label for="clsfCd">직급코드</label></th>

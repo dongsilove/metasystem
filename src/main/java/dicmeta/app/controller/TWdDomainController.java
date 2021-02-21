@@ -16,12 +16,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class TWdDomainController {
 
-	@GetMapping("/domain")
+	@GetMapping("/domain/page")
 	public String domain() throws Exception {
 		return "domain";
 	}
-	@GetMapping("/domain_edit")
-	public String domain_edit() throws Exception {
-		return "domain_edit";
-	}
+
 }

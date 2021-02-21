@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,7 +23,8 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @Tag( name = "TAuUserApiController", description = "코드")
-@RestController
+@RestController 
+@RequestMapping(value="/api")
 public class TAuDeptApiController {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -38,7 +40,7 @@ public class TAuDeptApiController {
 		Page<TAuDept> list;
 		param.forEach((k,v)->logger.debug("key:" + k + "\tvalue:" +v));
 		PageRequest pageRequest = PageRequest.of(page - 1, perPage, Sort.by(Direction.ASC, "deptCd"));
-		if(param.get("deptNm") != null && param.get("deptNm").toString() != null) {
+		if(param.get("deptNm") != null && !param.get("deptNm").toString().equals("")) {
 			list = (Page<TAuDept>) deptRepository.findByDeptNmContaining(param.get("deptNm").toString(),pageRequest);
 		} else {
 			list = (Page<TAuDept>) deptRepository.findAll(PageRequest.of(page - 1, perPage));

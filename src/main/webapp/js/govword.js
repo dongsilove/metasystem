@@ -3,12 +3,19 @@
  * @author 		ljpark
  * @Date 		2021.02.11
  * @Description 도메인
+ *              주제구분에 코드로 저장하지 않고 코드값을 저장하였다. 주제구분 변경시 주제구분 값으로 검색한다. 
+ *              그러나 용어는 프로젝트로 관리하여, 프로젝트 일련번호가 저장되어 있다.
  * @History
  * DATE			AUTHOR		NOTE	
  * -------------------------------------------------
  * 2021.02.11	ljpark		신규
  */
+var themaList;
 $(function() {
+	// 주제구분 selectBox setting
+	_commUtils.getSelectBox('/api/common/codes/WD001', $("#themaSe"),'cdNm','cdNm').done(function(r){
+		themaList = r;
+	}); 
 	
 	_list.paginationInit();
 	_list.getList(1);
@@ -26,12 +33,15 @@ var _list = {
 		if (isEmpty(page)) page = 1;
 		$("#searchtmp").attr("name",$("#searchName option:selected").val());
 		$("#searchtmp").attr("value",$("#searchValue").val().toUpperCase());
+		if ($("#searchName option:selected").val() == "themaSe") {
+			$("#themaSe").val($("#searchValue").val());
+		}
 		$("#page").val(page);
 		//console.log($("#page").val());
 		
 		//$("#searchfrm")[0].reset(); //오른쪽 상세정보 리셋
 		
-		_ajaxUtils.ajax({"url" : "/govwords", "form" : $("#searchForm")
+		_ajaxUtils.ajax({"url" : "/api/govwords", "form" : $("#searchForm")
 			,"successCallback": function(data) { console.log(data);
 				$("#listData").html(""); // 목록 초기화
 				data.content.forEach(function(f){

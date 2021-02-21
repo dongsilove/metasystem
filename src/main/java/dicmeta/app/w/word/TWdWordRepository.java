@@ -10,4 +10,7 @@ public interface TWdWordRepository extends JpaRepository<TWdWord, Integer > {
 	Page<TWdWord> findByWordNmContaining(String searchWord, Pageable pageable);
 	Page<TWdWord> findByWordEnAbbrContaining(String searchWord, Pageable pageable);
 	Page<TWdWord> findByWordEnNmContaining(String searchWord, Pageable pageable);
+	Page<TWdWord> findByThemaSeContaining(String searchWord, Pageable pageable);
+	Page<TWdWord> findBySynonmContaining(String searchWord, Pageable pageable);
+	Page<TWdWord> findByPrhibtWordContaining(String searchWord, Pageable pageable);
 }

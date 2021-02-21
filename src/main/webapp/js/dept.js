@@ -2,7 +2,7 @@
  * @FileName 	dept.js
  * @author 		ljpark
  * @Date 		2021.02.11
- * @Description 코드그룹
+ * @Description 부서
  * @History
  * DATE			AUTHOR		NOTE	
  * -------------------------------------------------
@@ -11,13 +11,12 @@
 var deptList; // 부서 배열
 $(function() {
 	
-	// 부서
-	deptList = _commUtils.getSelectBox('/depts', $(".deptNm"),'deptNm','deptCd'); // selectBox setting
-	
-	setTimeout(function(){
+	// 상위부서 selectBox setting
+	_commUtils.getSelectBox('/api/depts', $(".deptNm"),'deptNm','deptCd').done(function(r){
+		deptList = r;
 		_list.paginationInit();
 		_list.getList(1);
-	},400);
+	});
 	
 	// 영문 대문자처리
 	$('#deptCd').on('blur', function(){ $(this).val($(this).val().toUpperCase())});
@@ -26,7 +25,7 @@ $(function() {
 	$("#detailForm").validate({
 	
 		submitHandler : function () { //validation이 끝난 이후의 submit 직전 추가 작업할 부분
- 			_ajaxUtils.ajax({"url" : "/depts/", "method": "PUT", "form" : $("#detailForm")
+ 			_ajaxUtils.ajax({"url" : "/api/depts/", "method": "PUT", "form" : $("#detailForm")
 				,"successCallback": function(result) {
 					_list.getList();
 					detailForm.reset();
@@ -45,7 +44,6 @@ $(function() {
 var _list = {
 	pagination : {}
 	,paginationInit : function() {
-		console.log( _paging.paginationOptions);
 		var pagination = new tui.Pagination('paging', _paging.paginationOptions); // _paging :paging.js에 정의되어 있음.
 		pagination.on('beforeMove', function(evt) { _list.getList(evt.page); });
 		this.pagination = pagination;
@@ -56,12 +54,12 @@ var _list = {
 		$("#searchtmp").attr("value",$("#searchValue").val().toUpperCase());
 		$("#page").val(page);
 		
-		_ajaxUtils.ajax({"url" : "/depts", "form" : $("#searchForm")
+		_ajaxUtils.ajax({"url" : "/api/depts", "form" : $("#searchForm")
 			,"successCallback": function(data) { //console.log(data);
 				$("#listData").html(""); // 목록 초기화
 				data.content.forEach(function(f){
 					processNull(f);
-					let upperDeptNm = (deptList)? deptList[f.upperDeptCd] :"";
+					let upperDeptNm = (deptList&&f.upperDeptCd)? deptList[f.upperDeptCd] :"";
 					$("#listData").append("<tr onclick=\"_list.getDetail('"+ f.deptCd +"')\">"
 						+"<td>" +f.deptCd+"</td><td>"+f.deptNm
 						+"</td><td>"+upperDeptNm
@@ -78,7 +76,7 @@ var _list = {
 	} // getList()
 	,getDetail : function(deptCd) {
 		mode="PUT"; // 수정모드
-		_ajaxUtils.ajax({"url" : "/depts/"+deptCd
+		_ajaxUtils.ajax({"url" : "/api/depts/"+deptCd
 			,"successCallback": function(data) { console.log(data);
 				for(key in data) {	
 					_commUtils.setVal("detailForm", key, data[key] );
@@ -92,7 +90,7 @@ var _list = {
 		if (isEmpty(cd)) {alert('삭제할 데이터를 선택하세요.'); return;}
 		if(confirm("삭제하시겠습니까? 삭제 후에는 복구가 불가능 합니다."))
 		{
-			_ajaxUtils.ajax({"url" : "/depts/"+pk, "method": "DELETE"
+			_ajaxUtils.ajax({"url" : "/api/depts/"+pk, "method": "DELETE"
 				,"successCallback": function(result) { console.log(result);
 					alert("삭제되었습니다.");
 					_list.getList();
@@ -101,4 +99,5 @@ var _list = {
 			});	
 		}
 	}
+
 } // _list

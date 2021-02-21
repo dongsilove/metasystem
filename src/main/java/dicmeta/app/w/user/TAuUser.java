@@ -27,8 +27,16 @@ public class TAuUser implements Serializable {
 	@Column(name="ecny_ymd")
 	private String ecnyYmd;
 
+	private String pwd;
+
+	@Column(name="pwd_salt")
+	private String pwdSalt;
+
 	@Column(name="user_nm")
 	private String userNm;
+
+	@Transient
+	private String checkPwd; // 개인정보 변경 화면의 비밀번호
 
 	public TAuUser() {
 	}
@@ -65,12 +73,36 @@ public class TAuUser implements Serializable {
 		this.ecnyYmd = ecnyYmd;
 	}
 
+	public String getPwd() {
+		return this.pwd;
+	}
+
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+
+	public String getPwdSalt() {
+		return this.pwdSalt;
+	}
+
+	public void setPwdSalt(String pwdSalt) {
+		this.pwdSalt = pwdSalt;
+	}
+
 	public String getUserNm() {
 		return this.userNm;
 	}
 
 	public void setUserNm(String userNm) {
 		this.userNm = userNm;
+	}
+
+	public String getCheckPwd() {
+		return checkPwd;
+	}
+
+	public void setCheckPwd(String checkPwd) {
+		this.checkPwd = checkPwd;
 	}
 
 }

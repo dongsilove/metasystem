@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class TCmCdGrpController {
 
-	@GetMapping("/cdgrp")
+	@GetMapping("/cdgrp/page")
 	public String cdgrp() throws Exception {
 		return "cdgrp";
 	}

@@ -13,7 +13,7 @@ $(function() {
 	
 	_list.paginationInit();
 	_list.getList(1);
-	_commUtils.getCodes($("#domainCl"),"WD004"); // 도메인 분류 코드 조회(EX. 일시,번호,식별...)
+	_commUtils.getCodes($(".domainCl"),"WD004"); // 도메인 분류 코드 조회(EX. 일시,번호,식별...)
 	
 	// 영문 대문자처리
 	$('#domainEnAbbr').on('blur', function(){ $(this).val($(this).val().toUpperCase())});
@@ -23,7 +23,7 @@ $(function() {
 	
 		submitHandler : function () { //validation이 끝난 이후의 submit 직전 추가 작업할 부분
 			console.log("validation 성공 이후 ");
- 			_ajaxUtils.ajax({"url" : "/domains/", "method": "PUT", "form" : $("#detailForm")
+ 			_ajaxUtils.ajax({"url" : "/api/domains/", "method": "PUT", "form" : $("#detailForm")
 				,"successCallback": function(result) {
 					_list.getList();
 					detailForm.reset();
@@ -51,7 +51,7 @@ $(function() {
 var _list = {
 	pagination : {}
 	,paginationInit : function() {
-		console.log( _paging.paginationOptions);
+		 
 		var pagination = new tui.Pagination('paging', _paging.paginationOptions); // _paging :paging.js에 정의되어 있음.
 		pagination.on('beforeMove', function(evt) { _list.getList(evt.page); });
 		this.pagination = pagination;
@@ -65,7 +65,7 @@ var _list = {
 		
 		//$("#searchfrm")[0].reset(); //오른쪽 상세정보 리셋
 		
-		_ajaxUtils.ajax({"url" : "/domains", "form" : $("#searchForm")
+		_ajaxUtils.ajax({"url" : "/api/domains", "form" : $("#searchForm")
 			,"successCallback": function(data) { //console.log(data);
 				$("#listData").html(""); // 목록 초기화
 				data.content.forEach(function(f){
@@ -92,7 +92,7 @@ var _list = {
 	}
 	,getDetail : function(domainSn) {
 		mode="PUT"; // 수정모드
-		_ajaxUtils.ajax({"url" : "/domains/"+domainSn
+		_ajaxUtils.ajax({"url" : "/api/domains/"+domainSn
 			,"successCallback": function(data) { console.log(data);
 				for(key in data) {	
 					_commUtils.setVal("detailForm", key, data[key] );
@@ -109,7 +109,7 @@ var _list = {
 		if (isEmpty(pk)) {alert('삭제할 데이터를 선택하세요.'); return;}
 		if(confirm("삭제하시겠습니까? 삭제 후에는 복구가 불가능 합니다."))
 		{
-			_ajaxUtils.ajax({"url" : "/domains/"+pk, "method": "DELETE"
+			_ajaxUtils.ajax({"url" : "/api/domains/"+pk, "method": "DELETE"
 				,"successCallback": function(result) { console.log(result);
 					alert("삭제되었습니다.");
 					_list.getList();
