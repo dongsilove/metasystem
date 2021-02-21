@@ -79,7 +79,9 @@ var _list = {
 		mode="PUT"; // 수정모드
 		_ajaxUtils.ajax({"url" : "/api/prjcts/"+prjctSn
 			,"successCallback": function(data) { console.log(data);
-				for(key in data) {	
+				for(key in data) {
+					if (key.indexOf("Ymd")>-1)
+					    data[key] = data[key].replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3');	
 					_commUtils.setVal("detailForm", key, data[key] );
 				}
 			}
