@@ -26,10 +26,10 @@ $(function() {
 			});
 		}
 		, rules: { //규칙 - id 값으로 
-			  prjctSn       : {number:true} 								
+			  prjctSn        : {number:true} 								
 			, prjctNm        : {maxByteLength:200, required:true} 			    
-			, prjctDc       : {maxByteLength:2000} 							
-			, prjctBgngYmd   : {dateISO:true} 							
+			, prjctDc        : {maxByteLength:2000} 							
+			, prjctBeginYmd   : {dateISO:true} 							
 			, prjctEndYmd    : {dateISO:true} 							
 		}
 	});
@@ -52,14 +52,14 @@ var _list = {
 		//console.log($("#page").val());
 		
 		_ajaxUtils.ajax({"url" : "/api/prjcts", "form" : $("#searchForm")
-			,"successCallback": function(data) { //console.log(data);
+			,"successCallback": function(data) { console.log(data);
 				$("#listData").html(""); // 목록 초기화
 				data.content.forEach(function(f){
 					processNull(f);
 					$("#listData").append("<tr onclick=\"_list.getDetail('"+f.prjctSn+"')\">"
 						+"<td>" +f.prjctSn+"</td><td>"
 						+f.prjctNm+"</td><td>"+f.prjctDc+"</td><td>"
-						+f.prjctbngnYmd+"</td><td>"+f.prjctEndYmd
+						+f.prjctBeginYmd+"</td><td>"+f.prjctEndYmd
 						+"</td></tr>"
 					);
 				});

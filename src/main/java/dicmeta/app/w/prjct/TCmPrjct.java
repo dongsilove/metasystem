@@ -20,8 +20,8 @@ public class TCmPrjct extends dicmeta.app.common.CommonTbl implements Serializab
 	@Column(name="prjct_sn")
 	private Integer prjctSn;
 
-	@Column(name="prjct_bgng_ymd")
-	private String prjctBgngYmd;
+	@Column(name="prjct_begin_ymd")
+	private String prjctBeginYmd;
 
 	@Column(name="prjct_dc")
 	private String prjctDc;
@@ -43,12 +43,12 @@ public class TCmPrjct extends dicmeta.app.common.CommonTbl implements Serializab
 		this.prjctSn = prjctSn;
 	}
 
-	public String getPrjctBgngYmd() {
-		return this.prjctBgngYmd;
+	public String getPrjctBeginYmd() {
+		return this.prjctBeginYmd;
 	}
 
-	public void setPrjctBgngYmd(String prjctBgngYmd) {
-		this.prjctBgngYmd = prjctBgngYmd;
+	public void setPrjctBeginYmd(String prjctBeginYmd) {
+		this.prjctBeginYmd = prjctBeginYmd;
 	}
 
 	public String getPrjctDc() {

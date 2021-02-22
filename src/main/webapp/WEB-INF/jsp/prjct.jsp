@@ -105,10 +105,10 @@
 	                            <td><textarea name="prjctDc" id="prjctDc"  value="" style="width:100%;"></textarea>
 	                        </tr>
 	                        <tr>
-	                            <th class="required"><label for="prjctBgngYmd">프로젝트 시작 일자</label></th>
+	                            <th><label for="prjctBeginYmd">프로젝트 시작 일자</label></th>
 	                            <td>
 	                            	<span class="date_input">
-	                            	<input class="datepicker input_calendar" type="text" name="prjctBgngYmd">
+	                            	<input class="datepicker input_calendar" type="text" name="prjctBeginYmd">
 	                            	</span>
 	                            </td>
 	                        </tr>

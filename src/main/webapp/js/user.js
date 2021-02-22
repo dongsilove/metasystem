@@ -10,6 +10,7 @@
  */
 var clsfList; // 직급코드 배열
 var deptList; // 부서 배열
+var mode = "";
 $(function() {
 	_datepicker.dateInit();
 	// 직급코드 selectBox setting
@@ -37,8 +38,7 @@ $(function() {
 		, rules: { //규칙 - id 값으로 
 			  userId     : {maxlength:50, required:true} 								
 			, userNm     : {maxByteLength:200, required:true} 			    
-			, pwd        : {minlength:4, required:true} 			    
-			, pwd2       : {minlength:4, required:true, equalTo:"#pwd"} 			    
+			, pwd        : {minlength:4} 			    
 			, clsfCd     : {maxlength:5, required:true} 			    
 			, deptCd     : {maxlength:5, required:true} 			    
 			, ecnyYmd    : {dateISO:true} 			    
@@ -62,10 +62,10 @@ var _list = {
 		$("#page").val(page);
 		
 		_ajaxUtils.ajax({"url" : "/api/users", "form" : $("#searchForm")
-			,"successCallback": function(data) { //console.log(data);
+			,"successCallback": function(data) { console.log(data);
 				$("#listData").html(""); // 목록 초기화
 				data.content.forEach(function(f){
-					processNull(f);
+					processNull(f); // null처리, 날짜형식 처리 (_commUtils.js)
 					let clsfNm = (clsfList&&f.clsfCd)? clsfList[f.clsfCd] :"";
 					$("#listData").append("<tr onclick=\"_list.getDetail('"+ f.userId +"')\">"
 						+"<td>" +f.userId+"</td><td>"+f.userNm
@@ -87,6 +87,8 @@ var _list = {
 		_ajaxUtils.ajax({"url" : "/api/users/"+userId
 			,"successCallback": function(data) { console.log(data);
 				for(key in data) {	
+					if (key.indexOf("Ymd")>-1)
+					    data[key] = data[key].replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3');	
 					_commUtils.setVal("detailForm", key, data[key] );
 				}
 			}

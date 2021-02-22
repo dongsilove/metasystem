@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 		<div class="header">
             <div class="account clearfix">
                 <div class="btn_bars"><i class="fas fa-bars"></i></div>
                 <div class="btn_info">
-                    <a href="#" class="user_name"><span>BA2</span> 박이정<i class="fas fa-chevron-down"></i></a>
+                    <a href="#" class="user_name"><span>${loginDeptNm}</span> ${loginInfo.userNm}<i class="fas fa-chevron-down"></i></a>
                     <ul>
-                        <li><a href="#">비밀번호 변경</a></li>
+                        <li><a href="/myinfo/page">내정보수정</a></li>
                         <li><a href="/login/logout">로그아웃</a></li>
                     </ul>
                    

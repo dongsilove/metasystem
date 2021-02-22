@@ -106,10 +106,9 @@ public class LoginApiController {
 			if (resultPwd.equals(encryptPwd)) { // DB의 비밀번호와 암호화비밀번호가 일치하면 
 				
 				session.setAttribute("loginId", userId); // session timeout 점검용
+				session.setAttribute("loginDeptNm", rsltUser.gettAuDept().getDeptNm()); // 부서명
 				
-				//String apiSessionId = (String) params.get("apiSessionId").toString();
 				session.setAttribute("loginInfo", rsltUser);
-				//session.setAttribute("apiSessionId", apiSessionId);
 				
 
 				//session.setMaxInactiveInterval(30); // SESSION TEST 위해 SESSION유지기간 30초로 설정

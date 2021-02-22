@@ -28,7 +28,7 @@
                 </li>
             </ul>
             <ul class="m_page"><!-- 화면width 줄어들면 보인다 -->
-			    <li><a href="mypage.php">내정보수정</a></li>
-			    <li><a href="/api/login/logout">로그아웃</a></li>
+			    <li><a href="/myinfo/page">내정보수정</a></li>
+			    <li><a href="/login/logout">로그아웃</a></li>
 		    </ul>
         </div><!--//sidebar-->

@@ -8,6 +8,12 @@
  * -------------------------------------------------
  * 2021.02.14	ljpark		신규
  */
+
+/**
+ * 문자열이 비어있는지 확인 후 boolean 리턴
+ * @param str
+ * @returns boolean
+ */
 function isEmpty(str){
      
     if(typeof str == "undefined" || str == null || str == "")
@@ -15,6 +21,14 @@ function isEmpty(str){
     else
         return false ;
 }
+
+/**
+ * DB에서 조회된 자료 화면에 보여주기 전 호출
+ * Object(json)에  null을  확인 후 ""으로 변경
+ * key값에 Ymd를 포함하고 있다면 날짜구분자 '-' 추가
+ * @param Object
+ * @returns 
+ */
 function processNull(obj) {
 	if ( typeof obj == "object" ) {
 		for ( var key in obj) {
@@ -22,16 +36,27 @@ function processNull(obj) {
 			if (isEmpty(obj[key])) {obj[key] = "";} // null -> ""
 			if (key.indexOf('Ymd')>-1 && !isEmpty(obj[key])) {
 				obj[key] = obj[key].replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3'); // 날짜형식으로
-				console.log(obj[key]);
+				//console.log("processNull : key-" + key);
+				//console.log("processNull : value-" + obj[key]);
 			}
 		}
 	}
 }
+
+/**
+ * api 호출 전 parameters에 적용(_ajaxUtils.ajax에서 호출)
+ * Object(json)가 가지고 있는 항목 값의 공백 제거
+ * Object(json)에  key값에 Ymd를 포함하고 있는 항목의 날짜구분자 '-' 제거
+ * @param Object
+ * @returns 
+ */
 function processYmd(obj) {
 	if ( typeof obj == "object" ) {
 		for ( var key in obj) {
-			obj[key] = obj[key].replace(/\s/gi, ""); // 공백제거
-			if (key.indexOf('Ymd')>-1 && !isEmpty(obj[key])) obj[key] = obj[key].replaceAll('-','');
+			//console.log("processYmd : key - " + key);
+			obj[key] = obj[key].trim(); // 공백제거
+			if (key.indexOf('Ymd')>-1 && !isEmpty(obj[key])) obj[key] = obj[key].replaceAll('-',''); // 날짜구분자 '-' 제거
+			//console.log("processYmd : value - " + obj[key]);
 		}
 	}
 }

@@ -3,6 +3,16 @@ package dicmeta.app.w.user;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import org.hibernate.annotations.JoinColumnOrFormula;
+import org.hibernate.annotations.JoinColumnsOrFormulas;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import dicmeta.app.w.dept.TAuDept;
+import dicmeta.app.w.domain.TWdDomain;
+
 
 /**
  * The persistent class for the t_au_user database table.
@@ -27,8 +37,10 @@ public class TAuUser implements Serializable {
 	@Column(name="ecny_ymd")
 	private String ecnyYmd;
 
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String pwd;
 
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	@Column(name="pwd_salt")
 	private String pwdSalt;
 
@@ -36,10 +48,24 @@ public class TAuUser implements Serializable {
 	private String userNm;
 
 	@Transient
-	private String checkPwd; // 개인정보 변경 화면의 비밀번호
+	private String checkPwd; // 값이 있다면 개인정보 변경 화면임을 나타냄
+
+	@NotFound(action=NotFoundAction.IGNORE)
+	@ManyToOne
+	@JoinColumnsOrFormulas({ @JoinColumnOrFormula(column = @JoinColumn(referencedColumnName = "dept_cd", name = "dept_cd", insertable = false, updatable = false)) })
+	private TAuDept tAuDept;
 
 	public TAuUser() {
 	}
+
+	
+	@Override
+	public String toString() {
+		return "TAuUser [userId=" + userId + ", clsfCd=" + clsfCd + ", deptCd=" + deptCd + ", ecnyYmd=" + ecnyYmd
+				+ ", pwd=" + pwd + ", pwdSalt=" + pwdSalt + ", userNm=" + userNm + ", checkPwd=" + checkPwd
+				+ ", tAuDept.deptCd=" + tAuDept.getDeptCd() + "]";
+	}
+
 
 	public String getUserId() {
 		return this.userId;
@@ -104,5 +130,15 @@ public class TAuUser implements Serializable {
 	public void setCheckPwd(String checkPwd) {
 		this.checkPwd = checkPwd;
 	}
+
+	public TAuDept gettAuDept() {
+		return tAuDept;
+	}
+
+	public void settAuDept(TAuDept tAuDept) {
+		this.tAuDept = tAuDept;
+	}
+
+
 
 }

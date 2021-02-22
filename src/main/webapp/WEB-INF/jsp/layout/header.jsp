@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,6 +30,9 @@
     <script src="/js/util/datepickerUtils.js"></script>
 
 	<script>
-	
+	var loginId = '${loginInfo.userId}';
+	var loginDeptNm = '${loginDeptNm}';
+	var deptNm = '${loginInfo.tAuDept.deptNm}';
+	//console.log("deptNm : " + deptNm);
 	</script>
 </head>

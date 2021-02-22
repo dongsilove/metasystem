@@ -64,12 +64,10 @@ public class TAuUserApiController {
 	@PutMapping("/users")
 	public String put(@RequestBody TAuUser tAuUser) throws Exception {
 		
-		logger.debug("사용자 저장 호출 : {}", tAuUser);
-		
 		// 개인정보 수정화면에서 사용자가 개인정보 수정시
 		// 점검비밀번호가 있다면 DB에 저장된 비밀번호와 비교
 		String checkPwd = tAuUser.getCheckPwd();
-		if (checkPwd != null && !checkPwd.equals("")) { 
+		if (checkPwd != null && !checkPwd.equals("")) { // 개인정보 수정화면임을 나타냄
 			Optional<TAuUser> rsltUser = userRepository.findById(tAuUser.getUserId());
 			
 			String prePwd = rsltUser.get().getPwd(); // 조회한 비밀번호

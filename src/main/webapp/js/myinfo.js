@@ -1,41 +1,48 @@
 /**
- * @FileName 	dept.js
+ * @FileName 	user.js
  * @author 		ljpark
  * @Date 		2021.02.11
- * @Description 부서
+ * @Description 개인정보수정
  * @History
  * DATE			AUTHOR		NOTE	
  * -------------------------------------------------
  * 2021.02.11	ljpark		신규
  */
-//var deptList; // 부서 배열(상위부서용)
+var clsfList; // 직급코드 배열
+var deptList; // 부서 배열
 $(function() {
-	
-	// 상위부서 selectBox setting
-	//_commUtils.getSelectBox('/api/depts', $(".deptNm"),'deptNm','deptCd').done(function(r){
-	//	deptList = r;
-	//});
-	_list.paginationInit();
-	_list.getList(1);
-	
-	// 영문 대문자처리
-	$('#deptCd').on('blur', function(){ $(this).val($(this).val().toUpperCase())});
+	_datepicker.dateInit();
+	// 직급코드 selectBox setting
+	_commUtils.getCodes( $(".clsfCd"),'AU001').done(function(r){
+		clsfList = r;
+		console.log(loginId);
+		_list.getDetail(loginId);
+	}); 
+	// 부서 selectBox setting
+	_commUtils.getSelectBox('/api/depts', $(".deptNm"),'deptNm','deptCd').done(function(r){
+		deptList = r;
+	}); 
 	
 	// 저장 click시 호출
 	$("#detailForm").validate({
 	
 		submitHandler : function () { //validation이 끝난 이후의 submit 직전 추가 작업할 부분
- 			_ajaxUtils.ajax({"url" : "/api/depts/", "method": "PUT", "form" : $("#detailForm")
+ 			_ajaxUtils.ajax({"url" : "/api/users/", "method": "PUT", "form" : $("#detailForm")
 				,"successCallback": function(result) {
-					_list.getList();
+					alert("저장되었습니다.");
 					detailForm.reset();
+					_list.getDetail(loginId);
 				}
 			});
 		}
 		, rules: { //규칙 - id 값으로 
-			  deptCd       	: {maxlength:5, required:true} 								
-			, deptNm     	: {maxByteLength:200, required:true} 			    
-			, upperDeptCd   : {maxlength:5}			    
+			  userId     : {maxlength:50, required:true} 								
+			, userNm     : {maxByteLength:200, required:true} 			    
+			, pwd        : {minlength:4, required:true} 			    
+			, checkPwd   : {minlength:4, required:true, equalTo:"#pwd"} 			    
+			, clsfCd     : {maxlength:5, required:true} 			    
+			, deptCd     : {maxlength:5, required:true} 			    
+			, ecnyYmd    : {dateISO:true} 			    
 		}
 	});
 	
@@ -44,6 +51,7 @@ $(function() {
 var _list = {
 	pagination : {}
 	,paginationInit : function() {
+		 
 		var pagination = new tui.Pagination('paging', _paging.paginationOptions); // _paging :paging.js에 정의되어 있음.
 		pagination.on('beforeMove', function(evt) { _list.getList(evt.page); });
 		this.pagination = pagination;
@@ -54,15 +62,16 @@ var _list = {
 		$("#searchtmp").attr("value",$("#searchValue").val().toUpperCase());
 		$("#page").val(page);
 		
-		_ajaxUtils.ajax({"url" : "/api/depts", "form" : $("#searchForm")
+		_ajaxUtils.ajax({"url" : "/api/users", "form" : $("#searchForm")
 			,"successCallback": function(data) { //console.log(data);
 				$("#listData").html(""); // 목록 초기화
 				data.content.forEach(function(f){
-					processNull(f);
-					let upperDeptNm = (deptList&&f.upperDeptCd)? deptList[f.upperDeptCd] :"";
-					$("#listData").append("<tr onclick=\"_list.getDetail('"+ f.deptCd +"')\">"
-						+"<td>" +f.deptCd+"</td><td>"+f.deptNm
-						+"</td><td>"+upperDeptNm
+					processNull(f); // null처리, 날짜형식 처리 (_commUtils.js)
+					let clsfNm = (clsfList&&f.clsfCd)? clsfList[f.clsfCd] :"";
+					$("#listData").append("<tr onclick=\"_list.getDetail('"+ f.userId +"')\">"
+						+"<td>" +f.userId+"</td><td>"+f.userNm
+						+"</td><td>"+clsfNm+"</td><td>"+f.ecnyYmd
+						+"</td><td>"+deptList[f.deptCd]
 						+"</td></tr>"
 					);
 				});
@@ -74,23 +83,25 @@ var _list = {
 			}
 		});
 	} // getList()
-	,getDetail : function(deptCd) {
+	,getDetail : function(userId) {
 		mode="PUT"; // 수정모드
-		_ajaxUtils.ajax({"url" : "/api/depts/"+deptCd
+		_ajaxUtils.ajax({"url" : "/api/users/"+userId
 			,"successCallback": function(data) { console.log(data);
 				for(key in data) {	
+					if (key.indexOf("Ymd")>-1)
+					    data[key] = data[key].replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3');	
 					_commUtils.setVal("detailForm", key, data[key] );
 				}
 			}
 		});
 	}
 	,deleteOne : function() {
-		let pk = $("#deptCd").val();
+		let pk = $("#userId").val();
 		//console.log("삭제 호출" + pk);
 		if (isEmpty(cd)) {alert('삭제할 데이터를 선택하세요.'); return;}
 		if(confirm("삭제하시겠습니까? 삭제 후에는 복구가 불가능 합니다."))
 		{
-			_ajaxUtils.ajax({"url" : "/api/depts/"+pk, "method": "DELETE"
+			_ajaxUtils.ajax({"url" : "/api/users/"+pk, "method": "DELETE"
 				,"successCallback": function(result) { console.log(result);
 					alert("삭제되었습니다.");
 					_list.getList();

@@ -10,7 +10,7 @@
  */
 
 $(function() {
-
+	$("#userId").focus();
 	$("#loginForm").validate({
 	
 		submitHandler : function () { //validation이 끝난 이후의 submit 직전 추가 작업할 부분

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 //========================================
-// @brief 데이터사전 > 사용자 > 목록
+// @brief 사용자 > 직원정보
 //========================================
 // @history 
 //  	2021.02.09 박이정(마인드원) 최초작성
@@ -20,7 +20,7 @@
 
         <div class="container">
             <div class="title">
-            	<div style="float:left;"><h1>사용자</h1></div>
+            	<div style="float:left;"><h1>직원정보</h1></div>
             	<div class="location"><ul><li class="home"></li><li>사용자</li><li>직원정보</li></ul></div>
             </div>
             <div class="cont_divide">
@@ -33,11 +33,11 @@
 								<input type="hidden" id="searchtmp" name="" value=""  />
 								<span>
 									소속부서:
-									<select name="deptCd" id="deptCd" onChange="_list.getList(1);" class="selectp deptNm"></select>
+									<select name="deptCd" onChange="_list.getList(1);" class="selectp deptNm"></select><!-- id="deptCd"  -->
 								</span>
 								<span>
 									직급: 
-									<select name="clsfCd" id="clsfCd" onChange="_list.getList(1);" class="selectp clsfCd"></select>
+									<select name="clsfCd" onChange="_list.getList(1);" class="selectp clsfCd"></select><!--  id="clsfCd" -->
 								</span>
 								<select name="searchName" id="searchName"   >
 										<!-- <option value=''> -- 검색선택 -- </option> -->
@@ -108,12 +108,12 @@
 	                        </tr>
 	                        <tr>
 	                            <th class="required"><label for="pwd">비밀번호</label></th>
-	                            <td><input type="password" name="pwd" id="pwd"  value="" ></td>
+	                            <td><input type="password" name="pwd" id="pwd"  autocomplete="off" ></td>
 	                        </tr>
-	                        <tr>
+	                        <!-- <tr>
 	                            <th class="required"><label for="pwd2">비밀번호 확인</label></th>
 	                            <td><input type="password" name="pwd2" id="pwd2"  value="" ></td>
-	                        </tr>
+	                        </tr> -->
 	                        <tr>
 	                            <th class="required"><label for="clsfCd">직급코드</label></th>
 	                            <td>
