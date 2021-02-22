@@ -45,7 +45,7 @@ var _ajaxUtils = {
 			, error: function(request,error) {
 				//spinner("hide"); // 로딩이미지 감추기
 				if (request.status == 401) {
-					window.location.href = "/login/actionLogout.do"; // 2019.11.13 추가 by ljpark
+					window.location.href = "/login/actionLogout.do"; 
 				} else {
 					alert("시스템 오류입니다. 잠시 후 다시 접속하시기 바랍니다. [ message: " + request.responseText + "\nerror:" + error+ "]");
 				}

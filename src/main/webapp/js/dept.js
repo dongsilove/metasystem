@@ -8,15 +8,15 @@
  * -------------------------------------------------
  * 2021.02.11	ljpark		신규
  */
-//var deptList; // 부서 배열(상위부서용)
+var deptList; // 부서 배열(상위부서용)
 $(function() {
 	
 	// 상위부서 selectBox setting
-	//_commUtils.getSelectBox('/api/depts', $(".deptNm"),'deptNm','deptCd').done(function(r){
-	//	deptList = r;
-	//});
-	_list.paginationInit();
-	_list.getList(1);
+	_commUtils.getSelectBox('/api/depts', $(".deptNm"),'deptNm','deptCd').done(function(r){
+		deptList = r;
+		_list.paginationInit();
+		_list.getList(1);
+	});
 	
 	// 영문 대문자처리
 	$('#deptCd').on('blur', function(){ $(this).val($(this).val().toUpperCase())});
@@ -87,7 +87,7 @@ var _list = {
 	,deleteOne : function() {
 		let pk = $("#deptCd").val();
 		//console.log("삭제 호출" + pk);
-		if (isEmpty(cd)) {alert('삭제할 데이터를 선택하세요.'); return;}
+		if (isEmpty(pk)) {alert('삭제할 데이터를 선택하세요.'); return;}
 		if(confirm("삭제하시겠습니까? 삭제 후에는 복구가 불가능 합니다."))
 		{
 			_ajaxUtils.ajax({"url" : "/api/depts/"+pk, "method": "DELETE"

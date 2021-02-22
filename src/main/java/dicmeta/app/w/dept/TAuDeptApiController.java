@@ -73,7 +73,7 @@ public class TAuDeptApiController {
 	}
 	
 	@Operation(summary = "부서 삭제", description = "부서 삭제한다.")
-	@DeleteMapping("/users/{deptCd}")
+	@DeleteMapping("/depts/{deptCd}")
 	public String delete(@PathVariable String deptCd) throws Exception {
 		
 		logger.debug("부서 삭제 호출 : deptCd-"+  deptCd);

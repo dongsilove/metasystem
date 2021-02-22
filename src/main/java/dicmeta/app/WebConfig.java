@@ -1,13 +1,17 @@
 package dicmeta.app;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.domain.AuditorAware;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import dicmeta.app.common.LoginCheckInterceptor;
 
 @Configuration
+@EnableJpaAuditing( modifyOnCreate = false )
 public class WebConfig implements WebMvcConfigurer {
 
     /*
@@ -25,4 +29,12 @@ public class WebConfig implements WebMvcConfigurer {
         		.excludePathPatterns("/login/**") //로그인 쪽은 제외
                 ;
     }
+    
+    /*
+     * 로그인 사용자로 registId, modifyId 설정
+     */
+	@Bean
+	public AuditorAware<String> auditorProvider() {
+		return new AuditorAwareImpl();
+	}
 }

@@ -43,6 +43,7 @@
 										<!-- <option value=''> -- 검색선택 -- </option> -->
 										<option value="userId" >사용자아이디</option>
 										<option value="userNm" >사용자명</option>
+										<option value="ecnyYmd" >입사일자</option>
 								</select>
 								<input type="text" name="searchValue" id="searchValue" value="" 
 									placeholder="검색할 내용을 입력해주세요"  
@@ -110,10 +111,7 @@
 	                            <th class="required"><label for="pwd">비밀번호</label></th>
 	                            <td><input type="password" name="pwd" id="pwd"  autocomplete="off" ></td>
 	                        </tr>
-	                        <!-- <tr>
-	                            <th class="required"><label for="pwd2">비밀번호 확인</label></th>
-	                            <td><input type="password" name="pwd2" id="pwd2"  value="" ></td>
-	                        </tr> -->
+	                        
 	                        <tr>
 	                            <th class="required"><label for="clsfCd">직급코드</label></th>
 	                            <td>

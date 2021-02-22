@@ -46,6 +46,7 @@ function processNull(obj) {
 /**
  * api 호출 전 parameters에 적용(_ajaxUtils.ajax에서 호출)
  * Object(json)가 가지고 있는 항목 값의 공백 제거
+ * 
  * Object(json)에  key값에 Ymd를 포함하고 있는 항목의 날짜구분자 '-' 제거
  * @param Object
  * @returns 

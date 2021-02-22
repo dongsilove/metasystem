@@ -33,6 +33,8 @@ public class TAuUserApiController {
 	
 	@Autowired
 	TAuUserRepository userRepository;
+	@Autowired
+	TAuUserQuerydslRepository userQuerydslRepository;
 
 	@Operation(summary = "사용자 목록 조회", description = "검색 값으로 페이징된 사용자 목록 화면을 호출한다.")
 	@GetMapping("/users")
@@ -41,12 +43,8 @@ public class TAuUserApiController {
 			@RequestParam(name = "page", required = true, defaultValue = "1") int page) throws Exception {
 		Page<TAuUser> list;
 		param.forEach((k,v)->logger.debug("key:" + k + "\tvalue:" +v));
-		PageRequest pageRequest = PageRequest.of(page - 1, perPage, Sort.by(Direction.ASC, "userId"));
-		if(param.get("userNm") != null && !param.get("userNm").toString().equals("")) {
-			list = (Page<TAuUser>) userRepository.findByUserNmContaining(param.get("userNm").toString(),pageRequest);
-		} else {
-			list = (Page<TAuUser>) userRepository.findAll(PageRequest.of(page - 1, perPage));
-		}
+		//PageRequest pageRequest = PageRequest.of(page - 1, perPage, Sort.by(Direction.ASC, "userId"));
+		list = (Page<TAuUser>) userQuerydslRepository.findList(param, PageRequest.of(page - 1, perPage));
 		return list;
 	}
 	

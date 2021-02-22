@@ -58,7 +58,7 @@ var _list = {
 	,getList : function(page) {
 		if (isEmpty(page)) page = 1;
 		$("#searchtmp").attr("name",$("#searchName option:selected").val());
-		$("#searchtmp").attr("value",$("#searchValue").val().toUpperCase());
+		$("#searchtmp").attr("value",$("#searchValue").val());
 		$("#page").val(page);
 		
 		_ajaxUtils.ajax({"url" : "/api/users", "form" : $("#searchForm")
@@ -97,7 +97,7 @@ var _list = {
 	,deleteOne : function() {
 		let pk = $("#userId").val();
 		//console.log("삭제 호출" + pk);
-		if (isEmpty(cd)) {alert('삭제할 데이터를 선택하세요.'); return;}
+		if (isEmpty(pk)) {alert('삭제할 데이터를 선택하세요.'); return;}
 		if(confirm("삭제하시겠습니까? 삭제 후에는 복구가 불가능 합니다."))
 		{
 			_ajaxUtils.ajax({"url" : "/api/users/"+pk, "method": "DELETE"
