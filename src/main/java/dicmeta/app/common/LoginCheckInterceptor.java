@@ -28,11 +28,14 @@ public class LoginCheckInterceptor implements HandlerInterceptor  {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		logger.debug("<<<LoginCheckInterceptor>>>");
 		logger.debug(" Request RequestURI \t:" + request.getRequestURI()+"?"+request.getQueryString());
-        
+        String requestUri = request.getRequestURI();
 		// login점검
 		if (!SessionUtil.sessionExist(request)) {
 			logger.debug("session check failure!!");
-    		response.sendRedirect(request.getContextPath()+"/login/page");
+			if (requestUri.contains("/api"))
+				response.sendRedirect(request.getContextPath()+"/login/nosession");
+			else
+				response.sendRedirect(request.getContextPath()+"/login/page");
 			return false;
     	}
 

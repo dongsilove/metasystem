@@ -109,7 +109,7 @@
 	                            <th><label for="termSn">용어 일련번호</label></th>
 	                            <td><input type="text" name="termSn" id="termSn" value="" readonly ></td>
 	                        </tr>
-	                        <tr>
+	                        <tr title="단어를 space로 구분하여 입력하면 기등록되어 있는 단어를 조회합니다. 저장시에 space는 제거됩니다.">
 	                            <th class="required"><label for="termNm">용어명</label></th>
 	                            <td><input type="text" name="termNm" id="termNm"  value="" ></td>
 	                        </tr>

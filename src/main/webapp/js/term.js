@@ -20,19 +20,6 @@ $(function() {
 	// 도메인 선택 select setting
 	_commUtils.getSelectBox('/api/common/domains', $(".domainSn"),'domainNm','domainSn');
 	
-	// 용어명 입력 완료 후 도메인 조회
-	$('#termNm').on('blur', function(){ // focus이동시 
-		let iword;// space로 구분된 마지막 단어 가져오기
-		let iwordarr = $("#termNm").val().split(' ');
-		iword = iwordarr[iwordarr.length-1];
-		$("#domainNm").val(iword);
-		_list.getDomainList(); // 마지막 단어로 도메인 조회
-		$("#termDc").val($("#termNm").val()); // 용어명 값을 용어설명에 넣는다.
-	});
-	// 영문 대문자처리
-	$('#termEnAbbr').on('blur', function(){ $(this).val($(this).val().toUpperCase())});
-	$('#termEnNm').on('blur', function(){ $(this).val($(this).val().toUpperCase())});
-	
 	
 	$("#detailForm").validate({ // $("#detailForm").submit() 호출시 실행됨.
 	
@@ -54,6 +41,19 @@ $(function() {
 			, dataFom		: {maxlength:100}                // 데이터 형식
 		}
 	});
+	
+	// 용어명 입력 완료 후 도메인 조회
+	$('#termNm').on('blur', function(){ // focus이동시 
+		let iword;// space로 구분된 마지막 단어 가져오기
+		let iwordarr = $("#termNm").val().split(' ');
+		iword = iwordarr[iwordarr.length-1];
+		$("#domainNm").val(iword);
+		_list.getDomainList(); // 마지막 단어로 도메인 조회
+		$("#termDc").val($("#termNm").val()); // 용어명 값을 용어설명에 넣는다.
+	});
+	// 영문 대문자처리
+	$('#termEnAbbr').on('blur', function(){ $(this).val($(this).val().toUpperCase())});
+	$('#termEnNm').on('blur', function(){ $(this).val($(this).val().toUpperCase())});
 	
 	// 도메인 명 검색기능 
 	// keypress는 enter키, 숫자key일 경우 반응.. 문자일경우 enter키 입력 필요.. keyup, keydown은 너무 많은 api호출을 하게 됨.
@@ -165,6 +165,7 @@ var _list = {
 		});
 	} 
 	,setDomain : function ( obj ) { 
+		// 조회된 도메인 setting
 		$("#domainNm").val($(obj).data("domainnm"));
 		$("#domainSn").val($(obj).data("domainsn"));
 		var dataFom = $(obj).data("datatype");
@@ -175,6 +176,7 @@ var _list = {
 		$("#nmList").html(""); // 목록 초기화
 	}
 	,getDomainList : function() {
+		// 기등록된 도메인 조회
 		$("#searchtmp").attr("name","domainNm");
 		$("#searchtmp").attr("value",$("#domainNm").val());
 		_ajaxUtils.ajax({"url" : "/api/common/domains" , "form" : $("#searchForm")
@@ -201,10 +203,10 @@ var _list = {
 	}
 	,setDetail : function ( obj ) {
 		// 조회된 단어 setting
-		let enabbr = $("#termEnAbbr").val();
+		let enabbr = $("#termEnAbbr").val(); // 영문약어
 		enabbr = (enabbr)? enabbr+'_'+$(obj).data("wordenabbr") : $(obj).data("wordenabbr"); // 이전 입력된 영문약어가 있으면 '_'를 붙이고 아니면 선택한 단어로만..
 		$("#termEnAbbr").val( enabbr );
-		let ennm = $("#termEnNm").val();
+		let ennm = $("#termEnNm").val(); // 영문명
 		ennm = (ennm)? ennm + '  ' + $(obj).data("wordennm"): $(obj).data("wordennm"); // 이전 입력된 영문명이 있으면 ' '를 붙이고 아니면 선택한 단어로만..
 		$("#termEnNm").val( ennm );
 		//$("#termDc").val($("#termDc").val() + " " + $(obj).data("worddc"));
@@ -212,7 +214,7 @@ var _list = {
 		$("#nmList").html(""); // 목록 초기화
 	}
 	,getWordList : function() {
-		// 단어 조회
+		// 기등록된 단어 조회
 		$("#searchtmp").attr("name","wordNm");
 		let iword;// space로 구분된 마지막 단어 가져오기
 		let iwordarr = $("#termNm").val().split(' ');
