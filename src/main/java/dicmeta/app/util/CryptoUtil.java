@@ -82,8 +82,8 @@ public class CryptoUtil {
     }
 	
 	/**
-	 * SALT 생성
-	 * @return
+	 * SecureRandom의 값으로 SALT(byte16자리) 생성
+	 * @return String
 	 * @throws NoSuchAlgorithmException
 	 */
     public static String getSalt() throws Exception {

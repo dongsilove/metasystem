@@ -169,19 +169,19 @@
 	                        </tr>
 	                        <tr>
 	                            <th><label for="registId">등록아이디</label></th>
-	                            <td><input type="text" name="registId" id="registId"  value="" readonly></td>
+	                            <td><input type="text" name="registId" id="registId"  value="" disabled></td>
 	                        </tr>
 	                        <tr>
 	                            <th><label for="registDt">등록일시</label></th>
-	                            <td><input type="text" name="registDt" id="registDt"  value="" readonly></td>
+	                            <td><input type="text" name="registDt" id="registDt"  value="" disabled></td>
 	                        </tr>
 	                        <tr>
-	                            <th><label for="registId">수정아이디</label></th>
-	                            <td><input type="text" name="registId" id="registId"  value="" readonly></td>
+	                            <th><label for="modifyId">수정아이디</label></th>
+	                            <td><input type="text" name="modifyId" id="modifyId"  value="" disabled></td>
 	                        </tr>
 	                        <tr>
-	                            <th><label for="registDt">수정일시</label></th>
-	                            <td><input type="text" name="registDt" id="registDt"  value="" readonly></td>
+	                            <th><label for="modifyDt">수정일시</label></th>
+	                            <td><input type="text" name="modifyDt" id="modifyDt"  value="" disabled></td>
 	                        </tr>
 	                        </tbody>
 	                    </table>

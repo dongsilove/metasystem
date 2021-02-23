@@ -97,6 +97,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>metasystem</finalName>
 		<defaultGoal>install</defaultGoal>
 		<plugins>
 			<!-- querydsl start -->
