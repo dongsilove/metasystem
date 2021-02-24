@@ -43,7 +43,7 @@ public class TAuUserQuerydslRepository extends QuerydslRepositorySupport {
 		if(param.get("clsfCd") != null && !param.get("clsfCd").toString().equals("")) { // 직급 코드
 			booleanBuilder.and( tAuUser.clsfCd.contains(param.get("clsfCd").toString()) );
 		}
-		if(param.get("ecnyYmd") != null && !param.get("ecnyYmd").toString().equals("")) { // 입사 일자
+		if(param.get("ecnyYmd") != null && !param.get("ecnyYmd").toString().equals("")) { // 입사 일
 			booleanBuilder.and( tAuUser.ecnyYmd.contains(param.get("ecnyYmd").toString()) );
 		}
 

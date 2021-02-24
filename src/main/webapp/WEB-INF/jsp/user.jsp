@@ -43,7 +43,7 @@
 										<!-- <option value=''> -- 검색선택 -- </option> -->
 										<option value="userId" >사용자아이디</option>
 										<option value="userNm" >사용자명</option>
-										<option value="ecnyYmd" >입사일자</option>
+										<option value="ecnyYmd" >입사일</option>
 								</select>
 								<input type="text" name="searchValue" id="searchValue" value="" 
 									placeholder="검색할 내용을 입력해주세요"  
@@ -68,7 +68,7 @@
 		                            <th scope="col">사용자아이디</th>
 		                            <th scope="col">사용자명</th>
 		                            <th scope="col">직급</th>
-		                            <th scope="col">입사일자</th>
+		                            <th scope="col">입사일</th>
 		                            <th scope="col">소속부서</th>
 		                        </tr>
 		                    </thead>
@@ -119,7 +119,7 @@
 	                            </td>
 	                        </tr>
 	                        <tr>
-	                            <th class="required"><label for="ecnyYmd">입사일자</label></th>
+	                            <th class="required"><label for="ecnyYmd">입사일</label></th>
 	                            <td>
 	                            	<span class="date_input">
 	                            	<input class="datepicker input_calendar" type="text" name="ecnyYmd">
@@ -130,6 +130,12 @@
 	                            <th class="required"><label for="deptCd">소속부서</label></th>
 	                            <td>
 	                                <select name="deptCd" id="deptCd" class="deptNm"></select>
+	                            </td>
+	                        </tr>
+	                        <tr>
+	                            <th class="required"><label for="prjctSn">담당프로젝트</label></th>
+	                            <td>
+	                                <select name="prjctSn" class="prjctNm"></select>
 	                            </td>
 	                        </tr>
 

@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import dicmeta.app.w.dept.TAuDept;
 import dicmeta.app.w.domain.TWdDomain;
+import dicmeta.app.w.prjct.TCmPrjct;
 
 
 /**
@@ -47,6 +48,9 @@ public class TAuUser implements Serializable {
 	@Column(name="user_nm")
 	private String userNm;
 
+	@Column(name="prjct_sn")
+	private Integer prjctSn;
+	
 	@Transient
 	private String checkPwd; // 값이 있다면 개인정보 변경 화면임을 나타냄
 
@@ -55,6 +59,11 @@ public class TAuUser implements Serializable {
 	@JoinColumnsOrFormulas({ @JoinColumnOrFormula(column = @JoinColumn(referencedColumnName = "dept_cd", name = "dept_cd", insertable = false, updatable = false)) })
 	private TAuDept tAuDept;
 
+	@NotFound(action=NotFoundAction.IGNORE)
+	@ManyToOne
+	@JoinColumnsOrFormulas({ @JoinColumnOrFormula(column = @JoinColumn(referencedColumnName = "prjct_sn", name = "prjct_sn", insertable = false, updatable = false)) })
+	private TCmPrjct tCmPrjct;
+	
 	public TAuUser() {
 	}
 
@@ -137,6 +146,25 @@ public class TAuUser implements Serializable {
 
 	public void settAuDept(TAuDept tAuDept) {
 		this.tAuDept = tAuDept;
+	}
+
+	public TCmPrjct gettCmPrjct() {
+		return tCmPrjct;
+	}
+
+
+	public void settCmPrjct(TCmPrjct tCmPrjct) {
+		this.tCmPrjct = tCmPrjct;
+	}
+
+
+	public Integer getPrjctSn() {
+		return prjctSn;
+	}
+
+
+	public void setPrjctSn(Integer prjctSn) {
+		this.prjctSn = prjctSn;
 	}
 
 

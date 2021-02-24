@@ -54,6 +54,10 @@ public class TWdTerm extends CommonTbl implements Serializable {
 	@Schema(description ="용어 명" )
 	private String termNm;
 
+	@Column(name="term_se_nm")
+	@Schema(description ="용어 구분 명" )
+	private String termSeNm;
+	
 	@Column(name="term_dc")
 	@Schema(description ="용어 설명" )
 	private String termDc;
@@ -85,15 +89,6 @@ public class TWdTerm extends CommonTbl implements Serializable {
 		this.termDc = termDc;
 	}
 
-
-	public TWdDomain getTWdDomain() {
-		return tWdDomain;
-	}
-
-
-	public void setTWdDomain(TWdDomain tWdDomain) {
-		this.tWdDomain = tWdDomain;
-	}
 
 
 	public Integer getTermSn() {
@@ -152,6 +147,26 @@ public class TWdTerm extends CommonTbl implements Serializable {
 
 	public void setPrjctSn(Integer prjctSn) {
 		this.prjctSn = prjctSn;
+	}
+
+
+	public String getTermSeNm() {
+		return termSeNm;
+	}
+
+
+	public void setTermSeNm(String termSeNm) {
+		this.termSeNm = termSeNm;
+	}
+
+
+	public TWdDomain gettWdDomain() {
+		return tWdDomain;
+	}
+
+
+	public void settWdDomain(TWdDomain tWdDomain) {
+		this.tWdDomain = tWdDomain;
 	}
 
 

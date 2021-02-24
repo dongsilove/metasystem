@@ -29,7 +29,7 @@ import lombok.Setter;
 public abstract class CommonTbl {
 	//@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
-	@CreationTimestamp
+	@CreatedDate
 	@Column(name="regist_dt")
 	@Schema(description ="등록 일시" )
 	protected LocalDateTime registDt;
@@ -41,7 +41,7 @@ public abstract class CommonTbl {
 
 	//@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
-	@UpdateTimestamp
+	@LastModifiedDate
 	@Column(name="modify_dt")
 	@Schema(description ="수정 일시" )
 	protected LocalDateTime modifyDt;

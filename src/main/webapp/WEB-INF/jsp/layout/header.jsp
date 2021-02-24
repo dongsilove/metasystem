@@ -32,7 +32,8 @@
 	<script>
 	var loginId = '${loginInfo.userId}';
 	var loginDeptNm = '${loginDeptNm}';
-	var deptNm = '${loginInfo.tAuDept.deptNm}';
+	var loginDeptNm = '${loginInfo.tAuDept.deptNm}';
+	var loginPrjctSn = '${loginInfo.tCmPrjct.prjctSn}';
 	//console.log("deptNm : " + deptNm);
 	</script>
 </head>

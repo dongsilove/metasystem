@@ -46,7 +46,7 @@
 										<option value="domainEnNm" >도메인영문명</option>
 										<option value="dataType" >데이터타입</option>
 										<option value="dataLt" >데이터길이</option>
-										<!-- <option value="registYmd" >등록일자</option> -->
+										<!-- <option value="registYmd" >등록일</option> -->
 								</select>
 								<input type="text" name="searchValue" id="searchValue" value="" 
 									placeholder="검색할 내용을 입력해주세요"  
@@ -83,7 +83,7 @@
 		                            <th scope="col">데이터타입</th>
 		                            <th scope="col">데이터길이</th>
 		                            <th scope="col">소수점길이</th>
-		                            <th scope="col">등록 일자</th>
+		                            <th scope="col">등록 일</th>
 		                        </tr>
 		                    </thead>
 		                    <tbody id="listData">
@@ -169,19 +169,19 @@
 	                        </tr>
 	                        <tr>
 	                            <th><label for="registId">등록아이디</label></th>
-	                            <td><input type="text" name="registId" id="registId"  value="" disabled></td>
+	                            <td><input type="text" name="registId" id="registId"  value="" readonly></td>
 	                        </tr>
 	                        <tr>
 	                            <th><label for="registDt">등록일시</label></th>
-	                            <td><input type="text" name="registDt" id="registDt"  value="" disabled></td>
+	                            <td><input type="text" name="registDt" id="registDt"  value="" readonly></td>
 	                        </tr>
 	                        <tr>
 	                            <th><label for="modifyId">수정아이디</label></th>
-	                            <td><input type="text" name="modifyId" id="modifyId"  value="" disabled></td>
+	                            <td><input type="text" name="modifyId" id="modifyId"  value="" readonly></td>
 	                        </tr>
 	                        <tr>
 	                            <th><label for="modifyDt">수정일시</label></th>
-	                            <td><input type="text" name="modifyDt" id="modifyDt"  value="" disabled></td>
+	                            <td><input type="text" name="modifyDt" id="modifyDt"  value="" readonly></td>
 	                        </tr>
 	                        </tbody>
 	                    </table>

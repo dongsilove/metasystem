@@ -40,7 +40,7 @@
 										<option value="wordNm" >단어명</option>
 										<option value="wordEnAbbr" >단어영문약어</option>
 										<option value="wordEnNm" >단어영문명</option>
-										<!-- <option value="registYmd" >등록일자</option> -->
+										<!-- <option value="registYmd" >등록일</option> -->
 								</select>
 								<input type="text" name="searchValue" id="searchValue" value="" 
 									placeholder="검색할 내용을 입력해주세요"  
@@ -73,7 +73,7 @@
 		                            <th scope="col">동의어</th>
 		                            <th scope="col">금지 단어</th>
 		                            <th scope="col">주제 구분</th>
-		                            <th scope="col">등록 일자</th>
+		                            <th scope="col">등록 일</th>
 		                        </tr>
 		                    </thead>
 		                    <tbody id="listData">
@@ -109,7 +109,8 @@
 	                        </tr>
 	                        <tr title="일부단어 입력 후 행정단어 검색 가능">
 	                            <th class="required"><label for="wordNm">단어명</label></th>
-	                            <td><input type="text" name="wordNm" id="wordNm"  value="" ></td>
+	                            <td><span class="tddc">* 입력시 행정단어명으로 자동검색</span><br>
+	                                <input type="text" name="wordNm" id="wordNm"  value="" ></td>
 	                        </tr>
 	                        <tr>
 	                            <th class="required"><label for="wordEnAbbr">단어영문약어</label></th>
@@ -139,19 +140,19 @@
 	                        </tr>
 	                        <tr>
 	                            <th><label for="registId">등록아이디</label></th>
-	                            <td><input type="text" name="registId" id="registId"  value="" disabled></td>
+	                            <td><input type="text" name="registId" id="registId"  value="" readonly></td>
 	                        </tr>
 	                        <tr>
 	                            <th><label for="registDt">등록일시</label></th>
-	                            <td><input type="text" name="registDt" id="registDt"  value="" disabled></td>
+	                            <td><input type="text" name="registDt" id="registDt"  value="" readonly></td>
 	                        </tr>
 	                        <tr>
 	                            <th><label for="modifyId">수정아이디</label></th>
-	                            <td><input type="text" name="modifyId" id="modifyId"  value="" disabled></td>
+	                            <td><input type="text" name="modifyId" id="modifyId"  value="" readonly></td>
 	                        </tr>
 	                        <tr>
 	                            <th><label for="modifyDt">수정일시</label></th>
-	                            <td><input type="text" name="modifyDt" id="modifyDt"  value="" disabled></td>
+	                            <td><input type="text" name="modifyDt" id="modifyDt"  value="" readonly></td>
 	                        </tr>
 	                        </tbody>
 	                    </table>

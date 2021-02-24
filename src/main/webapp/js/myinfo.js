@@ -9,6 +9,7 @@
  * 2021.02.11	ljpark		신규
  */
 var clsfList; // 직급코드 배열
+var prjctList; // 프로젝트 배열
 var deptList; // 부서 배열
 $(function() {
 	_datepicker.dateInit();
@@ -17,6 +18,10 @@ $(function() {
 		clsfList = r;
 		console.log(loginId);
 		_list.getDetail(loginId);
+	}); 
+	// 프로젝트 selectBox setting
+	_commUtils.getSelectBox('/api/prjcts', $(".prjctNm"),'prjctNm','prjctSn').done(function(r){
+		prjctList = r;
 	}); 
 	// 부서 selectBox setting
 	_commUtils.getSelectBox('/api/depts', $(".deptNm"),'deptNm','deptCd').done(function(r){

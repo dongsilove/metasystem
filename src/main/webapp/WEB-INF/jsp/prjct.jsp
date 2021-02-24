@@ -35,7 +35,7 @@
 								<select name="searchName" id="searchName"   >
 										<!-- <option value=''> -- 검색선택 -- </option> -->
 										<option value="prjctNm" >프로젝트명</option>
-										<!-- <option value="registYmd" >등록일자</option> -->
+										<!-- <option value="registYmd" >등록일</option> -->
 								</select>
 								<input type="text" name="searchValue" id="searchValue" value="" 
 									placeholder="검색할 내용을 입력해주세요"  
@@ -61,8 +61,8 @@
 		                            <th scope="col">번호</th>
 		                            <th scope="col">프로젝트명</th>
 		                            <th scope="col">프로젝트설명</th>
-		                            <th scope="col">프로젝트 시작 일자</th>
-		                            <th scope="col">프로젝트 종료 일자</th>
+		                            <th scope="col">프로젝트 시작 일</th>
+		                            <th scope="col">프로젝트 종료 일</th>
 		                        </tr>
 		                    </thead>
 		                    <tbody id="listData">
@@ -105,7 +105,7 @@
 	                            <td><textarea name="prjctDc" id="prjctDc"  value="" style="width:100%;"></textarea>
 	                        </tr>
 	                        <tr>
-	                            <th><label for="prjctBeginYmd">프로젝트 시작 일자</label></th>
+	                            <th><label for="prjctBeginYmd">프로젝트 시작 일</label></th>
 	                            <td>
 	                            	<span class="date_input">
 	                            	<input class="datepicker input_calendar" type="text" name="prjctBeginYmd">
@@ -113,7 +113,7 @@
 	                            </td>
 	                        </tr>
 	                        <tr>
-	                            <th><label for="prjctEndYmd">프로젝트 종료 일자</label></th>
+	                            <th><label for="prjctEndYmd">프로젝트 종료 일</label></th>
 	                            <td>
 	                            	<span class="date_input">
 	                            	<input class="datepicker input_calendar" type="text" name="prjctEndYmd">

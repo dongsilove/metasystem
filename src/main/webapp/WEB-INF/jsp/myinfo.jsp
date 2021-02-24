@@ -56,7 +56,7 @@
 	                            </td>
 	                        </tr>
 	                        <tr>
-	                            <th class="required"><label for="ecnyYmd">입사일자</label></th>
+	                            <th class="required"><label for="ecnyYmd">입사일</label></th>
 	                            <td>
 	                            	<span class="date_input">
 	                            	<input class="datepicker input_calendar" type="text" name="ecnyYmd">
@@ -67,6 +67,12 @@
 	                            <th class="required"><label for="deptCd">소속부서</label></th>
 	                            <td>
 	                                <select name="deptCd" id="deptCd" class="deptNm"></select>
+	                            </td>
+	                        </tr>
+	                        <tr>
+	                            <th class="required"><label for="prjctSn">담당프로젝트</label></th>
+	                            <td>
+	                                <select name="prjctSn" class="prjctNm"></select>
 	                            </td>
 	                        </tr>
                         </tbody>

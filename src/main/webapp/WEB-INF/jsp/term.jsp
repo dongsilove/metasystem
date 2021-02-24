@@ -61,21 +61,27 @@
 		                    <colgroup>
 		                        <col style="width:5%">
 		                        <col style="width:15%">
+		                        <col style="width:12%">
 		                        <col style="width:15%">
 		                        <col style="width:auto">
-		                        <col style="width:15%">
-		                        <col style="width:15%">
+		                        <col style="width:10%">
+		                        <col style="width:10%">
+		                        <col style="width:8%">
+		                        <col style="width:8%">
 		                        <col style="width:8%">
 		                    </colgroup>
 		                    <thead>
 		                        <tr>
 		                            <th scope="col">번호</th>
+		                            <th scope="col">용어구분명</th>
 		                            <th scope="col">용어명</th>
 		                            <th scope="col">용어영문약어</th>
 		                            <th scope="col">용어영문명</th>
 		                            <th scope="col">도메인명</th>
 		                            <th scope="col">데이터형태</th>
 		                            <th scope="col">프로젝트</th>
+		                            <th scope="col">등록일시</th>
+		                            <th scope="col">수정일시</th>
 		                        </tr>
 		                    </thead>
 		                    <tbody id="listData">
@@ -109,9 +115,15 @@
 	                            <th><label for="termSn">용어 일련번호</label></th>
 	                            <td><input type="text" name="termSn" id="termSn" value="" readonly ></td>
 	                        </tr>
-	                        <tr title="단어를 space로 구분하여 입력하면 기등록되어 있는 단어를 조회합니다. 저장시에 space는 제거됩니다.">
+	                        <tr title="단어를 space로 구분하여 입력하면 기등록되어 있는 단어를 조회합니다.">
+	                            <th class="required"><label for="termSeNm">용어구분명</label></th>
+	                            <td><span class="tddc">* 단어를 space로 구분하여 입력하면 단어 자동검색</span>
+	                                <input type="text" name="termSeNm" id="termSeNm"  value="" >
+	                            </td>
+	                        </tr>
+	                        <tr>
 	                            <th class="required"><label for="termNm">용어명</label></th>
-	                            <td><input type="text" name="termNm" id="termNm"  value="" ></td>
+	                            <td><input type="text" name="termNm" id="termNm"  value="" readonly></td>
 	                        </tr>
 	                        <tr>
 	                            <th class="required"><label for="termEnAbbr">용어영문약어</label></th>
@@ -125,10 +137,10 @@
 	                            <th><label for="termDc">용어설명</label></th>
 	                            <td><textarea name="termDc" id="termDc"  value="" style="width:100%;"></textarea>
 	                        </tr>
-	                        <tr>
-	                            <th class="required"><label for="domainNm">도메인 명</label></th>
-	                            <td>
-	                            	<input type="text" name="domainNm" id="domainNm"  value="" autocomplete="off">
+	                        <tr title="도메인을 입력하면 기등록되어 있는 도메인표현명으로 도메인을 조회합니다.">
+	                            <th class="required"><label for="domainNm">도메인명</label></th>
+	                            <td><span class="tddc">* 입력시 도메인표현명으로 자동검색</span><br>
+	                            	<input type="text" name="domainNm" id="domainNm"  value="" autocomplete="off"> 
 	                            	<input type="hidden" name="domainSn" id="domainSn"  value="">
 	                            </td>
 	                        </tr>
@@ -144,19 +156,19 @@
 	                        </tr>
 	                        <tr>
 	                            <th><label for="registId">등록아이디</label></th>
-	                            <td><input type="text" name="registId" id="registId"  value="" disabled></td>
+	                            <td><input type="text" name="registId" id="registId"  value="" readonly></td>
 	                        </tr>
 	                        <tr>
 	                            <th><label for="registDt">등록일시</label></th>
-	                            <td><input type="text" name="registDt" id="registDt"  value="" disabled></td>
+	                            <td><input type="text" name="registDt" id="registDt"  value="" readonly></td>
 	                        </tr>
 	                        <tr>
 	                            <th><label for="modifyId">수정아이디</label></th>
-	                            <td><input type="text" name="modifyId" id="modifyId"  value="" disabled></td>
+	                            <td><input type="text" name="modifyId" id="modifyId"  value="" readonly></td>
 	                        </tr>
 	                        <tr>
 	                            <th><label for="modifyDt">수정일시</label></th>
-	                            <td><input type="text" name="modifyDt" id="modifyDt"  value="" disabled></td>
+	                            <td><input type="text" name="modifyDt" id="modifyDt"  value="" readonly></td>
 	                        </tr>
 	                        </tbody>
 	                    </table>

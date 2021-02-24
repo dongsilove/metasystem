@@ -40,7 +40,7 @@
 								<option value="wordSe" >구분</option>
 								<option value="sttusSe" >상태구분</option>
 								<option value="themaSe" >주제구분</option>
-								<!-- <option value="registYmd" >등록일자</option> -->
+								<!-- <option value="registYmd" >등록일</option> -->
 						</select>
 						<input type="text" name="searchValue" id="searchValue" value="" 
 							placeholder="검색할 내용을 입력해주세요"  
@@ -76,7 +76,7 @@
                             <th scope="col">구분</th>
                             <th scope="col">주제 구분</th>
                             <th scope="col">상태 구분</th>
-                            <th scope="col">등록 일자</th>
+                            <th scope="col">등록 일</th>
                         </tr>
                     </thead>
                     <tbody id="listData">

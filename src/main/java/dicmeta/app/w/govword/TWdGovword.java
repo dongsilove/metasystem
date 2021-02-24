@@ -31,7 +31,7 @@ public class TWdGovword implements Serializable {
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="modify_ymd")
-	@Schema(description ="수정 일자" )
+	@Schema(description ="수정 일" )
 	private Date modifyYmd;
 
 	@Column(name="regist_id", length=50)
@@ -40,7 +40,7 @@ public class TWdGovword implements Serializable {
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="regist_ymd")
-	@Schema(description ="등록 일자" )
+	@Schema(description ="등록 일" )
 	private Date registYmd;
 
 	@Column(name="sttus_se", length=100)

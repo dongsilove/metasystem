@@ -107,7 +107,7 @@ public class TWdDomainApiController {
 			@RequestParam(name = "page", required = true, defaultValue = "1") int page) throws Exception {
 		
 		Page<TWdDomain> list;
-		param.forEach((k,v)->logger.debug("key:" + k + "\tvalue:" +v));
+		param.forEach((k,v)->logger.debug("common_list() key:" + k + "\tvalue:" +v));
 		PageRequest pageRequest = PageRequest.of(page - 1, perPage, Sort.by(Direction.DESC, "domainSn"));
 		if(param.get("domainNm") != null && !param.get("domainNm").toString().equals("")) {
 			list = (Page<TWdDomain>) domainRepository.findByDomainNmContaining(param.get("domainNm").toString(),Pageable.unpaged());
@@ -115,6 +115,8 @@ public class TWdDomainApiController {
 			list = (Page<TWdDomain>) domainRepository.findByDomainEnAbbrContaining(param.get("domainEnAbbr").toString(),pageRequest);
 		} else if(param.get("domainEnNm") != null && !param.get("domainEnNm").toString().equals("")) {
 			list = (Page<TWdDomain>) domainRepository.findByDomainEnNmContaining(param.get("domainEnNm").toString(),pageRequest);
+		} else if(param.get("domainExprsnNm") != null && !param.get("domainExprsnNm").toString().equals("")) {
+			list = (Page<TWdDomain>) domainRepository.findByDomainExprsnNmContaining(param.get("domainExprsnNm").toString(),pageRequest);
 		} else {
 			list = (Page<TWdDomain>) domainRepository.findAll(Pageable.unpaged());
 		}

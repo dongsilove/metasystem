@@ -161,7 +161,7 @@ input::placeholder {color: #cccccc; font-style: italic;}
 .write .write_show{margin-right:5px;border:1px solid #cecece;background-color: #fff;color:#999;}
 .write_inner>a,.btn_search a{display:inline-block;padding:8px 20px;border-radius: 3px;background-color:#007bff;text-align: center;color:#fff;font-size: 14px;}
 .write_search{display:inline-block;border-radius: 3px;text-align: center;font-size: 14px;}/* float:left; */
-.write_search select {height:28px;border-radius: 3px;border:1px solid #aaa;font-size: 14px;}
+.write_search select {height:28px;border-radius: 3px;border:1px solid #aaa;font-size: 14px;padding-top:2px;}
 .write_search input {width:220px;height:28px;border-radius: 3px;border:1px solid #aaa;font-size: 14px;padding:0 5px;}
 
 
@@ -357,7 +357,7 @@ input[readonly] + .calendar, input[disabled] + .calendar { display: block; posit
 
 .user_form input[type="text"],.user_form input[type="password"],.user_form textarea,.theme_form input[type="text"]{font-size:15px;height:30px;border-radius: 3px;border:1px solid #aaa;padding:5px;box-sizing: border-box}
 .user_form textarea {min-height:50px;overflow:visible;}
-.user_form select,.theme_input input[type=date]{width:181px;height:28px;border-radius: 3px;border:1px solid #aaa;font-size:14px;}
+.user_form select {width:181px;height:28px;border-radius: 3px;border:1px solid #aaa;font-size:14px;padding-top:2px;}
 .user_form .tel_info input[type="tel"]{font-size:14px;width:29.3%;height:28px;text-align: center;border:1px solid #aaa;border-radius: 3px;box-sizing: border-box}
 .user_form  input[type="email"]{font-size:15px;padding:5px;width:200px;height:28px;border:1px solid #aaa;border-radius: 3px;box-sizing: border-box}
 .tel_info .mobile_carrier{margin-top:10px;}

@@ -16,6 +16,7 @@ $(function() {
 		prjctList = r;
 		_list.paginationInit();
 		_list.getList(1);
+		
 	}); 
 	// 도메인 선택 select setting
 	_commUtils.getSelectBox('/api/common/domains', $(".domainSn"),'domainNm','domainSn');
@@ -42,14 +43,23 @@ $(function() {
 		}
 	});
 	
-	// 용어명 입력 완료 후 도메인 조회
-	$('#termNm').on('blur', function(){ // focus이동시 
+	// 용어구분명 입력란에서 단어 검색기능 
+	$("#termSeNm").on("keypress", function (evt) {
+		if(event.keyCode==13 ||event.keyCode==32)  //enter키 or space키
+			_list.getWordList();
+	});
+	$('#termSeNm').on('blur', function(){ // focus이동시 
+		$("#termNm").val($("#termSeNm").val().replace(/\s/gi, "")); // 용어명에 용어구분명의 space 제거하여 넣기
+	});
+	// 도메인명에 포커스 이동했을 때, 용어명이 있다면 용어명의 마지막 단어로 도메인조회
+	$('#domainNm').on('focus', function(){ // focus이동시 
+		if (!$("#termSeNm").val()) return;
 		let iword;// space로 구분된 마지막 단어 가져오기
-		let iwordarr = $("#termNm").val().split(' ');
+		let iwordarr = $("#termSeNm").val().split(' ');
 		iword = iwordarr[iwordarr.length-1];
 		$("#domainNm").val(iword);
 		_list.getDomainList(); // 마지막 단어로 도메인 조회
-		$("#termDc").val($("#termNm").val()); // 용어명 값을 용어설명에 넣는다.
+		$("#termDc").val($("#termSeNm").val()); // 용어명 값을 용어설명에 넣는다.
 	});
 	// 영문 대문자처리
 	$('#termEnAbbr').on('blur', function(){ $(this).val($(this).val().toUpperCase())});
@@ -61,13 +71,7 @@ $(function() {
 		// 도메인 조회
 		_list.getDomainList();
 	});
-
-	// 용어명 입력란에서 단어 검색기능 
-	$("#termNm").on("keypress", function (evt) {
-		if(event.keyCode==13 ||event.keyCode==32)  //enter키 or space키
-			_list.getWordList();
-	});
-
+	
 
 });
 
@@ -93,10 +97,11 @@ var _list = {
 				data.content.forEach(function(f){
 					processNull(f);
 					$("#listData").append("<tr onclick=\"_list.getDetail('"+f.termSn+"')\">"
-						+"<td>" +f.termSn+"</td><td>"+f.termNm+"</td><td>"
+						+"<td>" +f.termSn+"</td><td>"+f.termSeNm+"</td><td>"+f.termNm+"</td><td>"
 						+f.termEnAbbr+"</td><td>"+f.termEnNm+"</td><td>"
-						+f.twdDomain.domainNm+"</td><td>"+f.dataFom+"</td><td>"+prjctList[f.prjctSn]+"</td>"
-						+"</tr>"
+						+f.tWdDomain.domainNm+"</td><td>"+f.dataFom+"</td><td>"
+						+prjctList[f.prjctSn]+"</td><td>"+f.registDt+"</td><td>"+f.modifyDt
+						+"</td></tr>"
 					);
 				});
 				if (data.numberOfElements == 0) {
@@ -104,6 +109,10 @@ var _list = {
 				}
 				_list.pagination.setTotalItems(data.totalElements); // 총레코드 수
 				_list.pagination._paginate(page); // 조회 page
+				
+				// 프로젝트 선택 : 로그인한 사용자의 담당프로젝트 선택 (전역변수 loginPrjctSn : header.jsp)
+				//$("#detailForm #prjctSn option[value=" + loginPrjctSn + "]").attr("selected", "selected");
+				$("#detailForm #prjctSn").val(loginPrjctSn).prop("selected", true);
 			}
 		});
 	} // getList()
@@ -118,6 +127,7 @@ var _list = {
 				for(key in data) {	
 					_commUtils.setVal("detailForm", key, data[key] );
 				}
+				_commUtils.setVal("detailForm", "domainNm", data.tWdDomain.domainNm );
 			}
 		});
 	}
@@ -139,31 +149,7 @@ var _list = {
 			});	
 		}
 	}
-	// selectBox setting
-	,getSelectBox: function(urls, objs ,textNm,valueNm) {
-		var returnVal = [];
-		_ajaxUtils.ajax({"url" : urls //, "form" : $("#searchForm")
-			,"successCallback": function(data) { console.log(data);
-				if (!data || !data.content) return;
-				var list = data.content;
-				$.each(objs, function(index, item){
-					$(item).find("option").remove(); // 목록 초기화
-					$(item).append("<option value=''>선택</option>");
-					var returnVal = [];
-					for (var i=0; i<list.length; i++) {
-						var text = list[i][textNm];
-						var value = list[i][valueNm];
-						var option = "<option value='"+value+"'>"+text+"</option>";
-						$(item).append(option);
-						
-						returnVal[value] = text;
-					}
-					prjctList = returnVal;
-					
-				});
-			}
-		});
-	} 
+
 	,setDomain : function ( obj ) { 
 		// 조회된 도메인 setting
 		$("#domainNm").val($(obj).data("domainnm"));
@@ -177,7 +163,9 @@ var _list = {
 	}
 	,getDomainList : function() {
 		// 기등록된 도메인 조회
-		$("#searchtmp").attr("name","domainNm");
+		//$("#searchtmp").attr("name","domainNm");
+		//$("#searchtmp").attr("value",$("#domainNm").val());
+		$("#searchtmp").attr("name","domainExprsnNm");
 		$("#searchtmp").attr("value",$("#domainNm").val());
 		_ajaxUtils.ajax({"url" : "/api/common/domains" , "form" : $("#searchForm")
 			,"successCallback": function(data) { console.log(data);
@@ -217,7 +205,7 @@ var _list = {
 		// 기등록된 단어 조회
 		$("#searchtmp").attr("name","wordNm");
 		let iword;// space로 구분된 마지막 단어 가져오기
-		let iwordarr = $("#termNm").val().split(' ');
+		let iwordarr = $("#termSeNm").val().split(' ');
 		iword = iwordarr[iwordarr.length-1];
 		console.log(iword);
 		$("#searchtmp").attr("value",iword);

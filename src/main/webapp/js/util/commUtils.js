@@ -87,12 +87,7 @@ var _commUtils = {
 		/*if(typeof(elName) != "string"){
 			return;
 		}*/
-		if (typeof value == "object") {
-			for(key in value) {	
-				_commUtils.setVal(formId, key, value[key] );
-			}
-		}
-		
+	
 		var el = $("#"+formId+" [name=" + elName + "]");
 
 		if(el.is("select")){
