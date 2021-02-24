@@ -116,8 +116,9 @@ var _list = {
 			}
 		});
 	} // getList()
-	,detailFormReset : function() {
+	,resetForm : function() {
 		detailForm.reset();
+		$("#detailForm #prjctSn").val(loginPrjctSn).prop("selected", true);
 		mode = "POST";
 	}
 	,getDetail : function(termSn) {

@@ -81,7 +81,7 @@ $(function() {
 			, wordEnNm     : {maxlength:200}                    // 단어 영문 명
 			, wordDc       : {maxByteLength:2000}               // 단어 설명
 			, synonm       : {maxByteLength:200}                // 동의어
-			, prhibtWord   : {maxByteLength:200}                // 금지 단어
+			, prhibtWordNm   : {maxByteLength:200}                // 금지 단어
 			, themaSe      : {maxByteLength:50}                 // 주제 구분
 		}
 	});
@@ -116,7 +116,7 @@ var _list = {
 					$("#listData").append("<tr onclick=\"_list.getDetail('"+f.wordSn+"')\">"
 						+"<td>" +f.wordSn+"</td><td>"+f.wordNm+"</td><td>"
 						+f.wordEnAbbr+"</td><td>"+f.wordEnNm+"</td><td>"
-						+f.synonm+"</td><td>"+f.prhibtWord+"</td><td>"+f.themaSe+"</td><td>"+f.registDt+"</td>"
+						+f.synonm+"</td><td>"+f.prhibtWordNm+"</td><td>"+f.themaSe+"</td><td>"+f.registDt+"</td>"
 						+"</tr>"
 					);
 				});

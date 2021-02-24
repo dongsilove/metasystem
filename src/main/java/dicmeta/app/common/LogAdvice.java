@@ -1,4 +1,4 @@
-package dicmeta.app;
+package dicmeta.app.common;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;

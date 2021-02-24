@@ -129,8 +129,8 @@
 	                            <td><input type="text" name="synonm" id="synonm"  value="" ></td>
 	                        </tr>
 	                        <tr>
-	                            <th><label for="prhibtWord">금지 단어</label></th>
-	                            <td><input type="text" name="prhibtWord" id="prhibtWord"  value="" ></td>
+	                            <th><label for="prhibtWordNm">금지 단어</label></th>
+	                            <td><input type="text" name="prhibtWordNm" id="prhibtWordNm"  value="" ></td>
 	                        </tr>
 	                        <tr>
 	                            <th><label for="themaSe">주제 구분</label></th>

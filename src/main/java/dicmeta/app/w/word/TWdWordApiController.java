@@ -52,8 +52,8 @@ public class TWdWordApiController {
 			list = (Page<TWdWord>) wordRepository.findByThemaSeContaining(param.get("themaSe").toString(),pageRequest);
 		} else if(param.get("synonm") != null && !param.get("synonm").toString().equals("")) {
 			list = (Page<TWdWord>) wordRepository.findBySynonmContaining(param.get("synonm").toString(),pageRequest);
-		} else if(param.get("prhibtWord") != null && !param.get("prhibtWord").toString().equals("")) {
-			list = (Page<TWdWord>) wordRepository.findByPrhibtWordContaining(param.get("prhibtWord").toString(),pageRequest);
+		} else if(param.get("prhibtWordNm") != null && !param.get("prhibtWordNm").toString().equals("")) {
+			list = (Page<TWdWord>) wordRepository.findByPrhibtWordNmContaining(param.get("prhibtWordNm").toString(),pageRequest);
 		} else {
 			list = (Page<TWdWord>) wordRepository.findAll(pageRequest);
 		}

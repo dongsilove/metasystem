@@ -377,7 +377,7 @@ input[readonly] + .calendar, input[disabled] + .calendar { display: block; posit
     color:#fff
 }
 
-#nmList {width:100%;margin-top:10px;background-color: #fff;}
+#nmList {width:100%;margin-top:10px;background-color: #fff;border-top: 2px solid #000;}
 #nmList ul {list-style:none;padding:4px 0px;border-bottom:1px solid #eeeeee;}
 #nmList ul:hover {background-color: #f8f8f8;cursor:pointer}
 #nmList ul:first-child{font-weight:bold; background-color: #f8f8f8;transition: .2s;cursor:none}

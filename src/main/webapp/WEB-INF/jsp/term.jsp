@@ -95,7 +95,7 @@
             	<div class="right">
 	                <div class="writer">
 		                <div class="write_inner">
-							<a href="#" onclick="detailForm.reset();">신규</a>
+							<a href="#" onclick="_list.resetForm();">신규</a>
 							<a href="#" onclick="$('#detailForm').submit();">저장</a>
 							<a href="#" onclick="_list.deleteOne();">삭제</a>
 						</div> 

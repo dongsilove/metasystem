@@ -28,8 +28,8 @@ public class TWdWord extends CommonTbl implements Serializable {
 	@Column(name="word_sn")
 	private Integer wordSn;
 
-	@Column(name="prhibt_word")
-	private String prhibtWord;
+	@Column(name="prhibt_word_nm")
+	private String prhibtWordNm;
 
 	private String synonm;
 
@@ -59,12 +59,12 @@ public class TWdWord extends CommonTbl implements Serializable {
 		this.wordSn = wordSn;
 	}
 
-	public String getPrhibtWord() {
-		return prhibtWord;
+	public String getPrhibtWordNm() {
+		return prhibtWordNm;
 	}
 
-	public void setPrhibtWord(String prhibtWord) {
-		this.prhibtWord = prhibtWord;
+	public void setPrhibtWordNm(String prhibtWordNm) {
+		this.prhibtWordNm = prhibtWordNm;
 	}
 
 	public String getSynonm() {
