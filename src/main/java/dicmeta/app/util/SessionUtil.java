@@ -93,10 +93,6 @@ public class SessionUtil {
 		} else if (session.getAttribute("loginId") ==  null) {
 			System.out.println("session loginId is null");
 			return false;
-		} else if (session.getAttribute("loginInfo") ==  null) {
-			System.out.println("session loginId : " + session.getAttribute("loginId"));
-			System.out.println("session loginInfo is null");
-			return false;
 		} else {
 			TAuUser loginInfo = (TAuUser) session.getAttribute("loginInfo");
 			System.out.println("loginInfo.getUserId() : " + loginInfo.getUserId());

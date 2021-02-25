@@ -33,7 +33,7 @@ public class LoginCheckInterceptor implements HandlerInterceptor  {
 		if (!SessionUtil.sessionExist(request)) {
 			logger.debug("session check failure!!");
 			if (requestUri.contains("/api"))
-				response.sendRedirect(request.getContextPath()+"/login/nosession");
+				response.sendRedirect(request.getContextPath()+"/api/login/nosession");
 			else
 				response.sendRedirect(request.getContextPath()+"/login/page");
 			return false;

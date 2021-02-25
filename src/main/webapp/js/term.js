@@ -50,6 +50,7 @@ $(function() {
 	});
 	$('#termSeNm').on('blur', function(){ // focus이동시 
 		$("#termNm").val($("#termSeNm").val().replace(/\s/gi, "")); // 용어명에 용어구분명의 space 제거하여 넣기
+		$("#termDc").val($("#termSeNm").val()); // 용어구분명 값을 용어설명에 넣는다.
 	});
 	// 도메인명에 포커스 이동했을 때, 용어명이 있다면 용어명의 마지막 단어로 도메인조회
 	$('#domainNm').on('focus', function(){ // focus이동시 
@@ -59,7 +60,6 @@ $(function() {
 		iword = iwordarr[iwordarr.length-1];
 		$("#domainNm").val(iword);
 		_list.getDomainList(); // 마지막 단어로 도메인 조회
-		$("#termDc").val($("#termSeNm").val()); // 용어명 값을 용어설명에 넣는다.
 	});
 	// 영문 대문자처리
 	$('#termEnAbbr').on('blur', function(){ $(this).val($(this).val().toUpperCase())});
@@ -124,7 +124,8 @@ var _list = {
 	,getDetail : function(termSn) {
 		mode="PUT"; // 수정모드
 		_ajaxUtils.ajax({"url" : "/api/terms/"+termSn
-			,"successCallback": function(data) { console.log(data);
+			,"successCallback": function(data) { //console.log(data);
+				if (!data) return;
 				for(key in data) {	
 					_commUtils.setVal("detailForm", key, data[key] );
 				}
@@ -193,8 +194,12 @@ var _list = {
 	,setDetail : function ( obj ) {
 		// 조회된 단어 setting
 		let enabbr = $("#termEnAbbr").val(); // 영문약어
+		let enabbrArr = enabbr.split("_");
+		if (enabbrArr[enabbrArr.length-1] == $(obj).data("wordenabbr")) { return;} // 기존 추가되어 있는 마지막영문약어와 추가할 영문약어가 같으면 추가하지 않음.
+		
 		enabbr = (enabbr)? enabbr+'_'+$(obj).data("wordenabbr") : $(obj).data("wordenabbr"); // 이전 입력된 영문약어가 있으면 '_'를 붙이고 아니면 선택한 단어로만..
 		$("#termEnAbbr").val( enabbr );
+		
 		let ennm = $("#termEnNm").val(); // 영문명
 		ennm = (ennm)? ennm + '  ' + $(obj).data("wordennm"): $(obj).data("wordennm"); // 이전 입력된 영문명이 있으면 ' '를 붙이고 아니면 선택한 단어로만..
 		$("#termEnNm").val( ennm );

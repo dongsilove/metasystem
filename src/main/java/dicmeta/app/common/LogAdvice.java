@@ -35,14 +35,17 @@ public class LogAdvice {
 	
 	@AfterThrowing(pointcut="within(dicmeta.app.w..*)", throwing="ex") 
 	public void errorNotice(JoinPoint joinPoint, Exception ex){
-		ex.printStackTrace();
+		//ex.printStackTrace();
 	    StringBuffer logBuffer = new StringBuffer();
 	    logBuffer.append("\n\n");
 	    logBuffer.append("ERROR_EXCEPTION      	: " + ex.getClass() + "\n");
 	    logBuffer.append("ERROR_TARGET CLASS   	: " + joinPoint.getTarget().getClass() + "\n");
 	    logBuffer.append("ERROR_TARGET METHOD  	: " + joinPoint.getSignature().getName() + "\n");
 	    logBuffer.append("ERROR_MESSAGE        	: " + ex.getMessage() + "\n");
+	    logBuffer.append("ERROR_CAUSE        	: " + ex.toString() + "\n");
 	    logBuffer.append("\n");
 	    logger.debug(logBuffer.toString());
 	}
+	
+
 }

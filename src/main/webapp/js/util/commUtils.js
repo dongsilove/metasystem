@@ -139,9 +139,12 @@ var _commUtils = {
 					dfd.resolve(returnVal);
 				});
 			},
-			error : function(request, error) {
-				if (request.status == 401) { alert("세션이 종료되었습니다.(세션유지시간 : 30분)"); window.location.href = "/login/actionLogout.do"; return; }  // 2019.11.13 추가 by ljpark
-				console.log("message: " + request.responseText + ", error:" + error);
+			error : function(jqXHR, textStatus) {
+				if (jqXHR.status == 401) {
+					window.location.href = "/login/page"; 
+				} else {
+					alert("시스템 오류입니다. 잠시 후 다시 접속하시기 바랍니다. [ message: " + jqXHR.responseText + "\error:" + textStatus+ "]");
+				}
 				dfd.reject("error");
 			}
 		});
@@ -176,9 +179,12 @@ var _commUtils = {
 				});
 				//dfd.resolve(returnVal);
 			},
-			error : function(request, error) {
-				if (request.status == 401) { alert("세션이 종료되었습니다.(세션유지시간 : 30분)"); window.location.href = "/login/actionLogout.do"; return; }  // 2019.11.13 추가 by ljpark
-				console.log("message: " + request.responseText + ", error:" + error);
+			error : function(jqXHR, textStatus) {
+				if (jqXHR.status == 401) { // HttpStatus.UNAUTHORIZED
+					window.location.href = "/login/page"; 
+				} else {
+					alert("시스템 오류입니다. 잠시 후 다시 접속하시기 바랍니다. [ message: " + jqXHR.responseText + "\error:" + textStatus+ "]");
+				}
 				dfd.reject("error");
 			}
 		});
