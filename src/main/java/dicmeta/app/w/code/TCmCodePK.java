@@ -35,5 +35,34 @@ public class TCmCodePK implements Serializable {
 		this.cd = cd;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((cd == null) ? 0 : cd.hashCode());
+		result = prime * result + ((grpCd == null) ? 0 : grpCd.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TCmCodePK other = (TCmCodePK) obj;
+		if (cd == null) {
+			if (other.cd != null)
+				return false;
+		} else if (!cd.equals(other.cd))
+			return false;
+		if (grpCd == null) {
+			if (other.grpCd != null)
+				return false;
+		} else if (!grpCd.equals(other.grpCd))
+			return false;
+		return true;
+	}
 
 }

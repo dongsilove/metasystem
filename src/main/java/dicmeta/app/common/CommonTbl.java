@@ -25,7 +25,7 @@ import lombok.Setter;
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-//@Getter @Setter
+@Getter @Setter
 public abstract class CommonTbl {
 	//@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
@@ -51,37 +51,23 @@ public abstract class CommonTbl {
 	@Schema(description ="수정 아이디" )
 	protected String modifyId;
 
-	public String getRegistId() {
-		return registId;
-	}
-
-	public void setRegistId(String registId) {
-		this.registId = registId;
-	}
-
-	public String getModifyId() {
-		return modifyId;
-	}
-
-	public void setModifyId(String modifyId) {
-		this.modifyId = modifyId;
-	}
-
-	public LocalDateTime getRegistDt() {
-		return registDt;
-	}
-
-	public void setRegistDt(LocalDateTime registDt) {
-		this.registDt = registDt;
-	}
-
-	public LocalDateTime getModifyDt() {
-		return modifyDt;
-	}
-
-	public void setModifyDt(LocalDateTime modifyDt) {
-		this.modifyDt = modifyDt;
-	}
+	/*
+	 * public String getRegistId() { return registId; }
+	 * 
+	 * public void setRegistId(String registId) { this.registId = registId; }
+	 * 
+	 * public String getModifyId() { return modifyId; }
+	 * 
+	 * public void setModifyId(String modifyId) { this.modifyId = modifyId; }
+	 * 
+	 * public LocalDateTime getRegistDt() { return registDt; }
+	 * 
+	 * public void setRegistDt(LocalDateTime registDt) { this.registDt = registDt; }
+	 * 
+	 * public LocalDateTime getModifyDt() { return modifyDt; }
+	 * 
+	 * public void setModifyDt(LocalDateTime modifyDt) { this.modifyDt = modifyDt; }
+	 */
 
 	
 }

@@ -1,20 +1,28 @@
 package dicmeta.app.w.term;
 
 import java.io.Serializable;
-import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.JoinColumnOrFormula;
 import org.hibernate.annotations.JoinColumnsOrFormulas;
-import org.hibernate.annotations.JoinFormula;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
-
 
 import dicmeta.app.common.CommonTbl;
 import dicmeta.app.w.domain.TWdDomain;
 import io.swagger.v3.oas.annotations.media.Schema;
-
-import java.util.Date;
+import lombok.Getter;
+import lombok.Setter;
 
 
 /**
@@ -24,6 +32,7 @@ import java.util.Date;
 @Entity
 @Table(name="t_wd_term")
 @NamedQuery(name="TWdTerm.findAll", query="SELECT t FROM TWdTerm t")
+@Getter @Setter
 public class TWdTerm extends CommonTbl implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -79,95 +88,48 @@ public class TWdTerm extends CommonTbl implements Serializable {
 	public TWdTerm() {
 	}
 
-	
-	public String getTermDc() {
-		return termDc;
-	}
 
-
-	public void setTermDc(String termDc) {
-		this.termDc = termDc;
-	}
-
-
-
-	public Integer getTermSn() {
-		return this.termSn;
-	}
-
-	public void setTermSn(Integer termSn) {
-		this.termSn = termSn;
-	}
-
-	public String getDataFom() {
-		return this.dataFom;
-	}
-
-	public void setDataFom(String dataFom) {
-		this.dataFom = dataFom;
-	}
-
-	public Integer getDomainSn() {
-		return this.domainSn;
-	}
-
-	public void setDomainSn(Integer domainSn) {
-		this.domainSn = domainSn;
-	}
-
-	public String getTermEnAbbr() {
-		return this.termEnAbbr;
-	}
-
-	public void setTermEnAbbr(String termEnAbbr) {
-		this.termEnAbbr = termEnAbbr;
-	}
-
-	public String getTermEnNm() {
-		return this.termEnNm;
-	}
-
-	public void setTermEnNm(String termEnNm) {
-		this.termEnNm = termEnNm;
-	}
-
-	public String getTermNm() {
-		return this.termNm;
-	}
-
-	public void setTermNm(String termNm) {
-		this.termNm = termNm;
-	}
-
-
-	public Integer getPrjctSn() {
-		return prjctSn;
-	}
-
-
-	public void setPrjctSn(Integer prjctSn) {
-		this.prjctSn = prjctSn;
-	}
-
-
-	public String getTermSeNm() {
-		return termSeNm;
-	}
-
-
-	public void setTermSeNm(String termSeNm) {
-		this.termSeNm = termSeNm;
-	}
-
-
-	public TWdDomain gettWdDomain() {
-		return tWdDomain;
-	}
-
-
-	public void settWdDomain(TWdDomain tWdDomain) {
-		this.tWdDomain = tWdDomain;
-	}
+	/*
+	 * public String getTermDc() { return termDc; }
+	 * 
+	 * public void setTermDc(String termDc) { this.termDc = termDc; }
+	 * 
+	 * public Integer getTermSn() { return this.termSn; }
+	 * 
+	 * public void setTermSn(Integer termSn) { this.termSn = termSn; }
+	 * 
+	 * public String getDataFom() { return this.dataFom; }
+	 * 
+	 * public void setDataFom(String dataFom) { this.dataFom = dataFom; }
+	 * 
+	 * public Integer getDomainSn() { return this.domainSn; }
+	 * 
+	 * public void setDomainSn(Integer domainSn) { this.domainSn = domainSn; }
+	 * 
+	 * public String getTermEnAbbr() { return this.termEnAbbr; }
+	 * 
+	 * public void setTermEnAbbr(String termEnAbbr) { this.termEnAbbr = termEnAbbr;}
+	 * 
+	 * public String getTermEnNm() { return this.termEnNm; }
+	 * 
+	 * public void setTermEnNm(String termEnNm) { this.termEnNm = termEnNm; }
+	 * 
+	 * public String getTermNm() { return this.termNm; }
+	 * 
+	 * public void setTermNm(String termNm) { this.termNm = termNm; }
+	 * 
+	 * public Integer getPrjctSn() { return prjctSn; }
+	 * 
+	 * public void setPrjctSn(Integer prjctSn) { this.prjctSn = prjctSn; }
+	 * 
+	 * public String getTermSeNm() { return termSeNm; }
+	 * 
+	 * public void setTermSeNm(String termSeNm) { this.termSeNm = termSeNm; }
+	 * 
+	 * public TWdDomain gettWdDomain() { return tWdDomain; }
+	 * 
+	 * public void settWdDomain(TWdDomain tWdDomain) { this.tWdDomain = tWdDomain; }
+	 */
 
 
 }

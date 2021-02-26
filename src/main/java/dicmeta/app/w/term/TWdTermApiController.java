@@ -22,13 +22,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Tag( name = "TWdTermApiController", description = "용어")
 @RestController 
 @RequestMapping(value="/api")
 public class TWdTermApiController {
 
-	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	//private Logger log = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
 	TWdTermRepository termRepository;
@@ -43,7 +45,7 @@ public class TWdTermApiController {
 			@RequestParam(name = "page", required = true, defaultValue = "1") int page) throws Exception {
 		
 		Page<TWdTerm> list;
-		param.forEach((k,v)->logger.debug("key:" + k + "\tvalue:" +v));
+		param.forEach((k,v)->log.debug("key:" + k + "\tvalue:" +v));
 		PageRequest pageRequest = PageRequest.of(page - 1, perPage, Sort.by(Direction.DESC, "termSn"));
 		list = termQuerydslRepository.findList(param, pageRequest);
 		return list;
@@ -64,11 +66,11 @@ public class TWdTermApiController {
 	@PutMapping("/terms")
 	public TWdTerm put(@RequestBody TWdTerm tWdTerm) throws Exception {
 		
-		logger.debug("용어 저장 호출 : {}", tWdTerm);
+		log.debug("용어 저장 호출 : {}", tWdTerm);
 		TWdTerm term;
 		term = termRepository.save(tWdTerm);
 		if (term == null) {
-			logger.debug("저장시 오류발생");
+			log.debug("저장시 오류발생");
 		}
 		return term;
 		
@@ -78,7 +80,7 @@ public class TWdTermApiController {
 	@DeleteMapping("/terms/{termSn}")
 	public String delete(@PathVariable Integer termSn) throws Exception {
 		
-		logger.debug("용어 삭제 호출 :"+  Integer.toString(termSn));
+		log.debug("용어 삭제 호출 :"+  Integer.toString(termSn));
 		termRepository.deleteById(termSn);
 		return "200";
 		
